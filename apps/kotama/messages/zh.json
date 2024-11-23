@@ -1,0 +1,14 @@
+{
+  "Home": {
+    "LanguageSwitcher": {
+      "en": "英语",
+      "zh": "中文"
+    },
+    "MenuBar": {
+      "home": "首页",
+      "blog": "博客",
+      "aboutMe": "关于我",
+      "friends": "伙伴们"
+    }
+  }
+}

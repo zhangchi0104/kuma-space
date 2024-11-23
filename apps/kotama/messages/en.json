@@ -1,0 +1,14 @@
+{
+  "Home": {
+    "LanguageSwitcher": {
+      "en": "English",
+      "zh": "Chinese"
+    },
+    "MenuBar": {
+      "home": "Home",
+      "blog": "Blog",
+      "aboutMe": "About Me",
+      "friends": "Friends"
+    }
+  }
+}
