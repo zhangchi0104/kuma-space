@@ -1,0 +1,30 @@
+# @format
+
+name: Database schema migration
+on:
+  push:
+    paths:
+      - apps/kuma-elysia/prisma/migrations/** # Only run this workflow when migrations are updated
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: apps/kuma-elysia
+
+jobs:
+  deploy:
+    environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: npm install
+      - name: Apply all pending migrations to the database
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
+          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}

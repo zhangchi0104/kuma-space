@@ -1,0 +1,23 @@
+{
+  "name": "kuma-elysia",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "postinstall": "bunx prisma generate",
+    "build": "docker build -t zhangchi0104/blog:latest ."
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.693.0",
+    "@aws-sdk/lib-dynamodb": "^3.693.0",
+    "@prisma/client": "5.22.0",
+    "elysia": "latest",
+    "envalid": "^8.0.0"
+  },
+  "devDependencies": {
+    "aws-cdk-lib": "^2.167.1",
+    "bun-types": "latest",
+    "prisma": "^5.22.0"
+  },
+  "module": "src/index.js"
+}
