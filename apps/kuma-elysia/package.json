@@ -14,6 +14,12 @@
     "elysia": "latest",
     "envalid": "^8.0.0"
   },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "devDependencies": {
     "aws-cdk-lib": "^2.167.1",
     "bun-types": "latest",

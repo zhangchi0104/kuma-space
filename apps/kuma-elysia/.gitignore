@@ -95,7 +95,7 @@ override.tf.json
 terraform.rc
 **/*.zip
 .op/
-src/@prisma
+src/@prisma/client
 
 .cdk.staging
 cdk.out

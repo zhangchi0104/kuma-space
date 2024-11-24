@@ -1,0 +1,23 @@
+{
+  "name": "@repo/api",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./eden": {
+      "types": "./src/eden/index.ts",
+      "default": "./dist/eden/index.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "elysia": "^1.1.25",
+    "typescript": "latest",
+    "kuma-elysia": "workspace:*"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "^1.1.3"
+  }
+}
