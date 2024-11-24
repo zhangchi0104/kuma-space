@@ -7,6 +7,7 @@ on:
       - apps/kuma-elysia/prisma/migrations/** # Only run this workflow when migrations are updated
     branches:
       - main
+  workflow_dispatch:
 
 defaults:
   run:
