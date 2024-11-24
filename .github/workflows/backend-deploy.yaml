@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ var.DOCKERHUB_USERNAME }}/blog:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/blog:latest
     outputs:
       image_digest: ${{ steps.push.outputs.digest }}
 
@@ -38,4 +38,4 @@ jobs:
       - name: Deploy the app
         uses: digitalocean/app_action/deploy@v2
         with:
-        token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
