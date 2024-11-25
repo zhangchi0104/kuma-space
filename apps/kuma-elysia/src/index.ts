@@ -2,6 +2,7 @@ import { Elysia } from 'elysia';
 import { HttpError } from './errors';
 import { postsRoutes } from './routes/posts/(with-prisma)';
 import logger from './plugins/requestLogger';
+import { treaty } from '@elysiajs/eden';
 
 const gloablErrorHandler = () =>
   new Elysia()
@@ -23,7 +24,7 @@ const gloablErrorHandler = () =>
           };
       }
     });
-const app = new Elysia()
+export const app = new Elysia()
   .use(gloablErrorHandler)
   .use(logger)
   .use(postsRoutes)
@@ -33,5 +34,4 @@ const app = new Elysia()
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
-
 export type App = typeof app;

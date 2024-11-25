@@ -1,8 +1,16 @@
 {
     "extends": "@repo/typescript-config/base.json",
     "compilerOptions": {
+        "baseUrl": "../..",
         "outDir": "dist",
-        "rootDir": "src"
+        "paths": {
+            "@server": [
+                "apps/kuma-elysia/src"
+            ],
+            "@server/*": [
+                "apps/kuma-elysia/src/*"
+            ]
+        }
     },
     "include": [
         "src"
