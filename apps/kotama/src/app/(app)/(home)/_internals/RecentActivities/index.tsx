@@ -5,14 +5,12 @@ import { cn } from '~/utils/shadcn';
 import { BaseStyleProps } from '~/utils/typings';
 
 import PostsTimeline from './_interals/PostsTimeline';
-import { fetchRecentBlogs } from '@/src/utils/fetcher/fetchRecentBlogs';
 
 /** @format */
 type RecentActivitiesProps = BaseStyleProps;
 export const RecentActivities = async ({
   className,
 }: RecentActivitiesProps) => {
-  const { posts } = await fetchRecentBlogs(5);
   const refDate = new Date();
   return (
     <div
