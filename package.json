@@ -5,6 +5,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "postinstall": "bunx prisma generate --schema=apps/kuma-elysia/prisma/schema.prisma",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
