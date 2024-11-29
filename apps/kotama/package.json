@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "prebuild": "bunx prisma generate --schema=../kuma-elysia/prisma/schema.prisma",
+    "build": "bun run prebuild && next build",
     "start": "next start",
     "lint": "next lint"
   },
