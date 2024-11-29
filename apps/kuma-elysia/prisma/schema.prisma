@@ -18,7 +18,6 @@ datasource db {
 model Post {
   postId      Int             @id @default(autoincrement())
   languages   PostLanguages[]
-  title       String
   createdAt   DateTime        @default(now())
   updatedAt   DateTime?       @updatedAt
   tags TagsOnPosts[]
@@ -27,6 +26,7 @@ model Post {
 model PostLanguages {
   languageCode LanguageCodes
   postId       Int
+  title        String        @default("")
   post         Post          @relation(fields: [postId], references: [postId])
   @@id([languageCode, postId])
 }

@@ -2,7 +2,6 @@ import { Elysia } from 'elysia';
 import { HttpError } from './errors';
 import { postsRoutes } from './routes/posts/(with-prisma)';
 import logger from './plugins/requestLogger';
-import { treaty } from '@elysiajs/eden';
 
 const gloablErrorHandler = () =>
   new Elysia()
@@ -24,7 +23,8 @@ const gloablErrorHandler = () =>
           };
       }
     });
-export const app = new Elysia()
+
+export const app = new Elysia({ prefix: '/v1' })
   .use(gloablErrorHandler)
   .use(logger)
   .use(postsRoutes)

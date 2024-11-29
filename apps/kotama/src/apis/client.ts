@@ -2,4 +2,5 @@
 
 import { createEdenTreatyClient } from '@repo/api/eden';
 
-export const client = createEdenTreatyClient('/api');
+const v1Client = createEdenTreatyClient('/api');
+export const client = v1Client.v1;

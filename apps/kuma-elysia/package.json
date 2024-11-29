@@ -18,10 +18,8 @@
   },
   "devDependencies": {
     "aws-cdk-lib": "^2.167.1",
-    "bun-types": "latest",
     "prisma": "^5.22.0",
-    "elysia": "latest",
-    "@repo/api": "workspace:*",
+    "elysia": "^1.1.25",
     "@repo/typescript-config": "workspace:*"
   }
 }

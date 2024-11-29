@@ -29,7 +29,7 @@ export const RecentActivities = async ({
         refDate={refDate}
         posts={[]}
         heading='Moments'
-        className='flpt-4'
+        className='flex flex-col pt-4'
       />
     </div>
   );
