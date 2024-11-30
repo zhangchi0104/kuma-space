@@ -27,6 +27,7 @@ jobs:
           context: .
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/blog:latest
+          file: apps/kuma-elysia/Dockerfile
     outputs:
       image_digest: ${{ steps.push.outputs.digest }}
 
