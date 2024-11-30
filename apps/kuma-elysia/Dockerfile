@@ -1,27 +1,18 @@
-FROM oven/bun AS build
-
+FROM oven/bun AS  build
 WORKDIR /app
-
-# Cache packages installation
 COPY package.json package.json
-COPY tsconfig.json tsconfig.json
-COPY bun.lockb bun.lockb
-
-RUN bun install
-COPY ./prisma ./prisma
-RUN bunx prisma generate
-
-COPY ./src ./src
-
+COPY . .
 ENV NODE_ENV=production
+RUN bun install
 
-RUN bun build ./src/index.ts --minify --splitting --outdir=server
+
+RUN  cd apps/kuma-elysia && bun run build 
 FROM oven/bun
 
 WORKDIR /app
 
-COPY --from=build /app/server server
-COPY --from=build /app/src/@prisma src/@prisma
+COPY --from=build /app/apps/kuma-elysia/server server
+COPY --from=build /app/apps/kuma-elysia/src/@prisma apps/kuma-elysia/src/@prisma
 
 ENV NODE_ENV=production
 

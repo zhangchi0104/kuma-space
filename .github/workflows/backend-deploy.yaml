@@ -18,7 +18,6 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v3.3.0
         with:
-          registry: ghcr.io
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build and push Docker image
