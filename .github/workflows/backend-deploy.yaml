@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
 jobs:
   build-and-push:
+    environment: prod
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -39,3 +40,6 @@ jobs:
         uses: digitalocean/app_action/deploy@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+        env:
+          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
+          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
