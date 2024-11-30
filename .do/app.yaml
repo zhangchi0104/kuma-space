@@ -14,7 +14,7 @@ ingress:
         name: zhangchi-0104-blog
       match:
         path:
-          prefix: /
+          prefix: /v1
 name: monkfish-app
 region: syd
 services:

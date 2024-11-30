@@ -32,7 +32,7 @@ export const postsRoutes = new Elysia({ prefix: '/posts' })
         const { languages, ...rest } = post;
         return {
           ...rest,
-          title: languages[0].title,
+          title: languages[0]?.title || '',
         };
       }) as PostWithTitle[];
     },

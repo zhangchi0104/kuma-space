@@ -24,7 +24,7 @@ const gloablErrorHandler = () =>
       }
     });
 
-export const app = new Elysia({ prefix: '/v1' })
+export const app = new Elysia()
   .use(gloablErrorHandler)
   .use(logger)
   .use(postsRoutes)
