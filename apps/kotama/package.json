@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "postinstall": "bunx prisma generate --schema=../kuma-elysia/prisma/schema.prisma",
-    "build": "bun run prebuild && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },

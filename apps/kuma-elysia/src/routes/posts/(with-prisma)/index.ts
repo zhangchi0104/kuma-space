@@ -41,7 +41,7 @@ export const postsRoutes = new Elysia({ prefix: '/posts' })
         // },
       });
       let cursor: number | undefined = undefined;
-      console.log({ ids: posts.map((post) => post.postId) });
+
       if (posts.length === guardedLimit) {
         const post = posts.pop();
         cursor = post?.postId ?? undefined;
