@@ -12,14 +12,19 @@ const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
   const formatter = await getFormatter();
   const now = new Date();
 
-  const { data } = await client.posts.index.get({
+  const { data, error } = await client.posts.index.get({
     query: {
       type: 'moment',
       languageCode: locale as 'zh' | 'en',
       limit: 5,
     },
   });
-  if (!data) return [];
+  if (error) {
+    throw error;
+  }
+  if (!data) {
+    return [];
+  }
 
   return data.posts
     .map((post) => ({ ...post, createdAt: new Date(post.createdAt) }))

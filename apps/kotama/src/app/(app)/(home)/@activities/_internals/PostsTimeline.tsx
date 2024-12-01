@@ -39,7 +39,7 @@ const PostsTimeline: React.FC<PostsTimelineProps> = ({
         id={`${prefix}-timeline`}
         as='ul'
         className={cn(
-          'grid grid-cols-[auto_1fr] posts-timeline mt-2 mx-4 self-center'
+          'grid grid-cols-[14em_1fr] posts-timeline mt-2 mx-4 self-center'
         )}
         data={posts}
         render={renderFn}
