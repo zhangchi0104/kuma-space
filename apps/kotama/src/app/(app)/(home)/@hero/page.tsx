@@ -1,6 +1,5 @@
 /** @format */
 
-import { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
 import { BaseStyleProps } from '@/src/utils/typings';
@@ -18,10 +17,9 @@ const HeroSection: React.FC<BaseStyleProps> = ({ className }) => {
   );
 };
 
-const HeroSectionContainer: React.FC<PropsWithChildren<BaseStyleProps>> = ({
-  children,
-  className,
-}) => {
+const HeroSectionContainer: React.FC<
+  React.PropsWithChildren<BaseStyleProps>
+> = ({ children, className }) => {
   const classNames = clsx('flex flex-col mx-auto safe-h-screen', className);
   return <div className={classNames}>{children}</div>;
 };
