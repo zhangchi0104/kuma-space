@@ -1,6 +1,6 @@
 /** @format */
 
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 type AnimatedComponentPropsBase = {
   duration?: number;
   delay?: number;
@@ -17,3 +17,8 @@ export type AnimatedComponentPropsWithChildren<T extends {} = {}> =
 
 export type AnimatedComponentPropsWithRef<T extends {} = {}> =
   AnimatedComponentProps<T> & { ref?: React.Ref<T> };
+
+export type NextJsErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
