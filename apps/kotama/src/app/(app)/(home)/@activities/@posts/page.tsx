@@ -26,20 +26,17 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
     return [];
   }
 
-  return (
-    data.posts
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      .map((post) => ({ ...post, createdAt: new Date(post.createdAt) }))
-      .map((post) => ({
-        ...post,
-        dateString:
-          diffInDays(now, post.createdAt) > 7
-            ? formatter.dateTime(post.createdAt, {
-                dateStyle: 'long',
-              })
-            : formatter.relativeTime(post.createdAt, now),
-      }))
-  );
+  return data.posts
+    .map((post) => ({ ...post, createdAt: new Date(post.createdAt) }))
+    .map((post) => ({
+      ...post,
+      dateString:
+        diffInDays(now, post.createdAt) > 7
+          ? formatter.dateTime(post.createdAt, {
+              dateStyle: 'long',
+            })
+          : formatter.relativeTime(post.createdAt, now),
+    }));
 };
 
 const Posts = async () => {
