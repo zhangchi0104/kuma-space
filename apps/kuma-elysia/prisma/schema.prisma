@@ -48,6 +48,6 @@ model TagsOnPosts {
 }
 
 enum LanguageCodes {
-  EN_US
-  ZH_CN
+  EN
+  ZH
 }

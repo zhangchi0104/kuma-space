@@ -1,14 +1,15 @@
 import { t } from 'elysia';
 
 export const getPostsQuery = t.Object({
-  languageCode: t.Enum({ EN_US: 'EN_US', ZH_CN: 'ZH_CN' }),
+  languageCode: t.Enum({ zh: 'zh', en: 'en' }),
   type: t.Enum(
     { post: 'post', moment: 'moment' },
     {
       default: 'post',
     },
   ),
-  cursor: t.Optional(t.String()),
+  reverse: t.Optional(t.Boolean({ default: false })),
+  cursor: t.Optional(t.Number()),
   limit: t.Number({
     minimum: 1,
     maximum: 10,

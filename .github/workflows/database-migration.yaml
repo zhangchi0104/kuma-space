@@ -15,7 +15,7 @@ defaults:
 
 jobs:
   deploy:
-    environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+    environment: 'prod'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Apply all pending migrations to the database
-        run: npx prisma migrate deploy
+        run: bunx prisma migrate deploy
         env:
           DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
           DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
