@@ -38,9 +38,7 @@ const PostsTimeline: React.FC<PostsTimelineProps> = ({
         emptyFallback={<PostsTimelineEmptyFallback className={'w-full mt-6'} />}
         id={`${prefix}-timeline`}
         as='ul'
-        className={cn(
-          'grid grid-cols-[14em_1fr] posts-timeline mt-2 mx-4 self-center'
-        )}
+        className={cn('grid grid-cols-[8rem_1fr] posts-timeline')}
         data={posts}
         render={renderFn}
       />

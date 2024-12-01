@@ -33,7 +33,7 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
       dateString:
         diffInDays(now, post.createdAt) > 7
           ? formatter.dateTime(post.createdAt, {
-              dateStyle: 'long',
+              dateStyle: 'medium',
             })
           : formatter.relativeTime(post.createdAt, now),
     }));
@@ -45,7 +45,7 @@ const Posts = async () => {
     <PostsTimeline
       posts={posts}
       prefix='Recent Posts'
-      className='flex flex-col mb-4'
+      className='flex flex-col'
     />
   );
 };
