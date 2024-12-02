@@ -1,0 +1,37 @@
+{
+  "CurrentFocus": "Make it work",
+  "HomePage": [
+    {
+      "title": "Hitokoto",
+      "checked": false
+    },
+    {
+      "title": "More Button for Activities",
+      "checked": false
+    },
+    {
+      "title": "Footer",
+      "checked": false
+    },
+    {
+      "title": "Activities Page",
+      "checked": false
+    }
+  ],
+  "Blogs": [
+    {
+      "title": "Render Blogs with MDX",
+      "checked": false
+    },
+    {
+      "title": "Blogs Editor",
+      "checked": false
+    }
+  ],
+  "About": [
+    {
+      "title": "About Page",
+      "checked": false
+    }
+  ]
+}
