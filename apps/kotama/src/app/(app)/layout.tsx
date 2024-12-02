@@ -9,10 +9,10 @@ type LayoutProps = PropsWithChildren<{
 }>;
 const Layout: React.FC<LayoutProps> = ({ children, header }) => {
   return (
-    <div className='mx-auto'>
+    <>
       {header}
       <div className='max-w-screen-xl mx-auto'>{children}</div>
-    </div>
+    </>
   );
 };
 export default Layout;

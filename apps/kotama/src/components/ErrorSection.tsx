@@ -34,7 +34,7 @@ const ErrorSection: React.FC<ErrorSectionProps> = ({
         <h2 className='text-lg font-semibold'>{title}</h2>
         <p className='text-sm text-muted-foreground'>{description}</p>
         <Button
-          className='text-sm mt-1'
+          className='text-sm mt-5'
           size='sm'
           variant='outline'
           onClick={() => reset()}

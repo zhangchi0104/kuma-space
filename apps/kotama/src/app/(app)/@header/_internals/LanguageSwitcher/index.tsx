@@ -13,12 +13,14 @@ import { BaseStyleProps } from '~/utils/typings';
 import LanguageSwitcherItem from './LanguageSwitcherItem';
 import { LanguageIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { useState } from 'react';
 const LanguageSwitcher: React.FC<BaseStyleProps> = ({ className, style }) => {
+  const [open, setOpen] = useState(false);
   const currentLocale = useLocale() as Locale;
   const t = useTranslations('Home.LanguageSwitcher');
   const classNames = clsx('text-foreground', 'w-5', 'h-5', className);
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' size={'icon'} style={style}>
           <LanguageIcon className={classNames} />
