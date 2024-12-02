@@ -6,7 +6,7 @@ alerts:
 features:
   - buildpack-stack=ubuntu-22
 domains:
-  - domain: prod.api.chi.dev
+  - domain: prod.api.chiz.dev
     type: PRIMARY
 ingress:
   rules:

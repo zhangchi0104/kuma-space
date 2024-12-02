@@ -1,4 +1,5 @@
 /** @format */
+
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { BaseStyleProps } from '../utils/typings';
@@ -21,6 +22,7 @@ const ErrorSection: React.FC<ErrorSectionProps> = ({
     <div className={cn('flex flex-col items-center justify-center', className)}>
       {children || (
         <Image
+          unoptimized
           src={'/images/error_01.webp'}
           alt='error'
           width={128}
@@ -32,7 +34,7 @@ const ErrorSection: React.FC<ErrorSectionProps> = ({
         <h2 className='text-lg font-semibold'>{title}</h2>
         <p className='text-sm text-muted-foreground'>{description}</p>
         <Button
-          className='text-sm mt-1'
+          className='text-sm mt-5'
           size='sm'
           variant='outline'
           onClick={() => reset()}

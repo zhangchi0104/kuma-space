@@ -8,14 +8,45 @@ import { useTheme } from 'next-themes';
 
 import { Button } from '@/src/components/ui/button';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu';
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from '~/components/ui/dropdown-menu';
 import clsx from 'clsx';
-
+import dynamic from 'next/dynamic';
+const DropdownMenu = dynamic(
+  () => import('~/components/ui/dropdown-menu').then((mod) => mod.DropdownMenu),
+  {
+    ssr: false,
+  }
+);
+const DropdownMenuTrigger = dynamic(
+  () =>
+    import('~/components/ui/dropdown-menu').then(
+      (mod) => mod.DropdownMenuTrigger
+    ),
+  {
+    ssr: false,
+  }
+);
+const DropdownMenuContent = dynamic(
+  () =>
+    import('~/components/ui/dropdown-menu').then(
+      (mod) => mod.DropdownMenuContent
+    ),
+  {
+    ssr: false,
+  }
+);
+const DropdownMenuItem = dynamic(
+  () =>
+    import('~/components/ui/dropdown-menu').then((mod) => mod.DropdownMenuItem),
+  {
+    ssr: false,
+  }
+);
 export function ModeToggle({ className }: { className?: string }) {
   const { setTheme } = useTheme();
   const classNames = clsx('w-5', 'h-5', className);
