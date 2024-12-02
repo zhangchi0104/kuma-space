@@ -15,11 +15,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { FC } from 'react';
 interface MobileHeaderMenuProps {
   className?: string;
 }
-const MobileHeaderMenu: React.FC<MobileHeaderMenuProps> = ({ className }) => {
+const MobileHeaderMenu: FC<MobileHeaderMenuProps> = ({ className }) => {
   const classNames = clsx('text-xl', 'text-foreground', className);
 
   return (

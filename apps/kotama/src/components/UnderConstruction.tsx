@@ -1,5 +1,5 @@
 /** @format */
-import { faRoadBarrier } from '@fortawesome/free-solid-svg-icons';
+import { faRoadBarrier } from '@fortawesome/free-solid-svg-icons/faRoadBarrier';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const UnderConstruction = () => {
   return (

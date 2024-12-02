@@ -1,8 +1,6 @@
 /** @format */
 
-import { useIsMobile } from '@/src/utils/hooks/viewports';
 import { PropsWithChildren, FC } from 'react';
-import { useIsClient } from 'usehooks-ts';
 import breakpoints from '~/utils/constants/breakpoints';
 
 type MobileOnlyProps = PropsWithChildren<{
@@ -23,4 +21,4 @@ const MobileOnlyByCss: FC<MobileOnlyProps> = ({
   return <div className={css}>{children}</div>;
 };
 
-// export default MobileOnlyByCss;
+export default MobileOnlyByCss;

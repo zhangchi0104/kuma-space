@@ -1,6 +1,5 @@
 /** @format */
 
-'use client';
 import React from 'react';
 import FlattenProviders from './ComposeProviders';
 import { store } from '../atoms/store';
