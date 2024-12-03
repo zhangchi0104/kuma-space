@@ -1,6 +1,6 @@
 {
-  "CurrentFocus": "Make it work",
-  "HomePage": [
+  "currentFocus": "Make it work",
+  "homePage": [
     {
       "title": "Hitokoto",
       "checked": false
@@ -18,7 +18,7 @@
       "checked": false
     }
   ],
-  "Blogs": [
+  "blogs": [
     {
       "title": "Render Blogs with MDX",
       "checked": false
@@ -28,7 +28,7 @@
       "checked": false
     }
   ],
-  "About": [
+  "about": [
     {
       "title": "About Page",
       "checked": false

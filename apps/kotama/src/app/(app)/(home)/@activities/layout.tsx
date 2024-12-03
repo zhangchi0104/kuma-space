@@ -14,20 +14,17 @@ const ActivitiesLayout: React.FC<
     <section className='grid grid-cols-1 md:grid-cols-2 gap-x-12 md:my-16 my-8'>
       <div className={cn('flex flex-col items-stretch')}>
         <div>
-          <p className='text-xl font-semibold mb-2'>Posts</p>
+          <p className='text-2xl font-semibold mb-2'>Posts</p>
           {posts}
         </div>
         <div className='mt-6'>
-          <p className='text-xl font-semibold mb-2'>Moments</p>
+          <p className='text-2xl font-semibold mb-2'>Moments</p>
           {moments}
         </div>
       </div>
-
       <div className='mt-8 sm:mt-0'>
-        <p className='text-xl font-semibold mb-2'>Roadmap</p>
-        <div className='flex flex-col items-center justify-center mt-4'>
-          {roadmap}
-        </div>
+        <p className='text-2xl font-semibold mb-2'>Roadmap</p>
+        {roadmap}
       </div>
     </section>
   );
