@@ -10,5 +10,10 @@
       "aboutMe": "About Me",
       "friends": "Friends"
     }
+  },
+  "Error": {
+    "title": "Oops!",
+    "description": "Something went wrong.",
+    "refresh": "Refresh"
   }
 }
