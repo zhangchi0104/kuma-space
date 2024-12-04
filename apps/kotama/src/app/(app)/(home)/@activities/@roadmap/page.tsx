@@ -1,7 +1,7 @@
 /** @format */
-
-import data from './data.json';
-import ConstructionProgress from './_internals/ConstructionProgress';
+import data from "./data.json";
+import ConstructionProgress from "./_internals/ConstructionProgress";
+import ConstructionTasks from "./_internals/ConstructionTasks";
 export default function ProgressPage() {
   const { currentFocus, ...todos } = data;
   const segments: Record<string, { done: number; total: number }> = {};
@@ -11,19 +11,18 @@ export default function ProgressPage() {
         done: acc.done + (curr.checked ? 1 : 0),
         total: acc.total + 1,
       }),
-      { done: 0, total: 0 }
+      { done: 0, total: 0 },
     );
   }
 
   return (
-    <div className='self-start'>
-      <p className='text-lg font-medium'>
-        <span className='mr-2'>📌 Current Stage: </span>
-        <span className='text-muted-foreground'>{data.currentFocus}</span>
-        <div>
-          <ConstructionProgress segments={segments} />
-        </div>
+    <>
+      <p className="text-md font-medium flex flex-row justify-between">
+        <span className="mr-2">📌 Current Stage</span>
+        <span className="text-muted-foreground">{data.currentFocus}</span>
       </p>
-    </div>
+      <ConstructionProgress segments={segments} />
+      <ConstructionTasks className="mt-6 h-full flex-1" data={todos} />
+    </>
   );
 }
