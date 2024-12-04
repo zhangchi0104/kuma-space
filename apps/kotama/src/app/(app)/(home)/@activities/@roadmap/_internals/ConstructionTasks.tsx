@@ -23,7 +23,10 @@ const ConstructionTasks: React.FC<ConstructionTasksProps> = ({
   const keys = Object.keys(data);
   const pairs = Object.entries(data);
   return (
-    <Tabs className={cn("w-full", className)} defaultValue={keys[0]}>
+    <Tabs
+      className={cn("w-full flex flex-col", className)}
+      defaultValue={keys[0]}
+    >
       <TabsList className="w-full flex flex-row">
         {keys.map((key) => renderTitleToTabsTrigger(key))}
       </TabsList>
@@ -32,7 +35,7 @@ const ConstructionTasks: React.FC<ConstructionTasksProps> = ({
           key={key}
           value={key}
           data={value}
-          className="w-full"
+          className="w-full md:flex-1"
         />
       ))}
     </Tabs>
