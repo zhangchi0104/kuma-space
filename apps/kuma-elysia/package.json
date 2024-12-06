@@ -18,9 +18,10 @@
     "bcp-47": "^2.1.0"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "aws-cdk-lib": "^2.167.1",
-    "prisma": "^5.22.0",
     "elysia": "^1.1.25",
-    "@repo/typescript-config": "workspace:*"
+    "eslint-plugin-prettier": "^5.2.1",
+    "prisma": "^5.22.0"
   }
 }

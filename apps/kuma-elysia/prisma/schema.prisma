@@ -47,6 +47,14 @@ model TagsOnPosts {
   @@id([postId, tagId])
 }
 
+model Hitokoto {
+  id Int @id @default(autoincrement())
+  content String
+  from_character String?
+  from_work String?
+  from_work_type String?
+}
+
 enum LanguageCodes {
   EN
   ZH
