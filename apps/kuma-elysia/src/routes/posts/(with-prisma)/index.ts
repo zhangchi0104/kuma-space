@@ -3,12 +3,7 @@ import prisma from '@server/@prisma';
 import { postIdRoutes } from './[id]';
 import { getPostsQuery } from '../_validation';
 import { selectPostsQuery } from '@server/@prisma/queries/posts';
-import {
-  LanguageCodes,
-  Post,
-  PostLanguages,
-  Prisma,
-} from '@server/@prisma/client';
+import { LanguageCodes, Post, PostLanguages } from '@repo/db';
 type PostWithTitle = Post & { title: PostLanguages['title'] };
 
 export const postsRoutes = new Elysia({ prefix: '/posts' })

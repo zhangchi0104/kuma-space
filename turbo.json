@@ -3,10 +3,21 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "env": ["NEXT_PUBLIC_API_URL"],
+      "dependsOn": ["^db:generate", "^build"],
+      "env": [
+        "NEXT_PUBLIC_API_URL",
+        "DATABASE_TRANSACTION_URL",
+        "DATABASE_DIRECT_URL",
+        "API_URL"
+      ],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "server/**"]
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -15,6 +26,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true
     }
