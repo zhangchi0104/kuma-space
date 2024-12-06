@@ -39,8 +39,7 @@ export default [
 
       parserOptions: {
         project: 'tsconfig.json',
-        tsconfigRootDir:
-          '/Users/alexzhang/code/github.com/zhangchi0104/kuma-nest',
+        tsconfigRootDir: __dirname,
       },
     },
 
@@ -60,4 +59,3 @@ export default [
     },
   },
 ];
-

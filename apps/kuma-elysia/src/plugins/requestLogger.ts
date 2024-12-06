@@ -2,10 +2,10 @@ import Elysia from 'elysia';
 const write = console.log;
 const logger = new Elysia({ name: 'logger' })
   .state('startTime', BigInt(0))
-  .onRequest(({ request, store }) => {
+  .onRequest(({ store }) => {
     store.startTime = process.hrtime.bigint();
   })
-  .onBeforeHandle({ as: 'global' }, ({ request, store }) => {
+  .onBeforeHandle({ as: 'global' }, ({ store }) => {
     store.startTime = process.hrtime.bigint();
   })
   .onAfterHandle({ as: 'global' }, ({ request, store }) => {
