@@ -29,7 +29,7 @@ jobs:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/blog:latest
           file: apps/kuma-elysia/Dockerfile
-          secret-envs: |
+          secrets: |
             database_transaction_url=${{ secrets.DATABASE_TRANSACTION_URL }}
             database_direct_url=${{ secrets.DATABASE_DIRECT_URL }}
 
