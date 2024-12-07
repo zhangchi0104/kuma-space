@@ -4,12 +4,12 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '../components/ui/sonner';
-import ClientProviders from '../components/Providers';
+// import ClientProviders from '../components/Providers';
 import { ThemeProvider } from '../components/utils/ThemeProvider';
-import clsx from 'clsx';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { cn } from '../utils/shadcn';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -27,22 +27,20 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <ClientProviders>
-        <body className={clsx(inter.className, 'pb-4')}>
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='system'
-              enableSystem
-              storageKey='kotama-theme'
-            >
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </NextIntlClientProvider>
-          <SpeedInsights />
-        </body>
-      </ClientProviders>
+      <body className={cn(inter.className, 'pb-4')}>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            storageKey='kotama-theme'
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

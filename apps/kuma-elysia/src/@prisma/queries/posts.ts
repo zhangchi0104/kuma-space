@@ -1,4 +1,4 @@
-import { LanguageCodes, Prisma } from '../client';
+import { LanguageCodes, Prisma } from '@repo/db';
 
 type PostQuery = {
   languageCode: LanguageCodes;

@@ -4,18 +4,17 @@ COPY package.json package.json
 COPY . .
 ENV NODE_ENV=production
 RUN bun install
+RUN  bun turbo run "kuma-elysia#build"
 
-
-RUN  cd apps/kuma-elysia && bun run build 
-FROM oven/bun
+FROM oven/bun AS run
 
 WORKDIR /app
 
-COPY --from=build /app/apps/kuma-elysia/server server
-COPY --from=build /app/apps/kuma-elysia/src/@prisma apps/kuma-elysia/src/@prisma
+COPY --from=build /app/apps/kuma-elysia/out/* .
+COPY --from=build /app/node_modules/.prisma/client ./node_modules/.prisma/client
 
 ENV NODE_ENV=production
 
-CMD ["bun", "run", "./server/index.js"]
+CMD ["bun", "run", "./index.js"]
 
 EXPOSE 8000

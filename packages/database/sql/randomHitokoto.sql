@@ -1,0 +1,1 @@
+SELECT * FROM "Hitokoto" ORDER BY RANDOM() LIMIT 1;

@@ -1,6 +1,7 @@
 import { Elysia } from 'elysia';
 import { HttpError } from './errors';
 import { postsRoutes } from './routes/posts/(with-prisma)';
+import { hitokotoRoutes } from './routes/hitokoto';
 import logger from './plugins/requestLogger';
 
 const gloablErrorHandler = () =>
@@ -28,6 +29,7 @@ export const app = new Elysia()
   .use(gloablErrorHandler)
   .use(logger)
   .use(postsRoutes)
+  .use(hitokotoRoutes)
   .get('/health', () => new Date().toString())
   .listen(8000);
 

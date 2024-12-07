@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import HeaderMenu from './_internals/HeaderMenu';
 import ModeToggle from './_internals/DarkModeButton';
 import MobileHeaderMenu from './_internals/MobileHeaderMenu';
-import MobileOnlyByAtom from '@/src/components/utils/MobileOnlyByAtom';
 import DesktopOnlyByCss from '@/src/components/utils/DesktopOnlyByCss';
 
 import LanguageSwitcher from './_internals/LanguageSwitcher';
 import { BaseStyleProps } from '@/src/utils/typings';
+import MobileOnlyByCss from '@/src/components/utils/MobileOnlyByCss';
 
 const Header: React.FC<BaseStyleProps> = ({ className }) => {
   const headerContainerStyle = clsx(
@@ -22,9 +22,9 @@ const Header: React.FC<BaseStyleProps> = ({ className }) => {
   );
   return (
     <div id='header' className={headerContainerStyle}>
-      <MobileOnlyByAtom>
+      <MobileOnlyByCss>
         <MobileHeaderMenu />
-      </MobileOnlyByAtom>
+      </MobileOnlyByCss>
       <DesktopOnlyByCss>
         <HeaderMenu className='items-center justify-start flex-row flex grow' />
       </DesktopOnlyByCss>

@@ -6,21 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
-    "postinstall": "bunx prisma generate",
-    "build": "bun build ./src/index.ts --minify --splitting --outdir=server --target=bun"
+    "lint": "bun eslint ./src/**/*.ts --fix",
+    "build": "bun build ./src/index.ts --minify --splitting --outdir=out --target=bun --sourcemap=linked"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.693.0",
     "@aws-sdk/lib-dynamodb": "^3.693.0",
     "@elysiajs/eden": "^1.1.3",
-    "@prisma/client": "5.22.0",
+    "@repo/db": "workspace:*",
     "envalid": "^8.0.0",
     "bcp-47": "^2.1.0"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "aws-cdk-lib": "^2.167.1",
-    "prisma": "^5.22.0",
     "elysia": "^1.1.25",
-    "@repo/typescript-config": "workspace:*"
+    "eslint-plugin-prettier": "^5.2.1",
+    "prisma": "^5.22.0"
   }
 }
