@@ -1,18 +1,15 @@
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/src/components/ui/tabs";
-import { camelCaseToTitle } from "@/src/utils/fns";
-import { cn } from "@/src/utils/shadcn";
-import { BaseStyleProps } from "@/src/utils/typings";
+/** @format */
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs';
+import { camelCaseToTitle } from '~/utils/fns';
+import { cn } from '~/utils/shadcn';
+import { BaseStyleProps } from '~/utils/typings';
 type ConstructionTasksProps = BaseStyleProps & {
   data: Record<string, { title: string; checked: boolean }[]>;
 };
 
 const renderTitleToTabsTrigger = (key: string) => (
-  <TabsTrigger key={`TabsTrigger-${key}`} className="flex-1" value={key}>
+  <TabsTrigger key={`TabsTrigger-${key}`} className='flex-1' value={key}>
     {camelCaseToTitle(key)}
   </TabsTrigger>
 );
@@ -24,10 +21,10 @@ const ConstructionTasks: React.FC<ConstructionTasksProps> = ({
   const pairs = Object.entries(data);
   return (
     <Tabs
-      className={cn("w-full flex flex-col", className)}
+      className={cn('w-full flex flex-col', className)}
       defaultValue={keys[0]}
     >
-      <TabsList className="w-full flex flex-row">
+      <TabsList className='w-full flex flex-row'>
         {keys.map((key) => renderTitleToTabsTrigger(key))}
       </TabsList>
       {pairs.map(([key, value]) => (
@@ -35,7 +32,7 @@ const ConstructionTasks: React.FC<ConstructionTasksProps> = ({
           key={key}
           value={key}
           data={value}
-          className="w-full md:flex-1"
+          className='w-full'
         />
       ))}
     </Tabs>
@@ -57,8 +54,8 @@ const ConstructionTabContent: React.FC<ConstructionTabContentProps> = ({
     <TabsContent
       value={value}
       className={cn(
-        "p-4 rounded-sm border border-dashed mt-6 md:mt-4 space-y-1",
-        className,
+        'p-4 rounded-sm border border-dashed mt-6 md:mt-4 space-y-1',
+        className
       )}
     >
       {incompletedTasks.map((item) => (
@@ -67,7 +64,7 @@ const ConstructionTabContent: React.FC<ConstructionTabContentProps> = ({
       {completedTasks.map((item) => (
         <p
           key={`TabsContent-item-${item.title}`}
-          className="text-muted-foreground line-through w-full"
+          className='text-muted-foreground line-through w-full'
         >
           {item.title}
         </p>

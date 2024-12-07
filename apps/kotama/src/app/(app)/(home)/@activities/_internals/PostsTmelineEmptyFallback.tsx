@@ -3,13 +3,15 @@ import { BaseStyleProps } from '@/src/utils/typings';
 import { faJava } from '@fortawesome/free-brands-svg-icons/faJava';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cn } from '@/src/utils/shadcn';
+import { useTranslations } from 'next-intl';
 const EmptyFallback: React.FC<BaseStyleProps> = ({ className }) => {
+  const t = useTranslations('Home.Activities.Empty');
   return (
     <div className={cn('text-center text-muted-foreground', className)}>
       <FontAwesomeIcon icon={faJava} size='10x' />
       <div className='mt-4'>
-        <p className='text-lg leading-8'>Sit down and relax</p>
-        <p className='text-sm leading-8'>More content is coming soon...</p>
+        <p className='text-lg leading-8'>{t('title')}</p>
+        <p className='text-sm leading-8'>{t('description')}</p>
       </div>
     </div>
   );

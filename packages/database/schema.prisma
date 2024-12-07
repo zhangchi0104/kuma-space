@@ -1,11 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["typedSql"]
 }
 
 datasource db {
@@ -15,11 +10,11 @@ datasource db {
 }
 
 model Post {
-  postId      Int             @id @default(autoincrement())
-  languages   PostLanguages[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime?       @updatedAt
-  tags TagsOnPosts[]
+  postId    Int             @id @default(autoincrement())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime?       @updatedAt
+  languages PostLanguages[]
+  tags      TagsOnPosts[]
 }
 
 model PostLanguages {
@@ -27,31 +22,32 @@ model PostLanguages {
   postId       Int
   title        String        @default("")
   post         Post          @relation(fields: [postId], references: [postId])
+
   @@id([languageCode, postId])
 }
 
 model Tag {
-  id          Int           @id @default(autoincrement())
-  category    String?
-  name        String
-  posts TagsOnPosts[]
+  id       Int           @id @default(autoincrement())
+  category String?
+  name     String
+  posts    TagsOnPosts[]
 }
 
 model TagsOnPosts {
-  post   Post @relation(fields: [postId], references: [postId])
   postId Int
-  tag    Tag  @relation(fields: [tagId], references: [id])
   tagId  Int
+  post   Post @relation(fields: [postId], references: [postId])
+  tag    Tag  @relation(fields: [tagId], references: [id])
 
   @@id([postId, tagId])
 }
 
 model Hitokoto {
-  id Int @id @default(autoincrement())
-  content String
-  from_character String?
-  from_work String?
-  from_work_type String?
+  id            Int     @id @default(autoincrement())
+  content       String
+  fromCharacter String?
+  fromWork      String?
+  fromWorkType  String
 }
 
 enum LanguageCodes {

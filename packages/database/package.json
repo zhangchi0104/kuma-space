@@ -1,7 +1,8 @@
 {
   "name": "@repo/db",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./sql": "./src/sql.ts"
   },
   "version": "0.0.0",
   "dependencies": {
@@ -11,7 +12,8 @@
     "prisma": "^6.0.1"
   },
   "scripts": {
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev"
+    "db:generate": "prisma generate && prisma generate --sql",
+    "db:migrate": "prisma migrate dev",
+    "db:format": "prisma format"
   }
 }

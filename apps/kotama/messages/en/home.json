@@ -1,0 +1,30 @@
+{
+  "LanguageSwitcher": {
+    "en": "English",
+    "zh": "Chinese"
+  },
+  "MenuBar": {
+    "home": "Home",
+    "blog": "Blog",
+    "aboutMe": "About Me",
+    "friends": "Friends"
+  },
+  "Hero": {
+    "tailingText": "Let's Unpack"
+  },
+  "Activities": {
+    "Posts": {
+      "title": "Recent Posts"
+    },
+    "Moments": {
+      "title": "Moments"
+    },
+    "Roadmap": {
+      "title": "Roadmap"
+    },
+    "Empty": {
+      "title": "Sit down and Relax",
+      "description": "More content is coming soon..."
+    }
+  }
+}

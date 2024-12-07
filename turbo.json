@@ -19,6 +19,12 @@
     "db:push": {
       "cache": false
     },
+    "db:format": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },

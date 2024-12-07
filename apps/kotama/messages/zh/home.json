@@ -1,0 +1,30 @@
+{
+  "LanguageSwitcher": {
+    "en": "英语",
+    "zh": "中文"
+  },
+  "MenuBar": {
+    "home": "首页",
+    "blog": "博客",
+    "aboutMe": "关于我",
+    "friends": "伙伴们"
+  },
+  "Hero": {
+    "tailingText": "不是哥们儿，React 这 bundle size 也太大了吧"
+  },
+  "Activities": {
+    "Posts": {
+      "title": "最近的帖子"
+    },
+    "Moments": {
+      "title": "一瞬"
+    },
+    "Roadmap": {
+      "title": "路线图"
+    },
+    "Empty": {
+      "title": "坐和放宽",
+      "description": "这里什么都没有，一定会有的"
+    }
+  }
+}
