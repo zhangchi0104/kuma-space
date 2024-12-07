@@ -29,6 +29,9 @@ jobs:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/blog:latest
           file: apps/kuma-elysia/Dockerfile
+        env:
+          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
+          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
     outputs:
       image_digest: ${{ steps.push.outputs.digest }}
 
