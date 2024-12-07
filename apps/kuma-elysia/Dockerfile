@@ -1,8 +1,12 @@
+ARG DATABASE_TRANSACTION_URL
+ARG DATABASE_DIRECT_URL
 FROM oven/bun AS  build
 WORKDIR /app
 COPY package.json package.json
 COPY . .
 ENV NODE_ENV=production
+
+
 RUN bun install
 RUN  bun turbo run "kuma-elysia#build"
 
