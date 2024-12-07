@@ -1,6 +1,6 @@
 /** @format */
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 type AnimatedComponentPropsBase = {
   duration?: number;
   delay?: number;

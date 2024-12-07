@@ -1,3 +1,3 @@
 /** @format */
 
-export * from '@prisma/client/sql';
+export * from "@prisma/client/sql";

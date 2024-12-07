@@ -1,7 +1,7 @@
 /** @format */
 
-import { BaseStyleProps } from '@/src/utils/typings';
-import React from 'react';
+import { BaseStyleProps } from "@/src/utils/typings";
+import React from "react";
 
 type ListProps<T extends any = any> = {
   data: T[];
@@ -13,15 +13,15 @@ type ListProps<T extends any = any> = {
 const ListView = <T,>(props: ListProps<T>): React.ReactNode => {
   const { data, render, as, emptyFallback, ...conatinerProps } = props;
   if (data.length === 0) {
-    return React.createElement(as || 'div', {}, emptyFallback);
+    return React.createElement(as || "div", {}, emptyFallback);
   }
 
   return React.createElement(
-    as || 'div',
+    as || "div",
     {
       ...conatinerProps,
     },
-    data.map((item, index) => render(item, index))
+    data.map((item, index) => render(item, index)),
   );
 };
 

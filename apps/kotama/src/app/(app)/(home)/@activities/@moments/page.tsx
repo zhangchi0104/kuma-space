@@ -1,11 +1,11 @@
 /** @format */
 
-import { client } from '@/src/apis/client';
-import PostsTimeline from '../_internals/PostsTimeline';
-import { getLocale } from 'next-intl/server';
-import { PostWithRelativeDate } from '../_internals/props';
-import { getFormatter } from 'next-intl/server';
-import { diffInDays } from '@/src/utils/fns';
+import { client } from "@/src/apis/client";
+import PostsTimeline from "../_internals/PostsTimeline";
+import { getLocale } from "next-intl/server";
+import { PostWithRelativeDate } from "../_internals/props";
+import { getFormatter } from "next-intl/server";
+import { diffInDays } from "@/src/utils/fns";
 
 const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
   const locale = await getLocale();
@@ -14,8 +14,8 @@ const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
 
   const { data, error } = await client.posts.index.get({
     query: {
-      type: 'moment',
-      languageCode: locale as 'zh' | 'en',
+      type: "moment",
+      languageCode: locale as "zh" | "en",
       limit: 5,
     },
   });
@@ -33,7 +33,7 @@ const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
       dateString:
         diffInDays(now, post.createdAt) > 7
           ? formatter.dateTime(post.createdAt, {
-              dateStyle: 'medium',
+              dateStyle: "medium",
             })
           : formatter.relativeTime(post.createdAt, now),
     }));
@@ -43,8 +43,8 @@ const Moments = async () => {
   return (
     <PostsTimeline
       posts={moments}
-      prefix='Recent Posts'
-      className='flex flex-col'
+      prefix="Recent Posts"
+      className="flex flex-col"
     />
   );
 };

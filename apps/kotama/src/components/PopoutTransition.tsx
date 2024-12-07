@@ -1,13 +1,13 @@
 /** @format */
-'use client';
-import { AnimatedComponentPropsWithChildren } from '@/src/utils/typings';
-import { softSpringPreset } from '@/src/utils/transitions/springPresets';
-import { LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
-import { FC } from 'react';
+"use client";
+import { AnimatedComponentPropsWithChildren } from "@/src/utils/typings";
+import { softSpringPreset } from "@/src/utils/transitions/springPresets";
+import { LazyMotion } from "framer-motion";
+import * as m from "framer-motion/m";
+import { FC } from "react";
 type PopoutTransitionProps = AnimatedComponentPropsWithChildren<{}>;
 const loadFeatures = () =>
-  import('./framerMotionFeatures').then((res) => res.default);
+  import("./framerMotionFeatures").then((res) => res.default);
 const PopoutTransition: FC<PopoutTransitionProps> = ({
   children,
   delay,
