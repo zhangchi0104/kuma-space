@@ -14,16 +14,20 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "server/**"]
     },
     "db:generate": {
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_DIRECT_URL"]
     },
     "db:push": {
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_DIRECT_URL"]
     },
     "db:format": {
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_DIRECT_URL"]
     },
     "db:migrate": {
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_DIRECT_URL"]
     },
     "lint": {
       "dependsOn": ["^lint"]
