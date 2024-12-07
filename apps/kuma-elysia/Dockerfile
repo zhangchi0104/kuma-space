@@ -8,8 +8,8 @@ ENV NODE_ENV=production
 
 
 RUN bun install
-RUN --mount=type=secret,id=db_direct_url,env=DATABASE_DIRECT_URL \
- --mount=type=secret,id=db_transaction_url,env=DATABASE_TRANSACTION_URL \
+RUN --mount=type=secret,id=database_direct_url,env=DATABASE_DIRECT_URL \
+ --mount=type=secret,id=database_transaction_url,env=DATABASE_TRANSACTION_URL \
  bun turbo run "kuma-elysia#build"
 
 FROM oven/bun AS run
