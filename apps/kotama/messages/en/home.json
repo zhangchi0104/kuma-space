@@ -10,7 +10,8 @@
     "friends": "Friends"
   },
   "Hero": {
-    "tailingText": "Let's Unpack"
+    "tailingText": "Let's Unpack",
+    "greeting": "G'Day, I'm Alex.\nA full-stack developer"
   },
   "Activities": {
     "Posts": {

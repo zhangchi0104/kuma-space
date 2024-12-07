@@ -10,7 +10,8 @@
     "friends": "伙伴们"
   },
   "Hero": {
-    "tailingText": "不是哥们，Next.js这bundle怎么有 100kb"
+    "tailingText": "不是哥们，Next.js这bundle怎么有 100kb",
+    "greeting": "你好呀，我是Alex。\n一个全栈开发者"
   },
   "Activities": {
     "Posts": {
