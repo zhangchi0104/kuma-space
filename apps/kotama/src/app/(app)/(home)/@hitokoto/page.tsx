@@ -26,16 +26,16 @@ const HitokotoPage = async () => {
   const wrapper = isLocaleCjk(locale) ? '「」' : '""';
   const hasSource = hitokoto.fromCharacter || hitokoto.fromWork;
   return (
-    <div className='flex flex-col  items-center justify-center py-12'>
-      <p className='text-xl md:text-2xl lg:text-3xl text-foreground'>
+    <div className='flex flex-col justify-center py-12 max-w-lg mx-auto'>
+      <p className='italic self-start text-md lg:text-md text-foreground'>
         {hitokoto.content}
       </p>
       {hasSource && (
-        <p className='text-md md:text-lg lg:text-xl text-muted-foreground italic mt-6'>
+        <p className=' self-end text-sm lg:text-md text-muted-foreground mt-3'>
           <span>—— </span>
           {hitokoto.fromCharacter && <span>{hitokoto.fromCharacter}</span>}
           {hitokoto.fromWork && (
-            <span className='ml-2 italic'>
+            <span className='ml-2'>
               {wrapper[0]}
               {hitokoto.fromWork}
               {wrapper[1]}

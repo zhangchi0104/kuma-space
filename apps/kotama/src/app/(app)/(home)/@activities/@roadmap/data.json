@@ -3,7 +3,7 @@
   "homePage": [
     {
       "title": "Hitokoto",
-      "checked": false
+      "checked": true
     },
     {
       "title": "More Button for Activities",
@@ -15,7 +15,7 @@
     },
     {
       "title": "Activities Page",
-      "checked": false
+      "checked": true
     }
   ],
   "blogs": [
