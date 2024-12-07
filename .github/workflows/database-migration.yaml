@@ -11,7 +11,7 @@ on:
 
 defaults:
   run:
-    working-directory: apps/kuma-elysia
+    working-directory: packages/database
 
 jobs:
   deploy:
