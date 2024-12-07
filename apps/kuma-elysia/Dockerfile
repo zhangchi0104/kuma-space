@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG DATABASE_TRANSACTION_URL
 ARG DATABASE_DIRECT_URL
 FROM oven/bun AS  build
