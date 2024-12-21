@@ -1,6 +1,7 @@
 import Elysia from 'elysia';
 import { randomHitokoto } from '@repo/db/sql';
 import prisma from '@server/@prisma';
+
 export const hitokotoRoutes = new Elysia({ prefix: '/hitokoto' }).get(
   '/',
   async () => {

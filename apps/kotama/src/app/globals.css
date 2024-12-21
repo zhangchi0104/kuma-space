@@ -124,6 +124,7 @@
   }
   .posts-timeline > .posts-timeline-item > p:last-child {
     position: relative;
+    z-index: -1;
   }
   .posts-timeline > .posts-timeline-item > p:last-child::after {
     content: "";

@@ -1,9 +1,9 @@
 /** @format */
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 /** @format */
-export default dynamic(() => import('./error-content'), {
+export default dynamic(() => import("./error-content"), {
   ssr: false,
 });

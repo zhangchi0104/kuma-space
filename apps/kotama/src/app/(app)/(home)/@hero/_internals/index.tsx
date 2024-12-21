@@ -1,28 +1,28 @@
 /** @format */
 
-import { BaseStyleProps } from '@/src/utils/typings';
-import clsx from 'clsx';
-import PortraitImage from './PortraitImage';
-import TextSection from './TextSection';
-import SocialIcons from './SocialIcons';
+import { BaseStyleProps } from "@/src/utils/typings";
+import clsx from "clsx";
+import PortraitImage from "./PortraitImage";
+import TextSection from "./TextSection";
+import SocialIcons from "./SocialIcons";
 
 const HeroContent: React.FC<BaseStyleProps> = ({ className }) => {
-  const mobileStyle = clsx('justify-center', 'flex-col');
-  const desktopStyle = clsx('sm:justify-between sm:flex-row-reverse');
+  const mobileStyle = clsx("justify-center", "flex-col");
+  const desktopStyle = clsx("sm:justify-between sm:flex-row-reverse");
   const textAnimationDuartion = 3;
   const socialIconAnimationsDuration = 0.4;
   const classNames = clsx(
-    'flex flex-grow flex-1 items-center',
+    "flex flex-grow flex-1 items-center",
     mobileStyle,
     desktopStyle,
-    className
+    className,
   );
   return (
     <div className={classNames}>
       <div>
         <PortraitImage />
       </div>
-      <div className='mt-8'>
+      <div className="mt-8">
         <TextSection duration={textAnimationDuartion} />
         <SocialIcons
           duration={socialIconAnimationsDuration}

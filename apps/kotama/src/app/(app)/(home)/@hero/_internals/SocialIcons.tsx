@@ -1,10 +1,10 @@
 /** @format */
 
-import SocialIcon from '@/src/components/icons/SocialIcon';
-import ownerData from '@/src/app.owner.json';
-import PopoutTransition from '@/src/components/PopoutTransition';
-import { BaseStyleProps } from '@/src/utils/typings';
-import clsx from 'clsx';
+import SocialIcon from "@/src/components/icons/SocialIcon";
+import ownerData from "@/src/app.owner.json";
+import PopoutTransition from "@/src/components/PopoutTransition";
+import { BaseStyleProps } from "@/src/utils/typings";
+import clsx from "clsx";
 type SocialIconsProps = BaseStyleProps & {
   delay: number;
   duration: number;
@@ -16,13 +16,13 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
 }) => {
   const { social } = ownerData;
   const classNames = clsx(
-    'flex',
-    'space-x-8',
-    'pt-20',
-    'items-center',
-    'justify-center',
-    'sm:justify-start',
-    className
+    "flex",
+    "space-x-8",
+    "pt-20",
+    "items-center",
+    "justify-center",
+    "sm:justify-start",
+    className,
   );
   return (
     <div className={classNames}>
