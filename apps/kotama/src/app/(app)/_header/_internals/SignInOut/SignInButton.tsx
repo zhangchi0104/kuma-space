@@ -1,5 +1,5 @@
 /** @format */
-'use client';
+
 import { EnterIcon } from '@radix-ui/react-icons';
 import { Button } from '@/src/components/ui/button';
 import { BaseStyleProps } from '@/src/utils/typings';
@@ -11,18 +11,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/src/components/ui/dialog';
-import dynamic from 'next/dynamic';
-import SignInFormSkeleton from './SignInFormSkeleton';
-import { useEffect } from 'react';
-// const SignInForm = dynamic(() => import('./SignInForm'), {
-//   // ssr: false,
-//   loading: () => <SignInFormSkeleton />,
-// });
+
 import SignInForm from './SignInForm';
 const SignInButton: React.FC<BaseStyleProps> = ({ className }) => {
-  // useEffect(() => {
-  //   import('./SignInForm');
-  // }, []);
   return (
     <Dialog>
       <DialogTrigger asChild>

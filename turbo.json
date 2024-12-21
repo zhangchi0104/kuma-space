@@ -11,7 +11,8 @@
         "SUPABASE_URL",
         "SUPABASE_SERVICE_ROLE_KEY",
         "API_URL",
-        "AUTH_*"
+        "AUTH_*",
+        "JWT_*"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "server/**"]
