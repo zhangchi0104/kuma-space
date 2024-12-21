@@ -6,7 +6,7 @@ interface HomeProps {
 }
 const Home: React.FC<HomeProps> = ({ hero, hitokoto, activities }) => {
   return (
-    <div className="mx-12">
+    <div className='mx-12'>
       {hero}
       {activities}
       {hitokoto}

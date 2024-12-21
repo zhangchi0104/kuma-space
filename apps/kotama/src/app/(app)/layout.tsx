@@ -1,8 +1,9 @@
 /** @format */
 
-import { PropsWithChildren } from "react";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import { PropsWithChildren } from 'react';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import Header from './_header';
 config.autoAddCss = false;
 type LayoutProps = PropsWithChildren<{
   header?: React.ReactNode;
@@ -10,8 +11,8 @@ type LayoutProps = PropsWithChildren<{
 const Layout: React.FC<LayoutProps> = ({ children, header }) => {
   return (
     <>
-      {header}
-      <div className="max-w-screen-xl mx-auto">{children}</div>
+      <Header />
+      <div className='max-w-screen-xl mx-auto pt-16'>{children}</div>
     </>
   );
 };

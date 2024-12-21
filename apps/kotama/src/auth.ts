@@ -9,4 +9,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     url: process.env.SUPABASE_URL!,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   }),
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    jwt: async ({ token, user, account }) => {
+      if (user) {
+        token.id = user.id;
+        token.accessToken = account;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user.id = token.id as string;
+      return session;
+    },
+  },
 });

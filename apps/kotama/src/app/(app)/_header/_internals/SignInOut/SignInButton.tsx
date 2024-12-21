@@ -14,11 +14,11 @@ import {
 import dynamic from 'next/dynamic';
 import SignInFormSkeleton from './SignInFormSkeleton';
 import { useEffect } from 'react';
-const SignInForm = dynamic(() => import('./SignInForm'), {
-  // ssr: false,
-  loading: () => <SignInFormSkeleton />,
-});
-
+// const SignInForm = dynamic(() => import('./SignInForm'), {
+//   // ssr: false,
+//   loading: () => <SignInFormSkeleton />,
+// });
+import SignInForm from './SignInForm';
 const SignInButton: React.FC<BaseStyleProps> = ({ className }) => {
   // useEffect(() => {
   //   import('./SignInForm');
