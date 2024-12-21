@@ -18,7 +18,7 @@ FROM oven/bun AS run
 
 WORKDIR /app
 
-COPY --from=build /app/apps/kuma-elysia/out/* .
+COPY --from=build /app/apps/kuma-elysia/dist/* .
 COPY --from=build /app/node_modules/.prisma/client ./node_modules/.prisma/client
 
 ENV NODE_ENV=production

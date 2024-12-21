@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
     "lint": "bun eslint ./src/**/*.ts --fix",
-    "build": "bun build ./src/index.ts --minify --splitting --outdir=out --target=bun --sourcemap=linked"
+    "build": "bun build ./src/index.ts --minify --splitting --outdir=dist --target=bun --sourcemap=linked"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.693.0",
