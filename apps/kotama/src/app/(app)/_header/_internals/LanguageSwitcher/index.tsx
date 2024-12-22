@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -10,8 +11,10 @@ import {
 import { LanguageIcon } from '@heroicons/react/24/outline';
 import LanguageList from './LanguageList';
 import { Button } from '@/src/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 const LanguageSwitcher = () => {
+  const t = useTranslations('Header.LanguageSwitcher');
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -20,8 +23,9 @@ const LanguageSwitcher = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className='max-w-sm'>
-        <DialogHeader>
-          <DialogTitle>Language</DialogTitle>
+        <DialogHeader className='text-start'>
+          <DialogTitle>{t('title')}</DialogTitle>
+          <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
         <LanguageList />
       </DialogContent>

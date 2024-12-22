@@ -8,7 +8,7 @@ import localNames from '~/i18n/localNames';
 import LanguageListItem from './LanguageListItem';
 import { setUserLocale } from '~/utils/userLocale';
 const LanguageList = () => {
-  const t = useTranslations('Home.LanguageSwitcher');
+  const t = useTranslations('Header.LanguageSwitcher');
   const currentLocale = useLocale();
 
   return (

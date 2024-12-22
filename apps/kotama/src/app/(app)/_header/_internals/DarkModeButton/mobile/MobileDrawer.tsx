@@ -1,7 +1,7 @@
 /** @format */
 
 'use client';
-import { MoonIcon } from '@radix-ui/react-icons';
+import { DesktopIcon, MoonIcon } from '@radix-ui/react-icons';
 
 import { Switch } from '@/src/components/ui/switch';
 import { SunIcon } from '@radix-ui/react-icons';
@@ -10,9 +10,11 @@ import { cn } from '@/src/utils/shadcn';
 import { BaseStyleProps } from '@/src/utils/typings';
 import { Button } from '@/src/components/ui/button';
 import { DialogFooter } from '@/src/components/ui/dialog';
+import { useTranslations } from 'next-intl';
 
 const DarkModeDrawerContent: React.FC<BaseStyleProps> = ({ className }) => {
   const { setTheme, theme } = useTheme();
+  const t = useTranslations('Header.DarkModeToggle');
   return (
     <>
       <div
@@ -34,7 +36,8 @@ const DarkModeDrawerContent: React.FC<BaseStyleProps> = ({ className }) => {
       </div>
       <DialogFooter className='flex items-center justify-center mt-12'>
         <Button className='self-end' onClick={() => setTheme('system')}>
-          Use Sytstem Theme
+          <DesktopIcon className='w-4 h-4 mr-2' />
+          <p>{t('system')}</p>
         </Button>
       </DialogFooter>
     </>

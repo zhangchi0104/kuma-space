@@ -1,4 +1,5 @@
 /** @format */
+import { useTranslations } from 'next-intl';
 import DarkModeTrigger from '../desktop/DarkModeTrigger';
 
 import MobileDrawer from './MobileDrawer';
@@ -10,6 +11,7 @@ import {
   DialogTrigger,
 } from '@/src/components/ui/dialog';
 const MobileDarkModeToggle = () => {
+  const t = useTranslations('Header.DarkModeToggle');
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -18,7 +20,7 @@ const MobileDarkModeToggle = () => {
       <DialogContent className='w-full max-w-sm rounded-md'>
         <div className=''>
           <DialogHeader className='text-lg font-semibold text-start mb-12'>
-            <DialogTitle>Dark Mode Toggle</DialogTitle>
+            <DialogTitle>{t('title')}</DialogTitle>
           </DialogHeader>
           <MobileDrawer className='mb-4' />
         </div>
