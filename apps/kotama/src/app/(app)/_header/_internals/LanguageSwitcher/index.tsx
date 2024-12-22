@@ -1,40 +1,35 @@
 /** @format */
 
-import { useLocale, useTranslations } from "next-intl";
-import { Button } from "~/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from "~/components/ui/dropdown-menu";
-import { Locale, locales } from "~/i18n/config";
-import { BaseStyleProps } from "~/utils/typings";
-import LanguageSwitcherItem from "./LanguageSwitcherItem";
-import { LanguageIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/src/components/ui/dialog';
+import { LanguageIcon } from '@heroicons/react/24/outline';
+import LanguageList from './LanguageList';
+import { Button } from '@/src/components/ui/button';
+import { useTranslations } from 'next-intl';
 
-const LanguageSwitcher: React.FC<BaseStyleProps> = ({ className, style }) => {
-  const currentLocale = useLocale() as Locale;
-  const t = useTranslations("Home.LanguageSwitcher");
-  const classNames = clsx("text-foreground", "w-5", "h-5", className);
+const LanguageSwitcher = () => {
+  const t = useTranslations('Header.LanguageSwitcher');
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"icon"} style={style}>
-          <LanguageIcon className={classNames} />
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant='ghost' size='icon'>
+          <LanguageIcon className='w-5 h-5' />
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {locales.map((label) => (
-          <LanguageSwitcherItem
-            selected={label === currentLocale}
-            key={`LanguageSwitcherItem-${label}`}
-            label={t(label)}
-            value={label}
-          />
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </DialogTrigger>
+      <DialogContent className='max-w-sm'>
+        <DialogHeader className='text-start'>
+          <DialogTitle>{t('title')}</DialogTitle>
+          <DialogDescription>{t('description')}</DialogDescription>
+        </DialogHeader>
+        <LanguageList />
+      </DialogContent>
+    </Dialog>
   );
 };
 

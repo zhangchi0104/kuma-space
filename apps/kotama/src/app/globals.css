@@ -90,6 +90,12 @@
       100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0)
     );
   }
+  .min-safe-h-screen-minus-header {
+    min-height: calc(
+      100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0) -
+        3rem
+    );
+  }
 
   @supports (-webkit-touch-callout: none) {
     .min-safe-h-screen {
