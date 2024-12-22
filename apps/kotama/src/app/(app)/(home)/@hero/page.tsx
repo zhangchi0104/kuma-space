@@ -6,7 +6,7 @@ import { BaseStyleProps } from '@/src/utils/typings';
 import HeroContent from './_internals';
 import TrailingText from './_internals/TrailingText';
 
-const HeroSection: React.FC<BaseStyleProps> = () => {
+const HeroSection = () => {
   return (
     <HeroSectionContainer className='relative'>
       <HeroContent className='flex-1' />

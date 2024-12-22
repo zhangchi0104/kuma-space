@@ -52,7 +52,13 @@ const AnimatedText: FC<AnimatedTextProps> = ({
       onComplete: () => setShowCursor(false),
     });
     return () => controlls.stop();
-  }, [animationProgress, text.length, duration, hideCursorAfterAnimation]);
+  }, [
+    animationProgress,
+    text.length,
+    duration,
+    hideCursorAfterAnimation,
+    showCursor,
+  ]);
   return (
     <div className={className}>
       <LazyMotion features={loadFeatures}>
