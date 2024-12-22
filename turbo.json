@@ -8,8 +8,7 @@
         "NEXT_PUBLIC_API_URL",
         "DATABASE_TRANSACTION_URL",
         "DATABASE_DIRECT_URL",
-        "SUPABASE_URL",
-        "SUPABASE_SERVICE_ROLE_KEY",
+        "SUPABASE_*",
         "API_URL",
         "AUTH_*",
         "JWT_*"
