@@ -22,7 +22,7 @@ const LanguageSwitcher = () => {
           <LanguageIcon className='w-5 h-5' />
         </Button>
       </DialogTrigger>
-      <DialogContent className='max-w-sm'>
+      <DialogContent className='max-w-sm rounded-md'>
         <DialogHeader className='text-start'>
           <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>{t('description')}</DialogDescription>
