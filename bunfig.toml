@@ -1,0 +1,2 @@
+[install.scopes]
+tiptap-pro = { url = "https://registry.tiptap.dev", token = "$TIPTAP_PRO_TOKEN" }

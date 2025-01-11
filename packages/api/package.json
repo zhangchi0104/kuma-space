@@ -13,7 +13,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "elysia": "^1.1.25",
-    "typescript": "5.5.4",
+    "typescript": "^5.5.4",
     "kuma-elysia": "workspace:*"
   },
   "dependencies": {

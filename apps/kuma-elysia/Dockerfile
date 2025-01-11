@@ -2,7 +2,7 @@
 
 ARG DATABASE_TRANSACTION_URL
 ARG DATABASE_DIRECT_URL
-FROM oven/bun:1.1.34 AS  build
+FROM oven/bun:latest AS  build
 WORKDIR /app
 COPY package.json package.json
 COPY bun.lockb bun.lockb
@@ -13,7 +13,7 @@ RUN --mount=type=secret,id=database_direct_url,env=DATABASE_DIRECT_URL \
  --mount=type=secret,id=database_transaction_url,env=DATABASE_TRANSACTION_URL \
  bun install && bun turbo run "kuma-elysia#build"
 
-FROM oven/bun:1.1.34 AS run
+FROM oven/bun:latest AS run
 
 WORKDIR /app
 
