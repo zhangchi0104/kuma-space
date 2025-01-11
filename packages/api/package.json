@@ -8,6 +8,14 @@
     "./eden": {
       "types": "./src/eden/index.ts",
       "default": "./dist/eden/index.js"
+    },
+    "./permissions": {
+      "types": "./src/permissions/index.ts",
+      "default": "./dist/permissions/index.js"
+    },
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
     }
   },
   "devDependencies": {
