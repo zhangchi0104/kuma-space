@@ -1,7 +1,7 @@
 /** @format */
 
 import { DefaultSession } from 'next-auth';
-
+import { UserRoles } from '@repo/db';
 import { JWT } from 'next-auth/jwt';
 declare module 'next-auth' {
   /**
@@ -14,7 +14,7 @@ declare module 'next-auth' {
     accessToken: string;
   }
   interface User extends DefaultUser {
-    role?: string;
+    role?: UserRoles;
   }
   // interface Profile {
   //   role?: string;

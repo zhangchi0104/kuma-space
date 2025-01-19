@@ -1,5 +1,5 @@
 {
-  "name": "@repo/math",
+  "name": "@repo/types",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc"
@@ -8,10 +8,6 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./dist/index.js"
-    },
-    "./subtract": {
-      "types": "./src/subtract.ts",
-      "default": "./dist/subtract.js"
     }
   },
   "devDependencies": {

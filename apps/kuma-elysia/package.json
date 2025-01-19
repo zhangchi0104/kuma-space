@@ -23,7 +23,6 @@
     "envalid": "^8.0.0"
   },
   "devDependencies": {
-    "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "aws-cdk-lib": "^2.167.1",
     "elysia": "^1.1.25",
