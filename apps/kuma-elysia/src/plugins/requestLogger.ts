@@ -20,7 +20,7 @@ const logger = new Elysia({ name: 'logger' })
     const diff = end - store.startTime;
     write(
       `${request.method} ${request.url} - ${diff / BigInt(1e6)}ms - [ERROR] ${
-        error.message
+        error
       }`,
     );
   });

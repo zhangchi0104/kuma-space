@@ -8,12 +8,20 @@
     "./eden": {
       "types": "./src/eden/index.ts",
       "default": "./dist/eden/index.js"
+    },
+    "./permissions": {
+      "types": "./src/permissions/index.ts",
+      "default": "./dist/permissions/index.js"
+    },
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
     }
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "elysia": "^1.1.25",
-    "typescript": "5.5.4",
+    "typescript": "^5.5.4",
     "kuma-elysia": "workspace:*"
   },
   "dependencies": {

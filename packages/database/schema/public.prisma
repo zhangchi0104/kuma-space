@@ -1,12 +1,13 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["typedSql"]
+  previewFeatures = ["multiSchema", "prismaSchemaFolder", "typedSql"]
 }
 
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_TRANSACTION_URL")
   directUrl = env("DATABASE_DIRECT_URL")
+  schemas   = ["next_auth", "public"]
 }
 
 model Post {
@@ -15,6 +16,8 @@ model Post {
   updatedAt DateTime?       @updatedAt
   languages PostLanguages[]
   tags      TagsOnPosts[]
+
+  @@schema("public")
 }
 
 model PostLanguages {
@@ -24,6 +27,7 @@ model PostLanguages {
   post         Post          @relation(fields: [postId], references: [postId])
 
   @@id([languageCode, postId])
+  @@schema("public")
 }
 
 model Tag {
@@ -31,6 +35,8 @@ model Tag {
   category String?
   name     String
   posts    TagsOnPosts[]
+
+  @@schema("public")
 }
 
 model TagsOnPosts {
@@ -40,6 +46,7 @@ model TagsOnPosts {
   tag    Tag  @relation(fields: [tagId], references: [id])
 
   @@id([postId, tagId])
+  @@schema("public")
 }
 
 model Hitokoto {
@@ -48,9 +55,13 @@ model Hitokoto {
   fromCharacter String?
   fromWork      String?
   fromWorkType  String
+
+  @@schema("public")
 }
 
 enum LanguageCodes {
   EN
   ZH
+
+  @@schema("public")
 }

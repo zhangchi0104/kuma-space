@@ -3,6 +3,7 @@ import { HttpError } from './errors';
 import { postsRoutes } from './routes/posts/(with-prisma)';
 import { hitokotoRoutes } from './routes/hitokoto';
 import logger from './plugins/requestLogger';
+import { assetsRoute } from './routes/assets';
 
 const gloablErrorHandler = () =>
   new Elysia()
@@ -10,7 +11,7 @@ const gloablErrorHandler = () =>
       httpError: HttpError,
     })
     .onError(({ code, error }) => {
-      console.error(`Error ${code} - ${error.message}`);
+      console.error(`Error ${code} - ${error}`);
       switch (code) {
         case 'httpError':
           return {
@@ -30,7 +31,10 @@ export const app = new Elysia()
   .use(logger)
   .use(postsRoutes)
   .use(hitokotoRoutes)
+  .use(assetsRoute)
+  // .use(createAuthPlugin())
   .get('/health', () => new Date().toString())
+
   .listen(8000);
 
 console.log(

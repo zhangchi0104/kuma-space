@@ -4,9 +4,14 @@ import { postIdRoutes } from './[id]';
 import { getPostsQuery } from '../_validation';
 import { selectPostsQuery } from '@server/@prisma/queries/posts';
 import { LanguageCodes, Post, PostLanguages } from '@repo/db';
+import { SupabaseObjectStorageProvider } from '@server/providers/object-storage';
+import { s3 } from '@server/plugins/s3';
 type PostWithTitle = Post & { title: PostLanguages['title'] };
 
 export const postsRoutes = new Elysia({ prefix: '/posts' })
+  .use(
+    s3({ name: 'postsS3Client', bucketName: process.env.BLOG_ASSETS_BUCKET! }),
+  )
   .use(postIdRoutes)
   .get(
     '/',
@@ -54,7 +59,4 @@ export const postsRoutes = new Elysia({ prefix: '/posts' })
     {
       query: getPostsQuery,
     },
-  )
-  .put('/', () => {
-    return { msg: 'PUT /post' };
-  });
+  );
