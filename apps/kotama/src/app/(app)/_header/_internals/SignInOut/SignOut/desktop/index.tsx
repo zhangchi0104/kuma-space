@@ -1,37 +1,25 @@
 /** @format */
 
 import { signOut } from '@/src/auth';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/src/components/ui/avatar';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import { cn } from '@/src/utils/shadcn';
-import { BaseStyleProps } from '@/src/utils/typings';
 import { ExitIcon } from '@radix-ui/react-icons';
-
-type ProfileIconProps = {
+import ProfileIcon from '../ProfileIcon';
+import { BaseStyleProps } from '@/src/utils/typings';
+type ProfileProps = {
   name: string;
   avatarUrl: string;
 } & BaseStyleProps;
-const ProfileIcon: React.FC<ProfileIconProps> = ({
-  name,
-  avatarUrl,
-  className,
-}: ProfileIconProps) => {
+const Profile: React.FC<ProfileProps> = ({ name, avatarUrl, className }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className={cn('w-10 h-10', className)}>
-          <AvatarImage src={avatarUrl} alt={`${name}'s avatar`} />
-          <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>
-        </Avatar>
+        <ProfileIcon name={name} avatarUrl={avatarUrl} className={className} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className='mt-2'>
         <DropdownMenuItem>
@@ -53,5 +41,5 @@ const ProfileIcon: React.FC<ProfileIconProps> = ({
     </DropdownMenu>
   );
 };
-ProfileIcon.displayName = 'ProfileIcon';
-export default ProfileIcon;
+Profile.displayName = 'Profile';
+export default Profile;

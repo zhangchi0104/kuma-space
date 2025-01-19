@@ -24,7 +24,7 @@ const Header: React.FC<BaseStyleProps> = ({ className }) => {
     className
   );
   return (
-    <div className='w-screen bg-background foreground fixed mx-auto flex justify-center'>
+    <div className='w-screen bg-background foreground fixed mx-auto flex justify-center z-50'>
       <div id='header' className={headerContainerStyle}>
         <MobileOnlyByCss>
           <MobileHeaderMenu />
@@ -34,7 +34,7 @@ const Header: React.FC<BaseStyleProps> = ({ className }) => {
         </DesktopOnlyByCss>
         <div className='flex items-center justify-center space-x-8'>
           <ModeToggle className='h-5 w-5 transition-all' />
-          <LanguageSwitcher className='w-5 h-5' />
+          <LanguageSwitcher />
           <Suspense fallback={<Skeleton className='w-5 h-5' />}>
             <SignInOut className='w-5 h-5' />
           </Suspense>

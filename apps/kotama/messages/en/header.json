@@ -18,23 +18,8 @@
     "aboutMe": "About Me",
     "friends": "Friends"
   },
-  "Hero": {
-    "tailingText": "Let's Unpack",
-    "greeting": "G'Day, I'm Alex.\nA full-stack developer"
-  },
-  "Activities": {
-    "Posts": {
-      "title": "Recent Posts"
-    },
-    "Moments": {
-      "title": "Moments"
-    },
-    "Roadmap": {
-      "title": "Roadmap"
-    },
-    "Empty": {
-      "title": "Sit down and Relax",
-      "description": "More content is coming soon..."
-    }
+  "signOutDialog": {
+    "greeting": "Hello, {name}!",
+    "signOutButton": "Sign Out"
   }
 }
