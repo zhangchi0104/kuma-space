@@ -46,7 +46,8 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        "src/apis/typings"
+        "src/apis/typings",
+        "script.mts"
     ],
     "exclude": [
         "node_modules"

@@ -12,8 +12,8 @@
     "prisma": "^6.0.1"
   },
   "scripts": {
-    "db:generate": "prisma generate && prisma generate --sql",
-    "db:migrate": "prisma migrate dev",
-    "db:format": "prisma format"
+    "db:generate": "prisma generate --sql --schema=./schema",
+    "db:migrate": "prisma migrate dev --schema=./schema",
+    "db:format": "prisma format --schema=./schema"
   }
 }

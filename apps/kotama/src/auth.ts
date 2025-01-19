@@ -8,7 +8,7 @@ const adapter = SupabaseAdapter({
   url: process.env.SUPABASE_URL!,
   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 });
-import { JWTPayload, jwtVerify, SignJWT } from 'jose';
+import { SignJWT } from 'jose';
 const MIN_TOKEN_EXPIRATION_THREASHOLD = 10 * 60;
 const MAX_TOKEN_EXPIRATION = 30 * 24 * 60 * 60;
 const generateNewToken = async (
@@ -27,6 +27,7 @@ const generateNewToken = async (
 const isTokenExpiring = (exp: number) =>
   exp > Date.now() / 1000 + MIN_TOKEN_EXPIRATION_THREASHOLD;
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  debug: true,
   providers: [GitHub],
   adapter: adapter,
   session: {
