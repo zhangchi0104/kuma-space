@@ -10,11 +10,13 @@
     let
       pkgs = nixpkgs.legacyPackages.${system};
     in
-      devShells.${system}.default = pkgs.mkShell {
+    {
+      devShell.${system}.default = pkgs.mkShell {
         buildInputs = [
           pkgs.bun
-        ]
-        shellHook = "$SHELL"
-      }
-  )
+        ];
+        shellHook = "$SHELL";
+      };
+    }
+  );
 }
