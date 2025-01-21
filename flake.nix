@@ -14,6 +14,7 @@
         buildInputs = [
           pkgs.bun
         ]
+        shellHook = "$SHELL"
       }
   )
 }
