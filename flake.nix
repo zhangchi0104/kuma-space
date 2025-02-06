@@ -11,8 +11,8 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      devShell.${system}.default = pkgs.mkShell {
-        buildInputs = [
+      devShells.default = pkgs.mkShell {
+        packages = [
           pkgs.bun
         ];
         shellHook = "$SHELL";
