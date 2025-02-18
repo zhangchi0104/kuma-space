@@ -9,6 +9,8 @@ const adapter = SupabaseAdapter({
   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 });
 import { SignJWT } from 'jose';
+import { createClient } from '@supabase/supabase-js';
+import { UserRoles } from '@repo/db';
 const MIN_TOKEN_EXPIRATION_THREASHOLD = 10 * 60;
 const MAX_TOKEN_EXPIRATION = 30 * 24 * 60 * 60;
 const generateNewToken = async (
@@ -27,7 +29,7 @@ const generateNewToken = async (
 const isTokenExpiring = (exp: number) =>
   exp > Date.now() / 1000 + MIN_TOKEN_EXPIRATION_THREASHOLD;
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  debug: true,
+  // debug: prsocess.env.NODE_ENV === 'development',
   providers: [GitHub],
   adapter: adapter,
   session: {
@@ -39,6 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!user) {
         return token;
       }
+      console.log('jwt callback', { token, user });
       if (token.credentials && !isTokenExpiring(token.credentials.exp)) {
         return token;
       }
@@ -49,6 +52,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         role: user.role,
         email: user.email,
       };
+
       const accessToken = await generateNewToken(payload, exp);
       token.credentials = {
         exp,
@@ -56,11 +60,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: user.email || '',
         accessToken,
       };
+      console.log('jwt callback');
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       // const signingSecret = process.env.SUPABASE_JWT_SECRET;
       // console.log({ signingSecret });
+      session.user.role = token.credentials?.role as UserRoles;
       session.accessToken = token.credentials?.accessToken || '';
       return session;
     },

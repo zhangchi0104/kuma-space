@@ -1,7 +1,17 @@
 {
   "Error": {
-    "title": "Oops!",
-    "description": "Something went wrong.",
-    "refresh": "Refresh"
+    "default": {
+      "title": "Oops!",
+      "description": "Something went wrong.",
+      "refresh": "Refresh"
+    },
+    "unauthorized": {
+      "title": "Stop!",
+      "description": "You are not logged in. Please log in to continue."
+    },
+    "forbidden": {
+      "title": "Stop!",
+      "description": "You do not have permission to access this page."
+    }
   }
 }
