@@ -8,7 +8,7 @@ type ErrorSectionProps = React.PropsWithChildren<
   {
     title?: string;
     description?: string;
-    reset: () => void;
+    reset?: () => void;
   } & BaseStyleProps
 >;
 const ErrorSection: React.FC<ErrorSectionProps> = ({
@@ -33,14 +33,16 @@ const ErrorSection: React.FC<ErrorSectionProps> = ({
       <div className='mt-2 my-2 flex flex-col items-center'>
         <h2 className='text-lg font-semibold'>{title}</h2>
         <p className='text-sm text-muted-foreground'>{description}</p>
-        <Button
-          className='text-sm mt-5'
-          size='sm'
-          variant='outline'
-          onClick={() => reset()}
-        >
-          Refresh
-        </Button>
+        {reset && (
+          <Button
+            className='text-sm mt-5'
+            size='sm'
+            variant='outline'
+            onClick={() => reset()}
+          >
+            Refresh
+          </Button>
+        )}
       </div>
     </div>
   );
