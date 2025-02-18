@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children, header }) => {
   return (
     <>
       <Header />
-      <div className='max-w-screen-xl mx-auto pt-12'>{children}</div>
+      <div className='max-w-screen-xl h-[calc(100vh-3rem)] mx-auto pt-12'>{children}</div>
     </>
   );
 };

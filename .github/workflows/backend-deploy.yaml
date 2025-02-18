@@ -5,11 +5,27 @@ name: Build, Push and Deploy a Docker Image
 on:
   push:
     paths:
-      - 'apps/kuma-elysia/**'
+      - "apps/kuma-elysia/**"
     branches:
       - main
   workflow_dispatch:
 jobs:
+  db-migration:
+    environment: "prod"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: Apply all pending migrations to the database
+        run: bunx prisma migrate deploy
+        env:
+          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
+          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
+
   build-and-push:
     environment: prod
     runs-on: ubuntu-latest
