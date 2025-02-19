@@ -13,5 +13,8 @@
   "devDependencies": {
     "@repo/typescript-config": "*",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@repo/prisma": "*"
   }
 }

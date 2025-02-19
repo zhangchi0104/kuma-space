@@ -19,51 +19,40 @@ name: monkfish-app
 region: syd
 services:
   - envs:
-      - key: DATABASE_TRANSACTION_URL
-        scope: RUN_AND_BUILD_TIME
-        value: ${DATABASE_TRANSACTION_URL}
-        type: SECRET
-      - key: DATABASE_DIRECT_URL
-        scope: RUN_AND_BUILD_TIME
-        value: ${DATABASE_DIRECT_URL}
-        type: SECRET
-      - key: BUCKET_ENDPOINT
-        scope: RUN_TIME
-        value: ${BUCKET_ENDPOINT}
-        type: SECRET
-      - key: BUCKET_REGION
-        scope: RUN_TIME
-        value: ${BUCKET_REGION}
-      - key: BUCKET_ACCESS_KEY_ID
-        scope: RUN_TIME
-        value: ${BUCKET_ACCESS_KEY_ID}
-        type: SECRET
-      - key: BUCKET_SECRET_ACCESS_KEY
-        scope: RUN_TIME
-        value: ${BUCKET_SECRET_ACCESS_KEY}
-        type: SECRET
-      - key: SUPABASE_URL
-        scope: RUN_TIME
-        value: ${SUPABASE_URL}
-        type: SECRET
-      - key: SUPABASE_ANON_KEY
-        scope: RUN_TIME
-        value: ${SUPABASE_ANON_KEY}
-        type: SECRET
-      - key: SUPABASE_SERVICE_ROLE_KEY
-        scope: RUN_TIME
-        value: ${SUPABASE_SERVICE_ROLE_KEY}
-        type: SECRET
-      - key: SUPABASE_JWT_SECRET
-        scope: RUN_TIME
-        value: ${SUPABASE_JWT_SECRET}
-        type: SECRET
-      - key: BLOG_ASSETS_BUCKET
-        scope: RUN_TIME
-        value: ${BLOG_ASSETS_BUCKET}
-      - key: BLOG_CONTENT_BUCKET
-        scope: RUN_TIME
-        value: ${BLOG_CONTENT_BUCKET}
+    - key: BUCKET_PROVIDER
+      scope: RUN_TIME
+      value: ${BUCKET_PROVIDER}
+    - key: BLOG_ASSETS_BUCKET
+      scope: RUN_TIME
+      value: ${BLOG_ASSETS_BUCKET}
+    - key: BLOG_CONTENT_BUCKET
+      scope: RUN_TIME
+      value: ${BLOG_CONTENT_BUCKET}
+    - key: JWT_SECRET
+      scope: RUN_TIME
+      value: ${JWT_SECRET}
+      type: SECRET
+    - key: SUPABASE_URL
+      scope: RUN_TIME
+      value: ${SUPABASE_URL}
+      type: SECRET
+    - key: SUPABASE_ANON_KEY
+      scope: RUN_TIME
+      value: ${SUPABASE_ANON_KEY}
+      type: SECRET
+    - key: SUPABASE_SERVICE_ROLE_KEY
+      scope: RUN_TIME
+      value: ${SUPABASE_SERVICE_ROLE_KEY}
+      type: SECRET
+    - key: DATABASE_TRANSACTION_URL
+      scope: RUN_AND_BUILD_TIME
+      value: ${DATABASE_TRANSACTION_URL}
+      type: SECRET
+    - key: DATABASE_DIRECT_URL
+      scope: RUN_AND_BUILD_TIME
+      value: ${DATABASE_DIRECT_URL}
+      type: SECRET
+      
     http_port: 8000
     image:
       registry: zhangchi0104
