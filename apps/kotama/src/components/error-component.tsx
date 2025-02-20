@@ -1,7 +1,7 @@
 /** @format */
 
 'use client';
-import ErrorSection from '@/src/components/ErrorSection';
+import ErrorSection from '@/src/components/error-section';
 import { ErrorProps } from '@repo/types';
 import { useTranslations } from 'next-intl';
 const ErrorComponent = ({ error, reset }: ErrorProps) => {

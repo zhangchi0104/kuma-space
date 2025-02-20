@@ -19,7 +19,7 @@ export const auth = () => {
         bearer: auth?.startsWith('Bearer ') ? auth.slice(7) : null,
       };
     })
-    .use(jwt({ secret: process.env.SUPABASE_JWT_SECRET!, schema: jwtSchema }))
+    .use(jwt({ secret: process.env.JWT_SECRET!, schema: jwtSchema }))
     .macro({
       auth(opts?: AuthOpts) {
         if (!opts) {

@@ -1,7 +1,7 @@
 /** @format */
 
 import { client } from "@/src/apis/client";
-import PostsTimeline from "../_internals/PostsTimeline";
+import PostsTimeline from "../_internals/posts-timeline";
 import { getLocale } from "next-intl/server";
 import { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";

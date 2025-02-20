@@ -2,7 +2,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import ErrorSection from '../ErrorSection';
+import ErrorSection from '../error-section';
 
 const Unauthorized = () => {
   const t = useTranslations('Common.Error.unauthorized');

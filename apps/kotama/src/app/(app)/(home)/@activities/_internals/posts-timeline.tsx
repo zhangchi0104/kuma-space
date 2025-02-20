@@ -5,8 +5,8 @@ import { BaseStyleProps } from "@/src/utils/typings";
 
 import { useCallback } from "react";
 import TimelinePost from "./TimelinePost";
-import ListView from "@/src/components/VerticalListView";
-import PostsTimelineEmptyFallback from "./PostsTmelineEmptyFallback";
+import ListView from "@/src/components/vertical-list-view";
+import PostsTimelineEmptyFallback from "./posts-timeline-empty-fallback";
 import { PostWithRelativeDate } from "./props";
 
 type PostsTimelineProps = {
