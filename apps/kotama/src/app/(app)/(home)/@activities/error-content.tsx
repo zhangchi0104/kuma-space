@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 
-import ErrorSection from "@/src/components/ErrorSection";
+import ErrorSection from "@/src/components/error-section";
 import { NextJsErrorProps } from "~/utils/typings";
 import { useTranslations } from "next-intl";
 

@@ -2,7 +2,7 @@
 
 import SocialIcon from "@/src/components/icons/SocialIcon";
 import ownerData from "@/src/app.owner.json";
-import PopoutTransition from "@/src/components/PopoutTransition";
+import PopoutTransition from "@/src/components/popup-transitition";
 import { BaseStyleProps } from "@/src/utils/typings";
 import clsx from "clsx";
 type SocialIconsProps = BaseStyleProps & {

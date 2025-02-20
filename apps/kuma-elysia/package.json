@@ -20,7 +20,8 @@
     "@repo/db": "workspace:*",
     "@supabase/supabase-js": "^2.47.10",
     "bcp-47": "^2.1.0",
-    "envalid": "^8.0.0"
+    "envalid": "^8.0.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

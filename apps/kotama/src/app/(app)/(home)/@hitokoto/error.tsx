@@ -3,6 +3,6 @@
 
 import dynamic from 'next/dynamic';
 
-export default dynamic(() => import('@/src/components/ErrorComponent'), {
+export default dynamic(() => import('@/src/components/error-component'), {
   ssr: false,
 });
