@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { BaseStyleProps } from '@/src/utils/typings';
 import HeroContent from './_internals';
-import TrailingText from './_internals/TrailingText';
+import TrailingText from './_internals/trailing-text';
 
 const HeroSection = () => {
   return (

@@ -1,8 +1,8 @@
 /** @format */
 import { useTranslations } from 'next-intl';
-import DarkModeTrigger from '../desktop/DarkModeTrigger';
+import DarkModeTrigger from '../desktop/trigger';
 
-import MobileDrawer from './MobileDrawer';
+import MobileDrawer from './drawer';
 import {
   Dialog,
   DialogContent,

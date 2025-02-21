@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from '@/src/components/ui/dialog';
 
-import SignInForm from './SignInForm';
+import SignInForm from './sign-in-form';
 const SignInButton: React.FC<BaseStyleProps> = ({ className }) => {
   return (
     <Dialog>

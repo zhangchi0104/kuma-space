@@ -1,7 +1,7 @@
 /** @format */
 
 import clsx from 'clsx';
-import HeaderImage from './HeaderImage';
+import HeaderImage from './image';
 import { FC } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';

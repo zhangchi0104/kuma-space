@@ -1,14 +1,14 @@
 /** @format */
 import clsx from 'clsx';
-import HeaderMenu from './_internals/HeaderMenu';
-import ModeToggle from './_internals/DarkModeButton';
-import MobileHeaderMenu from './_internals/MobileHeaderMenu';
+import HeaderMenu from './_internals/header-image';
+import ModeToggle from './_internals/dark-mode-button';
+import MobileHeaderMenu from './_internals/mobile-header-menu';
 import DesktopOnlyByCss from '@/src/components/utils/DesktopOnlyByCss';
 
-import LanguageSwitcher from './_internals/LanguageSwitcher';
+import LanguageSwitcher from './_internals/language-switcher';
 import { BaseStyleProps } from '@/src/utils/typings';
 import MobileOnlyByCss from '@/src/components/utils/MobileOnlyByCss';
-import SignInOut from './_internals/SignInOut';
+import SignInOut from './_internals/sign-in-out';
 import { Suspense } from 'react';
 import { Skeleton } from '@/src/components/ui/skeleton';
 

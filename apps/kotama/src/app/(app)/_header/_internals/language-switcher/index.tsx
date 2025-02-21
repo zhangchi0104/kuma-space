@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from '@/src/components/ui/dialog';
 import { LanguageIcon } from '@heroicons/react/24/outline';
-import LanguageList from './LanguageList';
+import LanguageList from './language-list';
 import { Button } from '@/src/components/ui/button';
 import { useTranslations } from 'next-intl';
 

@@ -2,9 +2,9 @@
 
 import { BaseStyleProps } from "@/src/utils/typings";
 import clsx from "clsx";
-import PortraitImage from "./PortraitImage";
-import TextSection from "./TextSection";
-import SocialIcons from "./SocialIcons";
+import PortraitImage from "./portrait-image";
+import TextSection from "./text-section";
+import SocialIcons from "./social-icons";
 
 const HeroContent: React.FC<BaseStyleProps> = ({ className }) => {
   const mobileStyle = clsx("justify-center", "flex-col");

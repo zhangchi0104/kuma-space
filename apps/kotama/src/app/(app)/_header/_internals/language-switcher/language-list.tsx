@@ -5,7 +5,7 @@ import { ScrollArea } from '@/src/components/ui/scroll-area';
 import { useLocale, useTranslations } from 'next-intl';
 import { Locale, locales } from '~/i18n/config';
 import localNames from '~/i18n/localNames';
-import LanguageListItem from './LanguageListItem';
+import LanguageListItem from './language-list-item';
 import { setUserLocale } from '~/utils/userLocale';
 const LanguageList = () => {
   const t = useTranslations('Header.LanguageSwitcher');

@@ -1,8 +1,8 @@
 /** @format */
 
 import { auth } from '~/auth';
-import SignInButton from './SignInButton';
-import SignOut from './SignOut';
+import SignInButton from './sign-in-button';
+import SignOut from './sign-out';
 type SignInOutProps = {
   className?: string;
 };

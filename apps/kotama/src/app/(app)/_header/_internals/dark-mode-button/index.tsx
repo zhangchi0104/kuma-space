@@ -1,7 +1,7 @@
 /** @format */
 
 import MobileOnlyByCss from '@/src/components/utils/MobileOnlyByCss';
-import MobileDarkModeToggle from './mobile/MobileDarkModeToggle';
+import MobileDarkModeToggle from './mobile/toggle';
 import DesktopOnlyByCss from '@/src/components/utils/DesktopOnlyByCss';
 import DesktopDarkModeToggle from './desktop';
 
