@@ -1,7 +1,7 @@
 /** @format */
 import data from "./data.json";
-import ConstructionProgress from "./_internals/ConstructionProgress";
-import ConstructionTasks from "./_internals/ConstructionTasks";
+import ConstructionProgress from "./_internals/construction-progress";
+import ConstructionTasks from "./_internals/constrution-tasks";
 export default function ProgressPage() {
   const { currentFocus, ...todos } = data;
   const segments: Record<string, { done: number; total: number }> = {};

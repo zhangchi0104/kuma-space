@@ -60,7 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: user.email || '',
         accessToken,
       };
-      console.log('jwt callback');
+
       return token;
     },
     async session({ session, token, user }) {

@@ -15,8 +15,7 @@ const AuthGuard: React.FC<React.PropsWithChildren<AuthGuardProps>> = async ({
   className,
 }) => {
   const session = await auth();
-  console.log('auth guard', session?.user);
-  console.log(session);
+
   if (!session || !session.user) {
     return (
       <div className="">

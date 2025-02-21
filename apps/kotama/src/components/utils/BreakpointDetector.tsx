@@ -10,7 +10,7 @@ import breakpoints from "~/utils/constants/breakpoints";
 const BreakpointDetector: React.FC<PropsWithChildren> = ({ children }) => {
   const setter = useSetAtom(breakpointsAtom);
   const updateJotaiBreakpoints = (width: number) => {
-    console.log("BreakpointDetector: ", width);
+
     setter({
       sm: width >= breakpoints.sm,
       md: width >= breakpoints.md,

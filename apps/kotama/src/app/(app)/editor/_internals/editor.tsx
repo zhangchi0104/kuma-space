@@ -39,9 +39,7 @@ const MilkdownEditor: React.FC<EditorProps> = ({
         defaultValue: 'Hello, Milkdown!',
       });
       editorRef.current = crepe;
-      crepe.create().then(() => {
-        console.log('Editor created');
-      });
+      crepe.create();
     };
     loadEditor().finally(() => setIsEditorLoaded(true));
     return () => {
