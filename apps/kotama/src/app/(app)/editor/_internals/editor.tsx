@@ -1,15 +1,17 @@
 /** @format */
 
-'use client';
-import '@milkdown/crepe/theme/common/style.css';
-import '@milkdown/crepe/theme/frame.css';
+"use client";
+import "@milkdown/crepe/theme/common/style.css";
+import "@milkdown/crepe/theme/frame.css";
 
 // We have some themes for you to choose
-import './style.css';
-import { useEffect, useRef, useState } from 'react';
+import "./style.css";
+import { useEffect, useRef, useState } from "react";
 
-import type { Crepe } from '@milkdown/crepe';
-import { BaseStyleProps } from '~/utils/typings';
+import type { Crepe } from "@milkdown/crepe";
+import { BaseStyleProps } from "~/utils/typings";
+import { Input } from "@/src/components/ui/input";
+import TagsSelect from "./tags-select";
 // import { Crepe } from '@milkdown/crepe';
 // function lazyLoadCodeBlockTheme(theme: string | undefined) {
 //   return theme === 'dark'
@@ -21,7 +23,7 @@ type EditorProps = {
   loading?: React.ReactNode;
 } & BaseStyleProps;
 const MilkdownEditor: React.FC<EditorProps> = ({
-  loading = 'loading',
+  loading = "loading",
   ...styleProps
 }) => {
   const editorRef = useRef<Crepe | null>(null);
@@ -30,13 +32,13 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 
   useEffect(() => {
     const loadEditor = async () => {
-      const Crepe = await import('@milkdown/crepe').then(
+      const Crepe = await import("@milkdown/crepe").then(
         (module) => module.Crepe
       );
       // const lazyGithubTheme = await lazyLoadCodeBlockTheme(resolvedTheme);
       const crepe = new Crepe({
         root: editorRootRef.current,
-        defaultValue: 'Hello, Milkdown!',
+        defaultValue: "Hello, Milkdown!",
       });
       editorRef.current = crepe;
       crepe.create();
@@ -49,9 +51,19 @@ const MilkdownEditor: React.FC<EditorProps> = ({
   }, []);
 
   return (
-    <div ref={editorRootRef} {...styleProps}>
-      {!isEditorLoaded ? loading : undefined}
-    </div>
+    <>
+      <div className="">
+        <input
+          type="text"
+          placeholder="Title"
+          className="md:text-3xl font-semibold shadow-none border-none focus:outline-none"
+        />
+        <TagsSelect />
+      </div>
+      <div ref={editorRootRef} {...styleProps}>
+        {!isEditorLoaded ? loading : undefined}
+      </div>
+    </>
   );
 };
 export default MilkdownEditor;

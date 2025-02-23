@@ -1,12 +1,12 @@
 /** @format */
 
-import AuthGuard from '@/src/components/utils/auth-guard';
-import MilkdownEditor from './_internals/editor';
+import AuthGuard from "@/src/components/utils/auth-guard";
+import MilkdownEditor from "./_internals/editor";
 
 const EditorPage = () => {
   return (
-    <div className='flex size-full items-center justify-center'>
-      <AuthGuard requiresAdmin>
+    <div className="relative size-full max-w-screen-md mx-auto pt-12 ">
+      <AuthGuard>
         <MilkdownEditor />
       </AuthGuard>
     </div>

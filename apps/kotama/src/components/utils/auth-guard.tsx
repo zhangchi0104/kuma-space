@@ -8,6 +8,7 @@ import { BaseStyleProps } from '@/src/utils/typings';
 import { cn } from '~/utils/shadcn';
 type AuthGuardProps = {
   requiresAdmin?: boolean;
+  errorClassName?: string;
 } & BaseStyleProps;
 const AuthGuard: React.FC<React.PropsWithChildren<AuthGuardProps>> = async ({
   children,
@@ -15,17 +16,17 @@ const AuthGuard: React.FC<React.PropsWithChildren<AuthGuardProps>> = async ({
   className,
 }) => {
   const session = await auth();
-
+  const centerClass = 'absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2';
   if (!session || !session.user) {
     return (
-      <div className="">
+      <div className={centerClass}>
         <Unauthorized />
       </div>
     );
   }
-  if (requiresAdmin && session?.user?.role !== UserRoles.Admin) {
+  if (requiresAdmin && session?.user?.role !== 'Admin') {
     return (
-      <div className="">
+      <div className={centerClass}>
         <Forbidden />
       </div>
     );

@@ -15,9 +15,9 @@ import { Skeleton } from '@/src/components/ui/skeleton';
 const Header: React.FC<BaseStyleProps> = ({ className }) => {
   const headerContainerStyle = clsx(
     'max-w-screen-2xl',
+    'h-12',
     'grow',
     'px-8',
-    'py-2',
     'flex',
     'items-center',
     'justify-between',
