@@ -1,7 +1,7 @@
 /** @format */
 
-import { cn } from "@/src/utils/shadcn";
-import { BaseStyleProps } from "@/src/utils/typings";
+import { cn } from "@/src/lib/shadcn";
+import { BaseStyleProps } from "@/src/lib/typings";
 
 import { useCallback } from "react";
 import TimelinePost from "./timeline-post";

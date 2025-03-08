@@ -3,7 +3,7 @@
 import SocialIcon from "@/src/components/icons/social-icon";
 import ownerData from "@/src/app.owner.json";
 import PopoutTransition from "@/src/components/popup-transitition";
-import { BaseStyleProps } from "@/src/utils/typings";
+import { BaseStyleProps } from "@/src/lib/typings";
 import clsx from "clsx";
 type SocialIconsProps = BaseStyleProps & {
   delay: number;
@@ -22,7 +22,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
     "items-center",
     "justify-center",
     "sm:justify-start",
-    className,
+    className
   );
   return (
     <div className={classNames}>

@@ -6,11 +6,10 @@ import React, { PropsWithChildren } from "react";
 import { useSetAtom } from "jotai";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import { breakpointsAtom } from "@/src/atoms/viewport";
-import breakpoints from "~/utils/constants/breakpoints";
+import breakpoints from "@/src/lib/constants/breakpoints";
 const BreakpointDetector: React.FC<PropsWithChildren> = ({ children }) => {
   const setter = useSetAtom(breakpointsAtom);
   const updateJotaiBreakpoints = (width: number) => {
-
     setter({
       sm: width >= breakpoints.sm,
       md: width >= breakpoints.md,
@@ -22,7 +21,7 @@ const BreakpointDetector: React.FC<PropsWithChildren> = ({ children }) => {
   useIsomorphicLayoutEffect(() => {
     const handler = throttle(
       () => updateJotaiBreakpoints(window.innerWidth),
-      16,
+      16
     );
     handler();
     window.addEventListener("resize", handler);

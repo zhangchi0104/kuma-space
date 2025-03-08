@@ -1,18 +1,18 @@
 /** @format */
 
-'use client';
+"use client";
 import {
   m as motion,
   useTransform,
   useMotionValue,
   animate,
   LazyMotion,
-} from 'framer-motion';
-import { FC, useEffect, useState } from 'react';
-import { AnimatedComponentProps } from '../utils/typings';
+} from "framer-motion";
+import { FC, useEffect, useState } from "react";
+import { AnimatedComponentProps } from "../lib/typings";
 
 const Cursor = () => {
-  return <span>{'|'}</span>;
+  return <span>{"|"}</span>;
 };
 
 type AnimatedTextProps = AnimatedComponentProps & {
@@ -23,7 +23,7 @@ type AnimatedTextProps = AnimatedComponentProps & {
 };
 
 const loadFeatures = () =>
-  import('./framerMotionFeatures').then((res) => res.default);
+  import("./framerMotionFeatures").then((res) => res.default);
 const AnimatedText: FC<AnimatedTextProps> = ({
   className,
   text,
@@ -35,7 +35,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({
     return Math.floor(value);
   });
 
-  const placeHolder = text.replace(/[^\n]/g, ' ');
+  const placeHolder = text.replace(/[^\n]/g, " ");
   const textShown = useTransform(numLettersShown, (value) =>
     text.slice(0, value)
   );
@@ -46,9 +46,9 @@ const AnimatedText: FC<AnimatedTextProps> = ({
   useEffect(() => {
     if (!showCursor) return;
     const controlls = animate(animationProgress, text.length, {
-      type: 'tween',
+      type: "tween",
       duration: duration,
-      ease: 'linear',
+      ease: "linear",
       onComplete: () => setShowCursor(false),
     });
     return () => controlls.stop();

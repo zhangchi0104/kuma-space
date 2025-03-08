@@ -1,9 +1,9 @@
 /** @format */
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { camelCaseToTitle } from "~/utils/fns";
-import { cn } from "~/utils/shadcn";
-import { BaseStyleProps } from "~/utils/typings";
+import { camelCaseToTitle } from "@/src/lib/fns";
+import { cn } from "@/src/lib/shadcn";
+import { BaseStyleProps } from "@/src/lib/typings";
 type ConstructionTasksProps = BaseStyleProps & {
   data: Record<string, { title: string; checked: boolean }[]>;
 };
@@ -55,7 +55,7 @@ const ConstructionTabContent: React.FC<ConstructionTabContentProps> = ({
       value={value}
       className={cn(
         "p-4 rounded-sm border border-dashed mt-6 md:mt-4 space-y-1",
-        className,
+        className
       )}
     >
       {incompletedTasks.map((item) => (

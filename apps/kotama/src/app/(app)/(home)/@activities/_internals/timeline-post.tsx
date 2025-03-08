@@ -1,6 +1,6 @@
 /** @format */
 
-import { cn } from "~/utils/shadcn";
+import { cn } from "@/src/lib/shadcn";
 
 import { PostWithRelativeDate } from "./props";
 
@@ -21,7 +21,7 @@ const TimelinePost = ({
       <p
         className={cn(
           "grow vertical-timeline-item before:bg-teal-500 after:bg-teal-500",
-          titleClasses,
+          titleClasses
         )}
       >
         {title}

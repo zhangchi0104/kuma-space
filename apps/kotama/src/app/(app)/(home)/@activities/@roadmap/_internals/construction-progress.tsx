@@ -1,9 +1,9 @@
 /** @format */
 
 import { Progress } from "@/src/components/ui/progress";
-import { capitalize } from "@/src/utils/fns";
-import { cn } from "@/src/utils/shadcn";
-import { BaseStyleProps } from "@/src/utils/typings";
+import { capitalize } from "@/src/lib/fns";
+import { cn } from "@/src/lib/shadcn";
+import { BaseStyleProps } from "@/src/lib/typings";
 
 /** @format */
 type ConstructionData = Record<string, { done: number; total: number }>;

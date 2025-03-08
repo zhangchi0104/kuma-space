@@ -9,9 +9,9 @@ import "./style.css";
 import { useEffect, useRef, useState } from "react";
 
 import type { Crepe } from "@milkdown/crepe";
-import { BaseStyleProps } from "~/utils/typings";
+import { BaseStyleProps } from "@/src/lib/typings";
 import { Input } from "@/src/components/ui/input";
-import TagsSelect from "./tags-select";
+import TagsSelect from "./tags-input";
 // import { Crepe } from '@milkdown/crepe';
 // function lazyLoadCodeBlockTheme(theme: string | undefined) {
 //   return theme === 'dark'
@@ -58,8 +58,12 @@ const MilkdownEditor: React.FC<EditorProps> = ({
           placeholder="Title"
           className="md:text-3xl font-semibold shadow-none border-none focus:outline-none"
         />
-        <TagsSelect />
       </div>
+      <div className="flex flex-row gap-2 items-center">
+        <p>Tags: </p>
+        <TagsSelect className="flex-1" />
+      </div>
+
       <div ref={editorRootRef} {...styleProps}>
         {!isEditorLoaded ? loading : undefined}
       </div>

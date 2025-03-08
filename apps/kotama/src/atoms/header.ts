@@ -1,3 +1,3 @@
-import { atomWithToggle } from "../utils/atoms";
+import { atomWithToggle } from "../lib/atoms";
 
 export const mobileMenuShownAtom = atomWithToggle(false);

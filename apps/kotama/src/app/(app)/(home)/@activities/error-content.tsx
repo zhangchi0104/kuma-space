@@ -2,7 +2,7 @@
 "use client";
 
 import ErrorSection from "@/src/components/error-section";
-import { NextJsErrorProps } from "~/utils/typings";
+import { NextJsErrorProps } from "@/src/lib/typings";
 import { useTranslations } from "next-intl";
 
 const PostsError: React.FC<NextJsErrorProps> = ({ error, reset }) => {

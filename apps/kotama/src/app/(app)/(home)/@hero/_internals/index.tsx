@@ -1,6 +1,6 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/utils/typings";
+import { BaseStyleProps } from "@/src/lib/typings";
 import clsx from "clsx";
 import PortraitImage from "./portrait-image";
 import TextSection from "./text-section";
@@ -15,7 +15,7 @@ const HeroContent: React.FC<BaseStyleProps> = ({ className }) => {
     "flex flex-grow flex-1 items-center",
     mobileStyle,
     desktopStyle,
-    className,
+    className
   );
   return (
     <div className={classNames}>

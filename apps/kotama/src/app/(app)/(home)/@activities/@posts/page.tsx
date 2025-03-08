@@ -1,10 +1,10 @@
 /** @format */
 
-import { getFormatter, getLocale } from 'next-intl/server';
-import PostsTimeline from '../_internals/posts-timeline';
-import { client } from '@/src/apis/client';
-import { PostWithRelativeDate } from '../_internals/props';
-import { diffInDays } from '@/src/utils/fns';
+import { getFormatter, getLocale } from "next-intl/server";
+import PostsTimeline from "../_internals/posts-timeline";
+import { client } from "@/src/apis/client";
+import { PostWithRelativeDate } from "../_internals/props";
+import { diffInDays } from "@/src/lib/fns";
 
 const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
   const locale = await getLocale();
@@ -14,8 +14,8 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
 
   const { data, error } = await client.posts.index.get({
     query: {
-      type: 'post',
-      languageCode: locale as 'zh' | 'en',
+      type: "post",
+      languageCode: locale as "zh" | "en",
       limit: 5,
       reverse: true,
     },
@@ -34,7 +34,7 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
       dateString:
         diffInDays(now, post.createdAt) > 7
           ? formatter.dateTime(post.createdAt, {
-              dateStyle: 'medium',
+              dateStyle: "medium",
             })
           : formatter.relativeTime(post.createdAt, now),
     }));
@@ -45,8 +45,8 @@ const Posts = async () => {
   return (
     <PostsTimeline
       posts={posts}
-      prefix='Recent Posts'
-      className='flex flex-col'
+      prefix="Recent Posts"
+      className="flex flex-col"
     />
   );
 };
