@@ -12,6 +12,7 @@ on:
 jobs:
   db-migration:
     environment: "prod"
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -21,12 +22,13 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Apply all pending migrations to the database
-        run: bunx prisma migrate deploy
+        run: bunx prisma migrate deploy --schema=./packages/database/schema.prisma
         env:
           DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
           DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
 
   build-and-push:
+    needs: db-migration
     environment: prod
     runs-on: ubuntu-latest
     steps:
