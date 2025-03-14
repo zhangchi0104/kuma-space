@@ -10,26 +10,20 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const languageCodes = pgEnum("LanguageCodes", ["en", "zh"]);
-export const postsTable = pgTable("posts", {
-  id: serial("id").primaryKey(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at")
-    .notNull()
-    .$onUpdate(() => new Date()),
-});
-
-/**
- * Allows for multiple languages to be stored in the same table.
- */
-export const postContentTable = pgTable(
-  "post_content",
+export const postsTable = pgTable(
+  "posts",
   {
-    postId: integer("post_id").references(() => postsTable.id),
+    id: serial("id").unique(),
     languageCode: languageCodes("language_code").notNull(),
+    content: text("content"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at")
+      .notNull()
+      .$onUpdate(() => new Date()),
   },
   (table) => [
     primaryKey({
-      columns: [table.postId, table.languageCode],
+      columns: [table.id, table.languageCode],
     }),
   ],
 );

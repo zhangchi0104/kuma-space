@@ -2,7 +2,8 @@
   "name": "@repo/db",
   "exports": {
     ".": "./src/index.ts",
-    "./sql": "./src/sql.ts"
+    "./drizzle-orm": "./src/drizzle-orm.ts",
+    "./schema": "./src/schema/index.ts"
   },
   "version": "0.0.0",
   "dependencies": {

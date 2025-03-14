@@ -2,7 +2,7 @@ import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  schema: ["./src/schema/public.ts"],
+  schema: ["./src/schema/public.ts", "./src/schema/next_auth.ts"],
   out: "./migrations",
   dialect: "postgresql",
   schemaFilter: ["public"],

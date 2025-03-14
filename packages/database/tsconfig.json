@@ -6,5 +6,6 @@
     "strict": true,
     "moduleResolution": "bundler",
     "rootDir": "./src"
-  }
+  },
+  "exclude": ["dist", "node_modules", "drizzle.config.ts"]
 }
