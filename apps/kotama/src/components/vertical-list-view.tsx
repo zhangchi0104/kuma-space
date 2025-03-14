@@ -1,6 +1,6 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/utils/typings";
+import { BaseStyleProps } from "@/src/lib/typings";
 import React from "react";
 
 type ListProps<T extends any = any> = {
@@ -21,7 +21,7 @@ const ListView = <T,>(props: ListProps<T>): React.ReactNode => {
     {
       ...conatinerProps,
     },
-    data.map((item, index) => render(item, index)),
+    data.map((item, index) => render(item, index))
   );
 };
 

@@ -1,10 +1,10 @@
 /** @format */
 
-import { cn } from "@/src/utils/shadcn";
-import { BaseStyleProps } from "@/src/utils/typings";
+import { cn } from "@/src/lib/shadcn";
+import { BaseStyleProps } from "@/src/lib/typings";
 
 import { useCallback } from "react";
-import TimelinePost from "./TimelinePost";
+import TimelinePost from "./timeline-post";
 import ListView from "@/src/components/vertical-list-view";
 import PostsTimelineEmptyFallback from "./posts-timeline-empty-fallback";
 import { PostWithRelativeDate } from "./props";

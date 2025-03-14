@@ -1,0 +1,17 @@
+{
+  "name": "@repo/supabase",
+  "scripts": {
+    "dev": "supabase start"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "supabase": "^2.12.1",
+    "typescript": "^5.5.4"
+  }
+}
