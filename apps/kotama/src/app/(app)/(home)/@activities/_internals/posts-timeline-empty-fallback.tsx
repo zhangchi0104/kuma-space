@@ -1,8 +1,8 @@
 /** @format */
-import { BaseStyleProps } from "@/src/utils/typings";
+import { BaseStyleProps } from "@/src/lib/typings";
 import { faJava } from "@fortawesome/free-brands-svg-icons/faJava";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cn } from "@/src/utils/shadcn";
+import { cn } from "@/src/lib/shadcn";
 import { useTranslations } from "next-intl";
 const EmptyFallback: React.FC<BaseStyleProps> = ({ className }) => {
   const t = useTranslations("Home.Activities.Empty");

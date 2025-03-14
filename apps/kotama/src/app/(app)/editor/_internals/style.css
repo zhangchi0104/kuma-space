@@ -17,6 +17,9 @@
   pointer-events: none;
   @apply rounded-md;
 }
+.milkdown .ProseMirror {
+  padding: unset;
+}
 
 .milkdown {
   --crepe-color-background: hsl(var(--background));

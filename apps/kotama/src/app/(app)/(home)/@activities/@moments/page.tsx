@@ -5,7 +5,7 @@ import PostsTimeline from "../_internals/posts-timeline";
 import { getLocale } from "next-intl/server";
 import { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";
-import { diffInDays } from "@/src/utils/fns";
+import { diffInDays } from "@/src/lib/fns";
 
 const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
   const locale = await getLocale();

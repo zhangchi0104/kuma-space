@@ -60,12 +60,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: user.email || '',
         accessToken,
       };
-      console.log('jwt callback');
+      const supabase = createClient(
+        process.env.SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!,
+        { db: { schema: 'next_auth' } }
+      );
+      const data = await supabase.from('users').select('*');
+      console.log('jwt callback', { data });
       return token;
     },
     async session({ session, token, user }) {
       // const signingSecret = process.env.SUPABASE_JWT_SECRET;
       // console.log({ signingSecret });
+
       session.user.role = token.credentials?.role as UserRoles;
       session.accessToken = token.credentials?.accessToken || '';
       return session;

@@ -1,14 +1,14 @@
 /** @format */
 
-import { cn } from "../utils/shadcn";
-import { BaseStyleProps } from "../utils/typings";
+import { cn } from "../lib/shadcn";
+import { BaseStyleProps } from "../lib/typings";
 
 const DefaultLoader: React.FC<BaseStyleProps> = ({ className }) => {
   return (
     <svg
       className={cn(
         "animate-spin -ml-1 mr-3 h-5 w-5 text-foreground",
-        className,
+        className
       )}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
