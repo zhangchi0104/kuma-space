@@ -7,23 +7,30 @@ import {
   serial,
   text,
   timestamp,
+  uuid,
+  varchar,
 } from "drizzle-orm/pg-core";
 
 export const languageCodes = pgEnum("LanguageCodes", ["en", "zh"]);
-export const postsTable = pgTable(
-  "posts",
+export const postsTable = pgTable("posts", {
+  id: serial("id").primaryKey(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const postsContentTable = pgTable(
+  "posts_content",
   {
-    id: serial("id").unique(),
+    postId: serial("post_id").references(() => postsTable.id),
+    title: varchar("title", { length: 255 }).notNull(),
     languageCode: languageCodes("language_code").notNull(),
-    content: text("content"),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at")
-      .notNull()
-      .$onUpdate(() => new Date()),
+    content: text("content").notNull(),
   },
   (table) => [
     primaryKey({
-      columns: [table.id, table.languageCode],
+      columns: [table.postId, table.languageCode],
     }),
   ],
 );
@@ -41,7 +48,7 @@ export const tagsTable = pgTable("tags", {
 export const postsTagsTable = pgTable(
   "posts_tags",
   {
-    postId: integer("post_id").references(() => postsTable.id),
+    postId: serial("post_id").references(() => postsTable.id),
     tag: text("tag").references(() => tagsTable.value),
   },
   (table) => [

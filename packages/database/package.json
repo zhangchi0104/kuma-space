@@ -1,11 +1,13 @@
 {
   "name": "@repo/db",
+  "version": "0.0.0",
   "exports": {
     ".": "./src/index.ts",
     "./drizzle-orm": "./src/drizzle-orm.ts",
-    "./schema": "./src/schema/index.ts"
+    "./schema": "./src/schema/index.ts",
+    "./schema/*": "./src/schema/*.ts",
+    "./types": "./src/types.ts"
   },
-  "version": "0.0.0",
   "dependencies": {
     "@prisma/client": "^6.0.1",
     "dotenv": "^16.4.7",
@@ -19,8 +21,7 @@
     "@repo/typescript-config": "workspace:*"
   },
   "scripts": {
-    "db:generate": "prisma generate --sql --schema=./schema",
-    "db:migrate": "prisma migrate dev --schema=./schema",
-    "db:format": "prisma format --schema=./schema"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   }
 }

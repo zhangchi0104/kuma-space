@@ -10,18 +10,22 @@ CREATE TABLE "hitokoto" (
 	"from_work_type" text NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "posts" (
-	"id" serial NOT NULL,
+CREATE TABLE "posts_content" (
+	"post_id" serial NOT NULL,
+	"title" varchar(255) NOT NULL,
 	"language_code" "LanguageCodes" NOT NULL,
-	"content" text,
+	"content" text NOT NULL,
+	CONSTRAINT "posts_content_post_id_language_code_pk" PRIMARY KEY("post_id","language_code")
+);
+--> statement-breakpoint
+CREATE TABLE "posts" (
+	"id" serial PRIMARY KEY NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp NOT NULL,
-	CONSTRAINT "posts_id_language_code_pk" PRIMARY KEY("id","language_code"),
-	CONSTRAINT "posts_id_unique" UNIQUE("id")
+	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "posts_tags" (
-	"post_id" integer,
+	"post_id" serial NOT NULL,
 	"tag" text,
 	CONSTRAINT "posts_tags_post_id_tag_pk" PRIMARY KEY("post_id","tag")
 );
@@ -80,6 +84,7 @@ CREATE TABLE "next_auth"."verificationToken" (
 	"expires" timestamp NOT NULL
 );
 --> statement-breakpoint
+ALTER TABLE "posts_content" ADD CONSTRAINT "posts_content_post_id_posts_id_fk" FOREIGN KEY ("post_id") REFERENCES "public"."posts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "posts_tags" ADD CONSTRAINT "posts_tags_post_id_posts_id_fk" FOREIGN KEY ("post_id") REFERENCES "public"."posts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "posts_tags" ADD CONSTRAINT "posts_tags_tag_tags_value_fk" FOREIGN KEY ("tag") REFERENCES "public"."tags"("value") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "next_auth"."account" ADD CONSTRAINT "account_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "next_auth"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint

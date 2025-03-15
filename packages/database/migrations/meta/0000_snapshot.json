@@ -1,5 +1,5 @@
 {
-  "id": "0bea10ea-61e0-4ab2-b2d1-c3d04e3b85d9",
+  "id": "27c11c2e-4133-42a6-9bbb-94417d6d5f26",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -47,13 +47,19 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.posts": {
-      "name": "posts",
+    "public.posts_content": {
+      "name": "posts_content",
       "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
+        "post_id": {
+          "name": "post_id",
           "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
@@ -68,7 +74,48 @@
           "name": "content",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "posts_content_post_id_posts_id_fk": {
+          "name": "posts_content_post_id_posts_id_fk",
+          "tableFrom": "posts_content",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "post_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "posts_content_post_id_language_code_pk": {
+          "name": "posts_content_post_id_language_code_pk",
+          "columns": [
+            "post_id",
+            "language_code"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.posts": {
+      "name": "posts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
@@ -86,24 +133,8 @@
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "posts_id_language_code_pk": {
-          "name": "posts_id_language_code_pk",
-          "columns": [
-            "id",
-            "language_code"
-          ]
-        }
-      },
-      "uniqueConstraints": {
-        "posts_id_unique": {
-          "name": "posts_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "id"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -114,9 +145,9 @@
       "columns": {
         "post_id": {
           "name": "post_id",
-          "type": "integer",
+          "type": "serial",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "tag": {
           "name": "tag",
