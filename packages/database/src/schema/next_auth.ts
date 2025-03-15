@@ -18,16 +18,18 @@ const pool = postgres(connectionString, { max: 1 });
 export const db = drizzle(pool);
 export const nextAuthSchema = pgSchema("next_auth");
 export const userRoles = nextAuthSchema.enum("user_roles", ["admin", "user"]);
-export const users = nextAuthSchema.table("user", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
-  name: text("name"),
-  email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: text("image"),
-  role: userRoles("role").$default(() => "user"),
-});
+export const users = nextAuthSchema
+  .table("user", {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    name: text("name"),
+    email: text("email").unique(),
+    emailVerified: timestamp("emailVerified", { mode: "date" }),
+    image: text("image"),
+    role: userRoles("role").$default(() => "user"),
+  })
+  .enableRLS();
 
 export const accounts = nextAuthSchema.table(
   "account",
@@ -55,49 +57,55 @@ export const accounts = nextAuthSchema.table(
   ],
 );
 
-export const sessions = nextAuthSchema.table("session", {
-  sessionToken: text("sessionToken").primaryKey(),
-  userId: text("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
-});
-
-export const verificationTokens = nextAuthSchema.table(
-  "verificationToken",
-  {
-    identifier: text("identifier").notNull(),
-    token: text("token").notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
-  },
-  (verificationToken) => [
-    {
-      compositePk: primaryKey({
-        columns: [verificationToken.identifier, verificationToken.token],
-      }),
-    },
-  ],
-);
-
-export const authenticators = nextAuthSchema.table(
-  "authenticator",
-  {
-    credentialID: text("credentialID").notNull().unique(),
+export const sessions = nextAuthSchema
+  .table("session", {
+    sessionToken: text("sessionToken").primaryKey(),
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    providerAccountId: text("providerAccountId").notNull(),
-    credentialPublicKey: text("credentialPublicKey").notNull(),
-    counter: integer("counter").notNull(),
-    credentialDeviceType: text("credentialDeviceType").notNull(),
-    credentialBackedUp: boolean("credentialBackedUp").notNull(),
-    transports: text("transports"),
-  },
-  (authenticator) => [
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  })
+  .enableRLS();
+
+export const verificationTokens = nextAuthSchema
+  .table(
+    "verificationToken",
     {
-      compositePK: primaryKey({
-        columns: [authenticator.userId, authenticator.credentialID],
-      }),
+      identifier: text("identifier").notNull(),
+      token: text("token").notNull(),
+      expires: timestamp("expires", { mode: "date" }).notNull(),
     },
-  ],
-);
+    (verificationToken) => [
+      {
+        compositePk: primaryKey({
+          columns: [verificationToken.identifier, verificationToken.token],
+        }),
+      },
+    ],
+  )
+  .enableRLS();
+
+export const authenticators = nextAuthSchema
+  .table(
+    "authenticator",
+    {
+      credentialID: text("credentialID").notNull().unique(),
+      userId: text("userId")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+      providerAccountId: text("providerAccountId").notNull(),
+      credentialPublicKey: text("credentialPublicKey").notNull(),
+      counter: integer("counter").notNull(),
+      credentialDeviceType: text("credentialDeviceType").notNull(),
+      credentialBackedUp: boolean("credentialBackedUp").notNull(),
+      transports: text("transports"),
+    },
+    (authenticator) => [
+      {
+        compositePK: primaryKey({
+          columns: [authenticator.userId, authenticator.credentialID],
+        }),
+      },
+    ],
+  )
+  .enableRLS();

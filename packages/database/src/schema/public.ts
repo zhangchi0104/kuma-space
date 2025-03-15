@@ -18,7 +18,7 @@ export const postsTable = pgTable("posts", {
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
-});
+}).enableRLS();
 
 export const postsContentTable = pgTable(
   "posts_content",
@@ -33,7 +33,7 @@ export const postsContentTable = pgTable(
       columns: [table.postId, table.languageCode],
     }),
   ],
-);
+).enableRLS();
 
 export const tagsTable = pgTable("tags", {
   value: text("value").primaryKey(),
@@ -43,7 +43,7 @@ export const tagsTable = pgTable("tags", {
   name: text("name").generatedAlwaysAs(
     (): SQL => sql`split_part(${tagsTable.value}, ':', 2)`,
   ),
-});
+}).enableRLS();
 
 export const postsTagsTable = pgTable(
   "posts_tags",
@@ -56,11 +56,12 @@ export const postsTagsTable = pgTable(
       columns: [table.postId, table.tag],
     }),
   ],
-);
+).enableRLS();
+
 export const hitokotoTable = pgTable("hitokoto", {
   id: serial("id").primaryKey(),
   content: text("content").notNull(),
   fromCharacter: text("from_character").notNull(),
   fromWork: text("from_work").notNull(),
   fromWorkType: text("from_work_type").notNull(),
-});
+}).enableRLS();

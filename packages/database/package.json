@@ -9,16 +9,14 @@
     "./types": "./src/types.ts"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
     "postgres": "^3.4.5"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "drizzle-kit": "^0.30.5",
-    "prisma": "^6.0.1",
-    "tsx": "^4.19.3",
-    "@repo/typescript-config": "workspace:*"
+    "tsx": "^4.19.3"
   },
   "scripts": {
     "db:generate": "drizzle-kit generate",
