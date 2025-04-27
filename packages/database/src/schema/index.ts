@@ -1,2 +1,2 @@
-export * from "./next_auth";
+export * from "./next-auth";
 export * from "./public";

@@ -65,3 +65,14 @@ export const hitokotoTable = pgTable("hitokoto", {
   fromWork: text("from_work").notNull(),
   fromWorkType: text("from_work_type").notNull(),
 }).enableRLS();
+
+export const momentsTable = pgTable("moments", {
+  id: uuid("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
+  content: text("content").notNull(),
+});

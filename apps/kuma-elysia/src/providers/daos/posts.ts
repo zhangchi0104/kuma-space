@@ -1,15 +1,22 @@
 import { createDbClient } from '@repo/db';
 
 import {
+  momentsTable,
   postsContentTable,
   postsTable,
   postsTagsTable,
   tagsTable,
 } from '@repo/db/schema';
 import { eq, desc, asc } from '@repo/db/drizzle-orm';
-import { GetPostsQuery } from '@server/types/schema/posts/requests';
+import {
+  GetMomentsQuery,
+  GetPostsQuery,
+} from '@server/types/schema/posts/requests';
 import { IPostDao } from './interfaces';
-import { GetPostsResponse } from '@server/types/schema/posts/responses';
+import {
+  GetPostsResponse,
+  GetMomentsResponse,
+} from '@server/types/schema/posts/responses';
 
 export class PostsDao implements IPostDao {
   private readonly db: ReturnType<typeof createDbClient>;
@@ -64,5 +71,28 @@ export class PostsDao implements IPostDao {
       .innerJoin(postsTagsTable, eq(tagsTable.value, postsTagsTable.tag))
       .where(eq(postsTagsTable.postId, id));
     return tags;
+  }
+
+  public async getMoments(query: GetMomentsQuery) {
+    const { limit, cursor, reverse } = query;
+    const moments = await this.db
+      .select({
+        id: momentsTable.id,
+        updatedAt: momentsTable.updatedAt,
+        content: momentsTable.content,
+      })
+      .from(momentsTable)
+      .limit(limit + 1)
+      .offset(cursor ?? 0)
+      .orderBy(
+        reverse ? desc(momentsTable.updatedAt) : asc(momentsTable.updatedAt),
+      );
+
+    return {
+      moments: moments.slice(0, limit),
+      size: moments.length - 1,
+      cursor:
+        moments.length > limit ? moments[moments.length - 1]?.id : undefined,
+    } satisfies GetMomentsResponse;
   }
 }

@@ -10,14 +10,6 @@ type LayoutProps = PropsWithChildren<{
   header?: React.ReactNode;
 }>;
 const Layout: React.FC<LayoutProps> = async ({ children, header }) => {
-  const supabase = createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { db: { schema: "next_auth" } }
-  );
-  const { data: users, error } = await supabase.from("users").select("*");
-  console.log("supabase users", users, error);
-
   return (
     <>
       <Header />

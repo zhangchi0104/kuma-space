@@ -20,7 +20,20 @@ export const getPostByIdResponse = t.Object({
   content: t.String(),
 });
 
+export const getMomentsResponse = t.Object({
+  moments: t.Array(
+    t.Object({
+      id: t.String(),
+      updatedAt: t.Date(),
+      content: t.String(),
+    }),
+  ),
+  size: t.Number(),
+  cursor: t.Optional(t.String()),
+});
+
 export type PostMetadata = Pick<Post, 'id' | 'updatedAt'> &
   Pick<PostContent, 'title'>;
 export type GetPostsResponse = Static<typeof getPostsResponse>;
 export type GetPostByIdResponse = Static<typeof getPostByIdResponse>;
+export type GetMomentsResponse = Static<typeof getMomentsResponse>;

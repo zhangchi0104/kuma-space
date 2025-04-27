@@ -14,7 +14,6 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
 
   const { data, error } = await client.posts.index.get({
     query: {
-      type: "post",
       languageCode: locale as "zh" | "en",
       limit: 5,
       reverse: true,
@@ -28,7 +27,7 @@ const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
   }
 
   return data.posts
-    .map((post) => ({ ...post, createdAt: new Date(post.createdAt) }))
+    .map((post) => ({ ...post, createdAt: new Date(post.updatedAt) }))
     .map((post) => ({
       ...post,
       dateString:
