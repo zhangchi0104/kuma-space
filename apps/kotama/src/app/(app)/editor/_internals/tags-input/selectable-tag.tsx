@@ -1,14 +1,14 @@
 "use client";
 
 import { Checkbox } from "@/src/components/ui/checkbox";
-import { TagsWithOptionalId } from "./tags-context";
+import { Tag } from "@repo/db/types";
 import { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
 
 type SelectableTagProps = {
-  tag: TagsWithOptionalId;
-  onSelect?: (tag: TagsWithOptionalId) => void;
-  onDeselect?: (tag: TagsWithOptionalId) => void;
+  tag: Tag;
+  onSelect?: (tag: Tag) => void;
+  onDeselect?: (tag: Tag) => void;
   selected?: boolean;
 } & BaseStyleProps;
 const SelectableTag = ({
@@ -22,7 +22,7 @@ const SelectableTag = ({
   return (
     <div className={cn("flex items-center gap-2 py-1", styleProps)}>
       <Checkbox
-        id={`${tag.name}-checkbox`}
+        id={`${tag.value}-checkbox`}
         checked={selected}
         onCheckedChange={() => {
           if (selected) {
@@ -33,7 +33,7 @@ const SelectableTag = ({
         }}
       />
       <label
-        htmlFor={`${tag.name}-checkbox`}
+        htmlFor={`${tag.value}-checkbox`}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         {`${tag.category}:${tag.name}`}

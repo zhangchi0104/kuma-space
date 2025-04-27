@@ -1,13 +1,9 @@
 import { createContext, useContext } from "react";
-import { Tag } from "@repo/db";
+import { Tag } from "@repo/db/types";
 
 interface TagsContextApi {
-  tags: TagsWithOptionalId[];
-  setTags: (
-    tags:
-      | TagsWithOptionalId[]
-      | ((prev: TagsWithOptionalId[]) => TagsWithOptionalId[])
-  ) => void;
+  tags: Tag[];
+  setTags: (tags: Tag[] | ((prev: Tag[]) => Tag[])) => void;
 }
 export const TagsContext = createContext<TagsContextApi>({
   tags: [],
@@ -18,7 +14,6 @@ export const TagsContext = createContext<TagsContextApi>({
   },
 });
 
-export type TagsWithOptionalId = Omit<Tag, "id"> & { id?: number };
 export const useTags: () => [
   TagsContextApi["tags"],
   TagsContextApi["setTags"],

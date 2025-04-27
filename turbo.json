@@ -3,7 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^db:generate", "^build"],
+      "dependsOn": ["^build"],
       "env": [
         "NEXT_PUBLIC_API_URL",
         "DATABASE_TRANSACTION_URL",
@@ -39,7 +39,6 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
-      "dependsOn": ["^db:generate"],
       "cache": false
     }
   }

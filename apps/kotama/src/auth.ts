@@ -1,16 +1,19 @@
 /** @format */
 
-import NextAuth from 'next-auth';
+import NextAuth from "next-auth";
 
-import GitHub from 'next-auth/providers/github';
-import { SupabaseAdapter } from '@auth/supabase-adapter';
+import GitHub from "next-auth/providers/github";
+import { SupabaseAdapter } from "@auth/supabase-adapter";
+
+import { SignJWT } from "jose";
+import { createClient } from "@supabase/supabase-js";
+import { UserRoles } from "@server/types/user";
+
 const adapter = SupabaseAdapter({
   url: process.env.SUPABASE_URL!,
   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 });
-import { SignJWT } from 'jose';
-import { createClient } from '@supabase/supabase-js';
-import { UserRoles } from '@repo/db';
+
 const MIN_TOKEN_EXPIRATION_THREASHOLD = 10 * 60;
 const MAX_TOKEN_EXPIRATION = 30 * 24 * 60 * 60;
 const generateNewToken = async (
@@ -18,7 +21,7 @@ const generateNewToken = async (
   exp: number
 ) => {
   const newToken = await new SignJWT(payload)
-    .setProtectedHeader({ alg: 'HS256' })
+    .setProtectedHeader({ alg: "HS256" })
     .setAudience(process.env.JWT_AUDIENCE!)
     .setExpirationTime(exp)
     .setIssuer(process.env.JWT_ISSUER!)
@@ -33,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [GitHub],
   adapter: adapter,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
@@ -41,7 +44,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!user) {
         return token;
       }
-      console.log('jwt callback', { token, user });
+      console.log("jwt callback", { token, user });
       if (token.credentials && !isTokenExpiring(token.credentials.exp)) {
         return token;
       }
@@ -56,17 +59,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const accessToken = await generateNewToken(payload, exp);
       token.credentials = {
         exp,
-        role: user.role || 'Viewer',
-        email: user.email || '',
+        role: user.role || "Viewer",
+        email: user.email || "",
         accessToken,
       };
       const supabase = createClient(
         process.env.SUPABASE_URL!,
         process.env.SUPABASE_SERVICE_ROLE_KEY!,
-        { db: { schema: 'next_auth' } }
+        { db: { schema: "next_auth" } }
       );
-      const data = await supabase.from('users').select('*');
-      console.log('jwt callback', { data });
+      const data = await supabase.from("users").select("*");
+      console.log("jwt callback", { data });
       return token;
     },
     async session({ session, token, user }) {
@@ -74,7 +77,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // console.log({ signingSecret });
 
       session.user.role = token.credentials?.role as UserRoles;
-      session.accessToken = token.credentials?.accessToken || '';
+      session.accessToken = token.credentials?.accessToken || "";
       return session;
     },
   },

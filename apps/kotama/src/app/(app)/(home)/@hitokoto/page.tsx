@@ -2,7 +2,7 @@
 
 import { client } from "@/src/apis/client";
 import { isLocaleCjk } from "@/src/lib/fns";
-import type { Hitokoto } from "@repo/db";
+import type { Hitokoto } from "@repo/db/types";
 import { getLocale } from "next-intl/server";
 
 const defaultHitokoto: Hitokoto = {
