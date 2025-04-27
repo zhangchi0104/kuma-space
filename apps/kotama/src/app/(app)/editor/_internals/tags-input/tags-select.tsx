@@ -10,10 +10,11 @@ import {
 import { useMemo, useState } from "react";
 import { useTags } from "./tags-context";
 import SelectableTag from "./selectable-tag";
-const ALL_TAGS = [
-  { id: 1, name: "bug", category: "type" },
-  { id: 2, name: "Tag 2", category: "category" },
-  { id: 3, name: "Tag 3", category: "name" },
+import { Tag } from "@repo/db/types";
+const ALL_TAGS: Tag[] = [
+  { value: "type:bug", category: "type", name: "bug" },
+  { value: "category:post", category: "category", name: "post" },
+  { value: "name:test", category: "name", name: "test" },
 ];
 const TagsSelect = () => {
   const [searchText, setSearchText] = useState("");

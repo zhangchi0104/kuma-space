@@ -6,11 +6,12 @@ import {
   uuid,
   foreignKey,
   bigint,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 
 export const nextAuth = pgSchema("next_auth");
-
+export const userRoles = pgEnum("user_roles", ["admin", "user"]);
 export const usersInNextAuth = nextAuth.table(
   "users",
   {
@@ -22,6 +23,7 @@ export const usersInNextAuth = nextAuth.table(
     email: text(),
     emailVerified: timestamp({ withTimezone: true, mode: "string" }),
     image: text(),
+    role: userRoles("role").default("user"),
   },
   (table) => [unique("email_unique").on(table.email)],
 );

@@ -1,12 +1,12 @@
 import { BaseStyleProps } from "@/src/lib/typings";
 import Tags from "./tags";
 import TagsPopover from "./tags-popover";
-import { TagsWithOptionalId } from "./tags-context";
+import { Tag } from "@repo/db/types";
 
-const DUMMY_TAGS: TagsWithOptionalId[] = [
-  { id: 1, name: "bug", category: "type" },
-  { id: 2, name: "post", category: "category" },
-  { id: 3, name: "test", category: "name" },
+const DUMMY_TAGS: Tag[] = [
+  { value: "type:bug", category: "type", name: "bug" },
+  { value: "category:post", category: "category", name: "post" },
+  { value: "name:test", category: "name", name: "test" },
 ];
 interface TagsSelectProps {
   className?: string;
