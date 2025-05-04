@@ -12,7 +12,6 @@ on:
 jobs:
   db-migration:
     environment: "prod"
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -22,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Apply all pending migrations to the database
-        run: bunx drizzle-kit migrate
+        run: bunx turbo db:migrate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
 
