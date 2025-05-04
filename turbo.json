@@ -18,19 +18,19 @@
     },
     "db:generate": {
       "cache": false,
-      "env": ["DATABASE_TRANSACTION_URL", "DATABASE_DIRECT_URL"]
+      "env": ["DATABASE_URL"]
     },
     "db:push": {
       "cache": false,
-      "env": ["DATABASE_TRANSACTION_URL", "DATABASE_DIRECT_URL"]
+      "env": ["DATABASE_URL"]
     },
     "db:format": {
       "cache": false,
-      "env": ["DATABASE_TRANSACTION_URL", "DATABASE_DIRECT_URL"]
+      "env": ["DATABASE_URL"]
     },
     "db:migrate": {
       "cache": false,
-      "env": ["DATABASE_TRANSACTION_URL", "DATABASE_DIRECT_URL"]
+      "env": ["DATABASE_URL", "DATABASE_DIRECT_URL"]
     },
     "lint": {
       "dependsOn": ["^lint"]
