@@ -4,8 +4,6 @@ name: Build backend
 
 on:
   push:
-    paths:
-      - "apps/kuma-elysia/**"
     branches:
       - main
   workflow_dispatch:
@@ -68,4 +66,4 @@ jobs:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          DATABASE_URL: ${{ secrets.DATABASE_DIRECT_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
