@@ -1,7 +1,7 @@
 import jwt from '@elysiajs/jwt';
 import Elysia, { t } from 'elysia';
-import { UserRoles } from '@repo/db';
 import { checkRoles } from '@server/utils/user';
+import { UserRoles } from '@server/types/user';
 const jwtSchema = t.Object({
   role: t.Union([t.Literal('Admin'), t.Literal('Viewer'), t.Literal('Editor')]),
   email: t.String(),

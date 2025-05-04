@@ -12,6 +12,7 @@ on:
 jobs:
   db-migration:
     environment: "prod"
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -21,12 +22,12 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Apply all pending migrations to the database
-        run: bunx prisma migrate deploy
+        run: bunx drizzle-kit migrate
         env:
-          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
-          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
 
   build-and-push:
+    needs: db-migration
     environment: prod
     runs-on: ubuntu-latest
     steps:
@@ -45,9 +46,6 @@ jobs:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/blog:latest
           file: apps/kuma-elysia/Dockerfile
-          secrets: |
-            database_transaction_url=${{ secrets.DATABASE_TRANSACTION_URL }}
-            database_direct_url=${{ secrets.DATABASE_DIRECT_URL }}
 
     outputs:
       image_digest: ${{ steps.push.outputs.digest }}
@@ -71,5 +69,4 @@ jobs:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          DATABASE_TRANSACTION_URL: ${{ secrets.DATABASE_TRANSACTION_URL }}
-          DATABASE_DIRECT_URL: ${{ secrets.DATABASE_DIRECT_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_DIRECT_URL }}

@@ -1,8 +1,8 @@
-import { TagsWithOptionalId } from "@/src/app/(app)/editor/_internals/tags-input/tags-context";
+import { Tag } from "@repo/db/types";
 import { BaseStyleProps } from "../lib/typings";
 import { Badge } from "./ui/badge";
 type TagsListProps = {
-  tags: TagsWithOptionalId[];
+  tags: Tag[];
 } & BaseStyleProps;
 const TagsList = ({ tags, ...styleProps }: TagsListProps) => {
   const emptyContent = <p className="text-md text-muted-foreground">No tags</p>;

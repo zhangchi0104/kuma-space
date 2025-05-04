@@ -1,7 +1,7 @@
 /** @format */
 
 import { auth } from "@/src/auth";
-import { UserRoles } from "@repo/db";
+
 import Unauthorized from "../http-errors/401-unauthorized";
 import Forbidden from "../http-errors/403-forbidden";
 import { BaseStyleProps } from "@/src/lib/typings";
@@ -25,7 +25,7 @@ const AuthGuard: React.FC<React.PropsWithChildren<AuthGuardProps>> = async ({
       </div>
     );
   }
-  if (requiresAdmin && session?.user?.role !== "Admin") {
+  if (requiresAdmin && session?.user?.role !== "admin") {
     return (
       <div className={centerClass}>
         <Forbidden />
