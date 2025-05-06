@@ -1,6 +1,6 @@
 /** @format */
 
-import { signOut } from "@/src/auth";
+import { signOut } from "../../actions";
 
 import {
   DropdownMenu,
