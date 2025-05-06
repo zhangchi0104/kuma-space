@@ -18,7 +18,7 @@ const SignUpPage = () => {
         }}
       >
         <h1 className="text-2xl font-bold text-center mb-4">
-          Let's get started
+          Let&lsquo;s get started
         </h1>
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">Email</Label>

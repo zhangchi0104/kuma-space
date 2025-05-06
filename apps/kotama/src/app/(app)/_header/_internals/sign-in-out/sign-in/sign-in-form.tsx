@@ -26,7 +26,7 @@ const SignInForm = () => {
             href="/sign-up"
             className="text-sm text-center text-blue-500 hover:text-blue-600"
           >
-            Don't have an account? Sign up
+            Don&apos;t have an account? Sign up
           </a>
         </div>
       </form>
