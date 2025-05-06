@@ -23,7 +23,7 @@ const SignInButton: React.FC<BaseStyleProps> = ({ className }) => {
       </DialogTrigger>
       <DialogContent className="max-w-sm rounded-lg">
         <DialogHeader className="*:text-center my-2">
-          <DialogTitle>Sign In / Sign Up</DialogTitle>
+          <DialogTitle>Sign In</DialogTitle>
         </DialogHeader>
         <SignInForm />
       </DialogContent>
