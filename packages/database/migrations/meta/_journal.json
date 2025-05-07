@@ -36,6 +36,34 @@
       "when": 1742119704389,
       "tag": "0004_reimplment_next_auth",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1746608303124,
+      "tag": "0005_dapper_mandarin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1746608877237,
+      "tag": "0006_cloudy_bruce_banner",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1746609113824,
+      "tag": "0007_fantastic_leopardon",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1746609621212,
+      "tag": "0008_add_auth_hook",
+      "breakpoints": true
     }
   ]
 }

@@ -1,23 +1,28 @@
 import { SQL, sql } from "drizzle-orm";
 import {
-  integer,
+  bigint,
+  bigserial,
+  check,
   pgEnum,
   pgTable,
   primaryKey,
   serial,
   text,
   timestamp,
+  unique,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
-
+import { authUsers } from "drizzle-orm/supabase";
 export const languageCodes = pgEnum("LanguageCodes", ["en", "zh"]);
+export const appRoles = pgEnum("AppRoles", ["admin", "viewer"]);
 export const postsTable = pgTable("posts", {
   id: serial("id").primaryKey(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
+  authorId: uuid("author_id").references(() => authUsers.id),
 }).enableRLS();
 
 export const postsContentTable = pgTable(
@@ -76,3 +81,31 @@ export const momentsTable = pgTable("moments", {
     .$onUpdate(() => new Date()),
   content: text("content").notNull(),
 });
+
+export const userRoles = pgTable(
+  "user_roles",
+  {
+    id: serial("id").primaryKey(),
+    userId: uuid("user_id").references(() => authUsers.id, {
+      onDelete: "cascade",
+    }),
+    role: appRoles("role").notNull(),
+  },
+  (table) => [unique("user_id_role_unique").on(table.userId, table.role)],
+);
+
+export const rolePermissions = pgTable(
+  "role_permissions",
+  {
+    id: serial("id").primaryKey(),
+    role: appRoles("role").notNull(),
+    permission: text("permission").notNull(),
+  },
+  (table) => [
+    unique("role_permission_unique").on(table.role, table.permission),
+    check(
+      "permission_must_contains_colons_in_between",
+      sql`${table.permission} SIMILAR TO '[a-zA-Z0-9_]+:[a-zA-Z0-9_]+:[a-zA-Z0-9_]+'`,
+    ),
+  ],
+);

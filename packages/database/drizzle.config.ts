@@ -2,11 +2,16 @@ import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  schema: ["./src/schema/public.ts", "./src/schema/next-auth.ts"],
+  schema: ["./src/schema/public.ts"],
   out: "./migrations",
   dialect: "postgresql",
-  schemaFilter: ["public", "next_auth"],
+  schemaFilter: ["public"],
   dbCredentials: {
     url: process.env.DATABASE_URL!,
+  },
+  entities: {
+    roles: {
+      provider: "supabase",
+    },
   },
 });
