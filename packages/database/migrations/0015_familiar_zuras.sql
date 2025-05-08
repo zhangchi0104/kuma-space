@@ -1,0 +1,13 @@
+CREATE POLICY "Authenticated can read hitokoto" ON "hitokoto" AS PERMISSIVE FOR SELECT TO "authenticated" USING (authorize('hitokoto:all:read'));--> statement-breakpoint
+CREATE POLICY "Posts and hitokoto is readble by everyone" ON "moments" AS PERMISSIVE FOR SELECT TO "anon" USING (true);--> statement-breakpoint
+CREATE POLICY "Anon cannot delete the table" ON "moments" AS PERMISSIVE FOR DELETE TO "anon" USING (false);--> statement-breakpoint
+CREATE POLICY "Anon cannot insert into the table" ON "moments" AS PERMISSIVE FOR INSERT TO "anon" WITH CHECK (false);--> statement-breakpoint
+CREATE POLICY "Anon cannot update the table" ON "moments" AS PERMISSIVE FOR UPDATE TO "anon" WITH CHECK (false);--> statement-breakpoint
+CREATE POLICY "Authenticated can delete their own moment" ON "moments" AS PERMISSIVE FOR DELETE TO "authenticated" USING (authorize('moments:self:write') and "moments"."author_id" = (select auth.uid()));--> statement-breakpoint
+CREATE POLICY "Authenticated can write their own moment" ON "moments" AS PERMISSIVE FOR INSERT TO "authenticated" WITH CHECK (authorize('moments:self:write') and "moments"."author_id" = (select auth.uid()));--> statement-breakpoint
+CREATE POLICY "Authenticated can read moments" ON "moments" AS PERMISSIVE FOR SELECT TO "authenticated" USING (authorize('moments:all:read'));--> statement-breakpoint
+CREATE POLICY "Authenticated can update their own moment" ON "moments" AS PERMISSIVE FOR UPDATE TO "authenticated" USING (authorize('moments:self:write') and "moments"."author_id" = (select auth.uid())) WITH CHECK ("moments"."author_id" = (select auth.uid()));--> statement-breakpoint
+CREATE POLICY "Authenticated can delete their own post" ON "posts" AS PERMISSIVE FOR DELETE TO "authenticated" USING (authorize('posts:self:write') and "posts"."author_id" = (select auth.uid()));--> statement-breakpoint
+CREATE POLICY "Authenticated can insert a post" ON "posts" AS PERMISSIVE FOR INSERT TO "authenticated" WITH CHECK (authorize('posts:all:write') and "posts"."author_id" = (select auth.uid()));--> statement-breakpoint
+CREATE POLICY "Authenticated can read posts" ON "posts" AS PERMISSIVE FOR SELECT TO "authenticated" USING (authorize('posts:all:read'));--> statement-breakpoint
+CREATE POLICY "Authenticated can update their own post" ON "posts" AS PERMISSIVE FOR UPDATE TO "authenticated" USING (authorize('posts:self:write') and "posts"."author_id" = (select auth.uid())) WITH CHECK ("posts"."author_id" = (select auth.uid()));

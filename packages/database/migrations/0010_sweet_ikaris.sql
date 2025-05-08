@@ -1,0 +1,1 @@
+ALTER TYPE "public"."AppPermissions" ADD VALUE 'all:all:all';

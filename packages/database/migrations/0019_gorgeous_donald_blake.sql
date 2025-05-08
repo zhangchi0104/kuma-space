@@ -1,0 +1,1 @@
+CREATE POLICY "Authenticated can read role permissions" ON "role_permissions" AS PERMISSIVE FOR SELECT TO "authenticated" USING (false);
