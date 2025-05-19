@@ -1,9 +1,11 @@
 /** @format */
 
-import { client } from "@/src/apis/client";
 import { isLocaleCjk } from "@/src/lib/fns";
 import type { Hitokoto } from "@repo/db/types";
 import { getLocale } from "next-intl/server";
+import { hitokotoTable } from "@repo/db/schema";
+import { sql } from "drizzle-orm";
+import { getDatabaseClient } from "@/src/lib/database";
 
 const defaultHitokoto: Hitokoto = {
   id: 0,
@@ -13,11 +15,16 @@ const defaultHitokoto: Hitokoto = {
   fromWorkType: "anime",
 };
 const fetchHitokoto = async () => {
-  const { data, error } = await client.hitokoto.index.get();
-  if (error) {
-    return defaultHitokoto;
-  }
-  return data;
+  const db = await getDatabaseClient();
+  const hitokoto = await db(async (tx) => {
+    const hitokoto = await tx
+      .select()
+      .from(hitokotoTable)
+      .orderBy(sql`RANDOM()`)
+      .limit(1);
+    return hitokoto[0] as Hitokoto | undefined;
+  });
+  return hitokoto ?? defaultHitokoto;
 };
 
 const HitokotoPage = async () => {

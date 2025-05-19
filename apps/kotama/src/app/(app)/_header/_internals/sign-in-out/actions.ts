@@ -10,20 +10,22 @@ type SignInPayload<T extends Record<string, string>> = T & {
 export async function signIn(provider: "github"): Promise<void>;
 export async function signIn(
   provider: "email",
-  payload: SignInPayload<{ email: string; password: string }>
+  payload: SignInPayload<{ email: string; password: string }>,
 ): Promise<void>;
 export async function signIn(
   provider: "anonymous",
-  payload: SignInPayload<{ fingerprint: string }>
+  payload: SignInPayload<{ fingerprint: string }>,
 ): Promise<void>;
 export async function signIn(
   provider: Provider | "email" | "anonymous",
-  payload?: SignInPayload<Record<string, string>>
+  payload?: SignInPayload<Record<string, string>>,
 ): Promise<void> {
   switch (provider) {
     case "github":
       const githubResponse = await signInWithGithub();
+
       if (githubResponse.data.url) {
+        console.log("redirectTo", githubResponse.data.url);
         redirect(githubResponse.data.url);
       }
       break;
@@ -42,7 +44,7 @@ export async function signIn(
     case "email":
       const emailResponse = await signInWithEmail(
         payload!.email,
-        payload!.password
+        payload!.password,
       );
       if (emailResponse.error) {
         throw new Error(emailResponse.error.message);
@@ -59,6 +61,7 @@ async function signInWithGithub() {
     process.env.VERCEL_ENV === "development"
       ? "http://localhost:3000"
       : process.env.VERCEL_URL;
+  console.log("SignInWithGithub", origin);
   return await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {

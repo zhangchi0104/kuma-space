@@ -97,14 +97,13 @@ export const hitokotoTable = pgTable("hitokoto", {
 }).enableRLS();
 
 export const momentsTable = pgTable("moments", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
+  id: serial("id").primaryKey(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
   content: text("content").notNull(),
+  title: text("title").notNull(),
   authorId: uuid("author_id").references(() => authUsers.id),
 }).enableRLS();
 

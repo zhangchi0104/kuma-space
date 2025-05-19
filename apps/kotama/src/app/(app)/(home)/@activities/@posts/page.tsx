@@ -1,32 +1,34 @@
 /** @format */
 
-import { getFormatter, getLocale } from "next-intl/server";
+import { getFormatter } from "next-intl/server";
 import PostsTimeline from "../_internals/posts-timeline";
-import { client } from "@/src/apis/client";
 import { PostWithRelativeDate } from "../_internals/props";
 import { diffInDays } from "@/src/lib/fns";
+import { getDatabaseClient } from "@/src/lib/database";
+import { postsContentTable, postsTable } from "@repo/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
-  const locale = await getLocale();
   const formatter = await getFormatter();
 
   const now = new Date();
 
-  const { data, error } = await client.posts.index.get({
-    query: {
-      languageCode: locale as "zh" | "en",
-      limit: 5,
-      reverse: true,
-    },
+  const db = await getDatabaseClient();
+  const posts = await db(async (tx) => {
+    const posts = await tx
+      .select({
+        id: postsTable.id,
+        createdAt: postsTable.createdAt,
+        updatedAt: postsTable.updatedAt,
+        title: postsContentTable.title,
+      })
+      .from(postsTable)
+      .innerJoin(postsContentTable, eq(postsTable.id, postsContentTable.postId))
+      .orderBy(desc(postsTable.createdAt))
+      .limit(5);
+    return posts;
   });
-  if (error) {
-    throw error;
-  }
-  if (!data) {
-    return [];
-  }
-
-  return data.posts
+  return posts
     .map((post) => ({ ...post, createdAt: new Date(post.updatedAt) }))
     .map((post) => ({
       ...post,

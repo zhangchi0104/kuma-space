@@ -12,59 +12,207 @@ import {
 import { hitokotoTable } from "./public";
 const isAnonymousUser = sql`(auth.jwt() ->>'is_anonymous')::boolean`;
 // Anon
-export const anonCanReadTable = pgPolicy(
-  "Posts and hitokoto is readble by everyone",
+export const anonCanReadPosts = pgPolicy("Everyone can read the posts", {
+  to: anonRole,
+  for: "select",
+  using: sql`true`,
+}).link(postsTable);
+export const anonCanReadPostsContent = pgPolicy(
+  "Everyone can read the posts content",
   {
     to: anonRole,
     for: "select",
     using: sql`true`,
   },
-)
-  .link(postsTable)
-  .link(hitokotoTable)
-  .link(momentsTable)
-  .link(postsContentTable)
-  .link(postsTagsTable)
-  .link(tagsTable);
+).link(postsContentTable);
+export const anonCanReadPostsTags = pgPolicy(
+  "Everyone can read the posts tags",
+  {
+    to: anonRole,
+    for: "select",
+    using: sql`true`,
+  },
+).link(postsTagsTable);
 
-export const anonCannotInsertTable = pgPolicy(
-  "Anon cannot insert into the table",
+export const anonCanReadTags = pgPolicy("Everyone can read the tags", {
+  to: anonRole,
+  for: "select",
+  using: sql`true`,
+}).link(tagsTable);
+
+export const anonCanReadMoments = pgPolicy("Everyone can read the moments", {
+  to: anonRole,
+  for: "select",
+  using: sql`true`,
+}).link(momentsTable);
+
+export const anonCanReadHitokoto = pgPolicy("Everyone can read the hitokoto", {
+  to: anonRole,
+  for: "select",
+  using: sql`true`,
+}).link(hitokotoTable);
+
+export const anonCannotInsertPostsTable = pgPolicy(
+  "Anon cannot insert into the posts table",
   {
     to: anonRole,
     for: "insert",
     withCheck: sql`false`,
   },
-)
-  .link(postsTable)
-  .link(hitokotoTable)
-  .link(momentsTable)
-  .link(postsContentTable)
-  .link(postsTagsTable)
-  .link(tagsTable);
+).link(postsTable);
 
-export const anonCannotUpdateTable = pgPolicy("Anon cannot update the table", {
-  to: anonRole,
-  for: "update",
-  withCheck: sql`false`,
-})
-  .link(postsTable)
-  .link(hitokotoTable)
-  .link(momentsTable)
-  .link(postsContentTable)
-  .link(postsTagsTable)
-  .link(tagsTable);
+export const anonCannotInsertHitokotoTable = pgPolicy(
+  "Anon cannot insert into the hitokoto table",
+  {
+    to: anonRole,
+    for: "insert",
+    withCheck: sql`false`,
+  },
+).link(hitokotoTable);
 
-export const anonCannotDeleteTable = pgPolicy("Anon cannot delete the table", {
-  to: anonRole,
-  for: "delete",
-  using: sql`false`,
-})
-  .link(postsTable)
-  .link(hitokotoTable)
-  .link(momentsTable)
-  .link(postsContentTable)
-  .link(postsTagsTable)
-  .link(tagsTable);
+export const anonCannotInsertMomentsTable = pgPolicy(
+  "Anon cannot insert into the moments table",
+  {
+    to: anonRole,
+    for: "insert",
+    withCheck: sql`false`,
+  },
+).link(momentsTable);
+
+export const anonCannotInsertPostsContentTable = pgPolicy(
+  "Anon cannot insert into the posts_content table",
+  {
+    to: anonRole,
+    for: "insert",
+    withCheck: sql`false`,
+  },
+).link(postsContentTable);
+
+export const anonCannotInsertPostsTagsTable = pgPolicy(
+  "Anon cannot insert into the posts_tags table",
+  {
+    to: anonRole,
+    for: "insert",
+    withCheck: sql`false`,
+  },
+).link(postsTagsTable);
+
+export const anonCannotInsertTagsTable = pgPolicy(
+  "Anon cannot insert into the tags table",
+  {
+    to: anonRole,
+    for: "insert",
+    withCheck: sql`false`,
+  },
+).link(tagsTable);
+
+export const anonCannotUpdatePostsTable = pgPolicy(
+  "Anon cannot update the posts table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(postsTable);
+
+export const anonCannotUpdateHitokotoTable = pgPolicy(
+  "Anon cannot update the hitokoto table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(hitokotoTable);
+
+export const anonCannotUpdateMomentsTable = pgPolicy(
+  "Anon cannot update the moments table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(momentsTable);
+
+export const anonCannotUpdatePostsContentTable = pgPolicy(
+  "Anon cannot update the posts_content table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(postsContentTable);
+
+export const anonCannotUpdatePostsTagsTable = pgPolicy(
+  "Anon cannot update the posts_tags table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(postsTagsTable);
+
+export const anonCannotUpdateTagsTable = pgPolicy(
+  "Anon cannot update the tags table",
+  {
+    to: anonRole,
+    for: "update",
+    withCheck: sql`false`,
+  },
+).link(tagsTable);
+
+export const anonCannotDeletePostsTable = pgPolicy(
+  "Anon cannot delete from the posts table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(postsTable);
+
+export const anonCannotDeleteHitokotoTable = pgPolicy(
+  "Anon cannot delete from the hitokoto table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(hitokotoTable);
+
+export const anonCannotDeleteMomentsTable = pgPolicy(
+  "Anon cannot delete from the moments table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(momentsTable);
+
+export const anonCannotDeletePostsContentTable = pgPolicy(
+  "Anon cannot delete from the posts_content table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(postsContentTable);
+
+export const anonCannotDeletePostsTagsTable = pgPolicy(
+  "Anon cannot delete from the posts_tags table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(postsTagsTable);
+
+export const anonCannotDeleteTagsTable = pgPolicy(
+  "Anon cannot delete from the tags table",
+  {
+    to: anonRole,
+    for: "delete",
+    using: sql`false`,
+  },
+).link(tagsTable);
 
 // authenticated - posts
 export const authenticatedCanReadPosts = pgPolicy(

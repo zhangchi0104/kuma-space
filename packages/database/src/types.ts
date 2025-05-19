@@ -1,4 +1,5 @@
 import {
+  appRoles,
   hitokotoTable,
   postsContentTable,
   postsTable,
@@ -14,4 +15,4 @@ export type CreateTag = typeof tagsTable.$inferInsert;
 export type PostContent = typeof postsContentTable.$inferSelect;
 export type PostTag = typeof postsTagsTable.$inferSelect;
 export type Hitokoto = typeof hitokotoTable.$inferSelect;
-export type UserRole = (typeof userRoles)["enumValues"][number];
+export type UserRole = (typeof appRoles)["enumValues"][number];
