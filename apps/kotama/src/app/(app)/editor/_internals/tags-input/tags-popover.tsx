@@ -8,7 +8,7 @@ import { useTags } from "./tags-context";
 import TagsList from "@/src/components/tags-list";
 import TagsSelect from "./tags-select";
 const TagsPopover = () => {
-  const [tags] = useTags();
+  const { tags } = useTags();
   return (
     <Popover>
       <PopoverTrigger asChild className="flex items-center gap-2 relative">

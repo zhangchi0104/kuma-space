@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 // The client you created from the Server-Side Auth instructions
-import { createServerSideSupabaseClient } from "~/lib/supabase/client";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 export async function GET(request: Request) {
   console.log("request", request);
   const { searchParams, origin } = new URL(request.url);

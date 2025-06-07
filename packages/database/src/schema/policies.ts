@@ -20,34 +20,35 @@ export const anonCanReadPosts = pgPolicy("Everyone can read the posts", {
 export const anonCanReadPostsContent = pgPolicy(
   "Everyone can read the posts content",
   {
-    to: anonRole,
+    to: [anonRole, authenticatedRole],
     for: "select",
     using: sql`true`,
   },
 ).link(postsContentTable);
+
 export const anonCanReadPostsTags = pgPolicy(
   "Everyone can read the posts tags",
   {
-    to: anonRole,
+    to: [anonRole, authenticatedRole],
     for: "select",
     using: sql`true`,
   },
 ).link(postsTagsTable);
 
 export const anonCanReadTags = pgPolicy("Everyone can read the tags", {
-  to: anonRole,
+  to: [anonRole, authenticatedRole],
   for: "select",
   using: sql`true`,
 }).link(tagsTable);
 
 export const anonCanReadMoments = pgPolicy("Everyone can read the moments", {
-  to: anonRole,
+  to: [anonRole, authenticatedRole],
   for: "select",
   using: sql`true`,
 }).link(momentsTable);
 
 export const anonCanReadHitokoto = pgPolicy("Everyone can read the hitokoto", {
-  to: anonRole,
+  to: [anonRole, authenticatedRole],
   for: "select",
   using: sql`true`,
 }).link(hitokotoTable);

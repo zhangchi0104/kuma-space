@@ -6,7 +6,8 @@
     "./drizzle-orm": "./src/drizzle-orm.ts",
     "./schema": "./src/schema/index.ts",
     "./schema/*": "./src/schema/*.ts",
-    "./types": "./src/types.ts"
+    "./types": "./src/types.ts",
+    "./supabase-types": "./src/database.types.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
@@ -20,6 +21,7 @@
   },
   "scripts": {
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate && bun run db:gen-types",
+    "db:gen-types": "npx supabase gen types typescript --local > src/database.types.ts"
   }
 }

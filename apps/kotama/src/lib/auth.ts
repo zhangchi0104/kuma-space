@@ -1,5 +1,5 @@
 import { User } from "@supabase/supabase-js";
-import { createServerSideSupabaseClient } from "./supabase/client";
+import { createServerSideSupabaseClient } from "./supabase/server";
 interface AppUser extends User {
   user_role: "admin" | "viewer" | null;
 }

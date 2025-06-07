@@ -31,14 +31,19 @@ function createRlsDrizzle<Database extends PgDatabase<any, any, any>>({
   admin,
   client,
 }: {
-  admin: Database;
-  client: Database;
+  admin: Database & { $client: postgres.Sql };
+  client: Database & { $client: postgres.Sql };
 }) {
   return {
     admin,
+    client,
+    end: () => {
+      admin.$client.end();
+      client.$client.end();
+    },
     rls: (token: SupabaseToken) =>
       (async (transaction, ...rest) => {
-        return await client.transaction(
+        const res = await client.transaction(
           async (tx) => {
             // Supabase exposes auth.uid() and auth.jwt()
             // https://supabase.com/docs/guides/database/postgres/row-level-security#helper-functions
@@ -67,6 +72,9 @@ function createRlsDrizzle<Database extends PgDatabase<any, any, any>>({
           },
           ...rest,
         );
+        admin.$client.end();
+        client.$client.end();
+        return res;
       }) as typeof client.transaction,
   };
 }

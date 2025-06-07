@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerSideSupabaseClient } from "~/lib/supabase/client";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 import { Provider } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -10,15 +10,15 @@ type SignInPayload<T extends Record<string, string>> = T & {
 export async function signIn(provider: "github"): Promise<void>;
 export async function signIn(
   provider: "email",
-  payload: SignInPayload<{ email: string; password: string }>,
+  payload: SignInPayload<{ email: string; password: string }>
 ): Promise<void>;
 export async function signIn(
   provider: "anonymous",
-  payload: SignInPayload<{ fingerprint: string }>,
+  payload: SignInPayload<{ fingerprint: string }>
 ): Promise<void>;
 export async function signIn(
   provider: Provider | "email" | "anonymous",
-  payload?: SignInPayload<Record<string, string>>,
+  payload?: SignInPayload<Record<string, string>>
 ): Promise<void> {
   switch (provider) {
     case "github":
@@ -44,7 +44,7 @@ export async function signIn(
     case "email":
       const emailResponse = await signInWithEmail(
         payload!.email,
-        payload!.password,
+        payload!.password
       );
       if (emailResponse.error) {
         throw new Error(emailResponse.error.message);
@@ -58,9 +58,9 @@ export async function signIn(
 async function signInWithGithub() {
   const supabase = await createServerSideSupabaseClient();
   const origin =
-    process.env.VERCEL_ENV === "development"
+    process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : process.env.VERCEL_URL;
+      : process.env.NEXT_PUBLIC_WEB_URL;
   console.log("SignInWithGithub", origin);
   return await supabase.auth.signInWithOAuth({
     provider: "github",

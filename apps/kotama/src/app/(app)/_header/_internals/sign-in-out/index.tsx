@@ -2,7 +2,7 @@
 
 import SignInButton from "./sign-in";
 import SignOut from "./sign-out";
-import { createServerSideSupabaseClient } from "~/lib/supabase/client";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 type SignInOutProps = {
   className?: string;
 };

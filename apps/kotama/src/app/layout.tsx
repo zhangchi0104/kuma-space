@@ -10,6 +10,7 @@ import { ThemeProvider } from "../components/utils/ThemeProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { cn } from "../lib/shadcn";
+import ClientProviders from "../components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,8 +36,10 @@ export default async function RootLayout({
             enableSystem
             storageKey="kotama-theme"
           >
-            {children}
-            <Toaster />
+            <ClientProviders>
+              {children}
+              <Toaster />
+            </ClientProviders>
           </ThemeProvider>
         </NextIntlClientProvider>
         <SpeedInsights />
