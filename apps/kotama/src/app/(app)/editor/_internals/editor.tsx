@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 
 import type { Crepe } from "@milkdown/crepe";
 import { BaseStyleProps } from "@/src/lib/typings";
-import { Input } from "@/src/components/ui/input";
 import TagsSelect from "./tags-input";
 // import { Crepe } from '@milkdown/crepe';
 // function lazyLoadCodeBlockTheme(theme: string | undefined) {
@@ -51,12 +50,12 @@ const MilkdownEditor: React.FC<EditorProps> = ({
   }, []);
 
   return (
-    <>
+    <div className="space-y-2">
       <div className="">
         <input
           type="text"
           placeholder="Title"
-          className="md:text-3xl font-semibold shadow-none border-none focus:outline-none"
+          className="md:text-5xl text-5xl font-semibold shadow-none border-none focus:outline-none"
         />
       </div>
       <div className="flex flex-row gap-2 items-center">
@@ -67,7 +66,7 @@ const MilkdownEditor: React.FC<EditorProps> = ({
       <div ref={editorRootRef} {...styleProps}>
         {!isEditorLoaded ? loading : undefined}
       </div>
-    </>
+    </div>
   );
 };
 export default MilkdownEditor;

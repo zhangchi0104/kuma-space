@@ -1,0 +1,2 @@
+ALTER TABLE "role_permissions" DROP CONSTRAINT "permission_must_contains_column_in_between";--> statement-breakpoint
+ALTER TABLE "role_permissions" ADD CONSTRAINT "permission_must_contains_colons_in_between" CHECK ("role_permissions"."permission" SIMILAR TO '[a-zA-Z0-9_]+:[a-zA-Z0-9_]+:[a-zA-Z0-9_]+');

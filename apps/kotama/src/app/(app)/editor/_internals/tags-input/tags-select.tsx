@@ -7,58 +7,43 @@ import {
   CommandItem,
   CommandList,
 } from "@/src/components/ui/command";
-import { useMemo, useState } from "react";
+import { Suspense, useState } from "react";
 import { useTags } from "./tags-context";
-import SelectableTag from "./selectable-tag";
-import { Tag } from "@repo/db/types";
-const ALL_TAGS: Tag[] = [
-  { value: "type:bug", category: "type", name: "bug" },
-  { value: "category:post", category: "category", name: "post" },
-  { value: "name:test", category: "name", name: "test" },
-];
+
+import TagsCandidates from "./tags-candidates";
+
+import { useDebounceValue } from "usehooks-ts";
+
+import { Input } from "@/src/components/ui/input";
 const TagsSelect = () => {
-  const [searchText, setSearchText] = useState("");
-  const [tags, setTags] = useTags();
-  const tagsSet = useMemo(
-    () => new Set(tags.map((tag) => `${tag.category}:${tag.name}`)),
-    [tags]
-  );
-  console.log("tags in tags select", tags);
+  const { tags } = useTags();
+
+  const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useDebounceValue("", 200);
   return (
-    <Command>
-      <CommandInput
+    <Command className="w-full">
+      <Input
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setDebouncedQuery(e.target.value);
+        }}
         placeholder="Search tags..."
-        value={searchText}
-        onValueChange={(value) => setSearchText(value)}
+        className="border-none rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
       />
-      <CommandList>
-        <CommandEmpty>
-          {tags.length === 0 && searchText.length === 0 ? (
-            <p>No tags found</p>
-          ) : (
-            <p>
-              Create{" "}
-              <span className="text-primary font-bold">{`"${searchText}"`}</span>
-            </p>
-          )}
-        </CommandEmpty>
-        {ALL_TAGS.map((tag) => (
-          <CommandItem key={`tag-${tag.name}-${tag.category}`}>
-            <SelectableTag
-              tag={tag}
-              selected={tagsSet.has(`${tag.category}:${tag.name}`)}
-              onSelect={(t) => setTags([...tags, t])}
-              onDeselect={(t) =>
-                setTags(
-                  tags.filter(
-                    (_t) => _t.category !== t.category || _t.name !== t.name
-                  )
-                )
-              }
-            />
-          </CommandItem>
-        ))}
-      </CommandList>
+      <div>
+        <Suspense
+          fallback={
+            <CommandList>
+              <CommandEmpty className="flex flex-col items-center justify-center h-20">
+                <div className="text-md text-muted-foreground">Loading...</div>
+              </CommandEmpty>
+            </CommandList>
+          }
+        >
+          <TagsCandidates query={debouncedQuery} />
+        </Suspense>
+      </div>
     </Command>
   );
 };

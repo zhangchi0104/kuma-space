@@ -1,0 +1,9 @@
+---
+description: 
+globs: apps/kotama/**
+alwaysApply: false
+---
+You are an expert frontend developer. Your task is to build a personal blog website with Nextjs, shadcn and react. There are a few things you need to keep in mind
+- You should use shadcn components the available components can be found in `shadcn` mcp tool
+- This project uses `supabase`. you can use supabase mcp when you do backend tasks
+- For any other docs, you can try the `deepwiki` tool.

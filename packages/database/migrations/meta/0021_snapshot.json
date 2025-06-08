@@ -1,0 +1,890 @@
+{
+  "id": "d2a94651-ce01-4ed5-baa4-baf67f72d265",
+  "prevId": "0c993b0c-0607-434a-9a9f-d72e9c98e86a",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.hitokoto": {
+      "name": "hitokoto",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "from_character": {
+          "name": "from_character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "from_work": {
+          "name": "from_work",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "from_work_type": {
+          "name": "from_work_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the hitokoto": {
+          "name": "Everyone can read the hitokoto",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the hitokoto table": {
+          "name": "Anon cannot delete from the hitokoto table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the hitokoto table": {
+          "name": "Anon cannot insert into the hitokoto table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the hitokoto table": {
+          "name": "Anon cannot update the hitokoto table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Authenticated can read hitokoto": {
+          "name": "Authenticated can read hitokoto",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('hitokoto:all:read')"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.moments": {
+      "name": "moments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "moments_author_id_users_id_fk": {
+          "name": "moments_author_id_users_id_fk",
+          "tableFrom": "moments",
+          "tableTo": "users",
+          "schemaTo": "auth",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the moments": {
+          "name": "Everyone can read the moments",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the moments table": {
+          "name": "Anon cannot delete from the moments table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the moments table": {
+          "name": "Anon cannot insert into the moments table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the moments table": {
+          "name": "Anon cannot update the moments table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Authenticated can delete their own moment": {
+          "name": "Authenticated can delete their own moment",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('moments:self:write') and \"moments\".\"author_id\" = (select auth.uid()) and (auth.jwt() ->>'is_anonymous')::boolean = false"
+        },
+        "Authenticated can write their own moment": {
+          "name": "Authenticated can write their own moment",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "authenticated"
+          ],
+          "withCheck": "authorize('moments:self:write') and \"moments\".\"author_id\" = (select auth.uid()) and (auth.jwt() ->>'is_anonymous')::boolean = false"
+        },
+        "Authenticated can read moments": {
+          "name": "Authenticated can read moments",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('moments:all:read')"
+        },
+        "Authenticated can update their own moment": {
+          "name": "Authenticated can update their own moment",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('moments:self:write') and \"moments\".\"author_id\" = (select auth.uid()) and (auth.jwt() ->>'is_anonymous')::boolean = false",
+          "withCheck": "\"moments\".\"author_id\" = (select auth.uid())"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.posts_content": {
+      "name": "posts_content",
+      "schema": "",
+      "columns": {
+        "post_id": {
+          "name": "post_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "language_code": {
+          "name": "language_code",
+          "type": "LanguageCodes",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "posts_content_post_id_posts_id_fk": {
+          "name": "posts_content_post_id_posts_id_fk",
+          "tableFrom": "posts_content",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "post_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "posts_content_post_id_language_code_pk": {
+          "name": "posts_content_post_id_language_code_pk",
+          "columns": [
+            "post_id",
+            "language_code"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the posts content": {
+          "name": "Everyone can read the posts content",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the posts_content table": {
+          "name": "Anon cannot delete from the posts_content table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the posts_content table": {
+          "name": "Anon cannot insert into the posts_content table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the posts_content table": {
+          "name": "Anon cannot update the posts_content table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Authenticated can delete posts content": {
+          "name": "Authenticated can delete posts content",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write') AND ((auth.jwt() ->>'is_anonymous')::boolean) is false AND \"posts_content\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))"
+        },
+        "Authenticated can insert posts content": {
+          "name": "Authenticated can insert posts content",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "authenticated"
+          ],
+          "withCheck": "authorize('posts:self:write') AND ((auth.jwt() ->>'is_anonymous')::boolean) is false AND \"posts_content\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))"
+        },
+        "Authenticated can read posts content": {
+          "name": "Authenticated can read posts content",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:all:read')"
+        },
+        "Authenticated can update posts content": {
+          "name": "Authenticated can update posts content",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write') AND ((auth.jwt() ->>'is_anonymous')::boolean) is false AND \"posts_content\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))",
+          "withCheck": "\"posts_content\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.posts": {
+      "name": "posts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "posts_author_id_users_id_fk": {
+          "name": "posts_author_id_users_id_fk",
+          "tableFrom": "posts",
+          "tableTo": "users",
+          "schemaTo": "auth",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the posts": {
+          "name": "Everyone can read the posts",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the posts table": {
+          "name": "Anon cannot delete from the posts table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the posts table": {
+          "name": "Anon cannot insert into the posts table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the posts table": {
+          "name": "Anon cannot update the posts table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Authenticated can delete their own post": {
+          "name": "Authenticated can delete their own post",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write') and \"posts\".\"author_id\" = ((select auth.uid())) and ((auth.jwt() ->>'is_anonymous')::boolean) = false"
+        },
+        "Authenticated can insert a post": {
+          "name": "Authenticated can insert a post",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "authenticated"
+          ],
+          "withCheck": "authorize('posts:all:write') and \"posts\".\"author_id\" = (select auth.uid()) and (auth.jwt() ->>'is_anonymous')::boolean = false"
+        },
+        "Authenticated can read posts": {
+          "name": "Authenticated can read posts",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:all:read')"
+        },
+        "Authenticated can update their own post": {
+          "name": "Authenticated can update their own post",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write') and \"posts\".\"author_id\" = ((select auth.uid())) and ((auth.jwt() ->>'is_anonymous')::boolean) = false",
+          "withCheck": "\"posts\".\"author_id\" = ((select auth.uid()))"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.posts_tags": {
+      "name": "posts_tags",
+      "schema": "",
+      "columns": {
+        "post_id": {
+          "name": "post_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tag": {
+          "name": "tag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "posts_tags_post_id_posts_id_fk": {
+          "name": "posts_tags_post_id_posts_id_fk",
+          "tableFrom": "posts_tags",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "post_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "posts_tags_tag_tags_value_fk": {
+          "name": "posts_tags_tag_tags_value_fk",
+          "tableFrom": "posts_tags",
+          "tableTo": "tags",
+          "columnsFrom": [
+            "tag"
+          ],
+          "columnsTo": [
+            "value"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "posts_tags_post_id_tag_pk": {
+          "name": "posts_tags_post_id_tag_pk",
+          "columns": [
+            "post_id",
+            "tag"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the posts tags": {
+          "name": "Everyone can read the posts tags",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the posts_tags table": {
+          "name": "Anon cannot delete from the posts_tags table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the posts_tags table": {
+          "name": "Anon cannot insert into the posts_tags table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the posts_tags table": {
+          "name": "Anon cannot update the posts_tags table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Authenticated can delete posts tags": {
+          "name": "Authenticated can delete posts tags",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write')"
+        },
+        "Authenticated can insert posts tags": {
+          "name": "Authenticated can insert posts tags",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "authenticated"
+          ],
+          "withCheck": "authorize('posts:self:write') and \"posts_tags\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))"
+        },
+        "Authenticated can update posts tags": {
+          "name": "Authenticated can update posts tags",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('posts:self:write')",
+          "withCheck": "\"posts_tags\".\"post_id\" IN (SELECT \"posts\".\"id\" FROM \"posts\" WHERE \"posts\".\"author_id\" = (select auth.uid()))"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.role_permissions": {
+      "name": "role_permissions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "AppRoles",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permission": {
+          "name": "permission",
+          "type": "AppPermissions",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "role_permission_unique": {
+          "name": "role_permission_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "role",
+            "permission"
+          ]
+        }
+      },
+      "policies": {
+        "Authenticated can read role permissions": {
+          "name": "Authenticated can read role permissions",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "false"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.tags": {
+      "name": "tags",
+      "schema": "",
+      "columns": {
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "generated": {
+            "as": "split_part(\"tags\".\"value\", ':', 1)",
+            "type": "stored"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "generated": {
+            "as": "split_part(\"tags\".\"value\", ':', 2)",
+            "type": "stored"
+          }
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {
+        "Everyone can read the tags": {
+          "name": "Everyone can read the tags",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "anon"
+          ],
+          "using": "true"
+        },
+        "Anon cannot delete from the tags table": {
+          "name": "Anon cannot delete from the tags table",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "anon"
+          ],
+          "using": "false"
+        },
+        "Anon cannot insert into the tags table": {
+          "name": "Anon cannot insert into the tags table",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Anon cannot update the tags table": {
+          "name": "Anon cannot update the tags table",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "anon"
+          ],
+          "withCheck": "false"
+        },
+        "Only admin can delete tags": {
+          "name": "Only admin can delete tags",
+          "as": "PERMISSIVE",
+          "for": "DELETE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('all:all:all')"
+        },
+        "Only admin can update tags": {
+          "name": "Only admin can update tags",
+          "as": "PERMISSIVE",
+          "for": "UPDATE",
+          "to": [
+            "authenticated"
+          ],
+          "using": "authorize('all:all:all')"
+        },
+        "Only admin can insert tags": {
+          "name": "Only admin can insert tags",
+          "as": "PERMISSIVE",
+          "for": "INSERT",
+          "to": [
+            "authenticated"
+          ],
+          "withCheck": "authorize('all:all:all')"
+        }
+      },
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.user_roles": {
+      "name": "user_roles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role": {
+          "name": "role",
+          "type": "AppRoles",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'viewer'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_roles_user_id_users_id_fk": {
+          "name": "user_roles_user_id_users_id_fk",
+          "tableFrom": "user_roles",
+          "tableTo": "users",
+          "schemaTo": "auth",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_id_role_unique": {
+          "name": "user_id_role_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id",
+            "role"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    }
+  },
+  "enums": {
+    "public.AppPermissions": {
+      "name": "AppPermissions",
+      "schema": "public",
+      "values": [
+        "posts:all:read",
+        "posts:all:write",
+        "posts:all:all",
+        "posts:self:read",
+        "posts:self:write",
+        "posts:self:all",
+        "comments:all:read",
+        "comments:all:write",
+        "comments:all:all",
+        "comments:self:read",
+        "comments:self:write",
+        "comments:self:all",
+        "hitokoto:all:read",
+        "hitokoto:all:write",
+        "hitokoto:all:all",
+        "moments:all:read",
+        "moments:all:write",
+        "moments:all:all",
+        "moments:self:write",
+        "moments:self:read",
+        "moments:self:all",
+        "all:all:all"
+      ]
+    },
+    "public.AppRoles": {
+      "name": "AppRoles",
+      "schema": "public",
+      "values": [
+        "admin",
+        "viewer"
+      ]
+    },
+    "public.LanguageCodes": {
+      "name": "LanguageCodes",
+      "schema": "public",
+      "values": [
+        "en",
+        "zh"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -1,7 +1,8 @@
 /** @format */
 
-import { Post } from "@/src/apis/typings/posts/base";
+import { Post, PostContent } from "@repo/db/types";
 
-export type PostWithRelativeDate = Omit<Post, "createdAt" | "updatedAt"> & {
-  dateString: string;
-};
+export type PostWithRelativeDate = Pick<Post, "id"> &
+  Pick<PostContent, "title"> & {
+    dateString: string;
+  };

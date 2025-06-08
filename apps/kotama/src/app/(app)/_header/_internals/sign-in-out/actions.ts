@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerSideSupabaseClient } from "~/lib/supabase/client";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 import { Provider } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -23,7 +23,11 @@ export async function signIn(
   switch (provider) {
     case "github":
       const githubResponse = await signInWithGithub();
+
       if (githubResponse.data.url) {
+        if (process.env.NODE_ENV === "development") {
+          console.log("redirectTo", githubResponse.data.url);
+        }
         redirect(githubResponse.data.url);
       }
       break;
@@ -56,9 +60,10 @@ export async function signIn(
 async function signInWithGithub() {
   const supabase = await createServerSideSupabaseClient();
   const origin =
-    process.env.VERCEL_ENV === "development"
+    process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : process.env.VERCEL_URL;
+      : process.env.NEXT_PUBLIC_WEB_URL;
+  console.log("SignInWithGithub", origin);
   return await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {

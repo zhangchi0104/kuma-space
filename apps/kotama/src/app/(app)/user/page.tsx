@@ -1,30 +1,20 @@
 /** @format */
-
-import { auth } from "~/auth";
+import { Suspense } from "react";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
+import ClientSideUser from "./client-side-user";
 
 const SessionPage = async () => {
-  const session = await auth();
+  const client = await createServerSideSupabaseClient();
+  const { data, error } = await client.auth.getUser();
+
   return (
     <div>
-      {/* @ts-ignore */}
-      <elevenlabs-convai agent-id="yzoNyxVkvnDpFe7adBu6"></elevenlabs-convai>
-      <script
-        src="https://elevenlabs.io/convai-widget/index.js"
-        async
-        type="text/javascript"
-      ></script>
-      {/* @ts-ignore */}
-      <elevenlabs-convai
-        className="top-0 bottom-0"
-        agent-id="UF1IU2PpNUdaF5rC9Ba0"
-      >
-        {/* @ts-ignore */}
-      </elevenlabs-convai>
-      <script
-        src="https://elevenlabs.io/convai-widget/index.js"
-        async
-        type="text/javascript"
-      ></script>
+      <p className="whitespace-pre-wrap text-nowrap">
+        {JSON.stringify(data, null, 2)}
+      </p>
+      <Suspense fallback={<div>Loading User</div>}>
+        <ClientSideUser />
+      </Suspense>
     </div>
   );
 };
