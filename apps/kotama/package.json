@@ -50,6 +50,7 @@
     "jose": "^5.9.6",
     "jotai": "^2.10.1",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.513.0",
     "next": "^15.3.2",
     "next-auth": "^5.0.0-beta.25",
     "next-intl": "^3.24.0",
@@ -59,7 +60,7 @@
     "react-error-boundary": "^4.1.2",
     "react-select": "^5.10.0",
     "sonner": "^1.5.0",
-    "tailwind-merge": "^2.5.4",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
     "vaul": "^0.9.9"
@@ -67,16 +68,16 @@
   "devDependencies": {
     "@next/bundle-analyzer": "15.1.0",
     "@repo/db": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/lodash": "^4.17.13",
     "@types/node": "^20.17.5",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
-    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.1.0",
     "kuma-elysia": "workspace:*",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^4.1.8",
     "typescript": "^5.5.4"
   },
   "pnpm": {

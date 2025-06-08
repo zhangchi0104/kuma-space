@@ -1,8 +1,5 @@
-import { SQL, sql } from "drizzle-orm";
+import { type SQL, sql } from "drizzle-orm";
 import {
-  bigint,
-  bigserial,
-  check,
   pgEnum,
   pgTable,
   primaryKey,

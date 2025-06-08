@@ -1,18 +1,18 @@
 "use client";
 
-import { LocalTag, TagsContext } from "./tags-context";
+import { type LocalTag, TagsContext } from "./tags-context";
 import { useState } from "react";
 
 const Tags = ({
-  initialTags = [],
-  children,
+	initialTags = [],
+	children,
 }: {
-  initialTags?: LocalTag[];
-  children: React.ReactNode;
+	initialTags?: LocalTag[];
+	children: React.ReactNode;
 }) => {
-  const [tags, setTags] = useState<LocalTag[]>(initialTags);
+	const [tags, setTags] = useState<LocalTag[]>(initialTags);
 
-  return <TagsContext value={{ tags, setTags }}>{children}</TagsContext>;
+	return <TagsContext value={{ tags, setTags }}>{children}</TagsContext>;
 };
 
 export default Tags;

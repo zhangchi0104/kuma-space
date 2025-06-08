@@ -1,8 +1,8 @@
 /** @format */
 
-import { BaseStyleProps } from '@/src/lib/typings';
+import { BaseStyleProps } from "@/src/lib/typings";
 
 export type ProfileIconProps = {
-  name: string;
-  avatarUrl: string;
+	name: string;
+	avatarUrl: string;
 } & BaseStyleProps;

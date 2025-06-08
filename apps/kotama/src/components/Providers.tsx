@@ -9,15 +9,15 @@ import ReactQueryClientProvider from "./utils/query-client-provider";
 import SupabaseClientProvider from "./utils/supabase-client-provider";
 
 const ClientProviders: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <FlattenProviders>
-      <JotaiProvider store={store} />
-      <BreakpointDetector />
-      <ReactQueryClientProvider />
-      <SupabaseClientProvider />
-      {children}
-    </FlattenProviders>
-  );
+	return (
+		<FlattenProviders>
+			<JotaiProvider store={store} />
+			<BreakpointDetector />
+			<ReactQueryClientProvider />
+			<SupabaseClientProvider />
+			{children}
+		</FlattenProviders>
+	);
 };
 
 export default ClientProviders;

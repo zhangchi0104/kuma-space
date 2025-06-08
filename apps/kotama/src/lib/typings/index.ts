@@ -2,23 +2,23 @@
 
 import { PropsWithChildren } from "react";
 type AnimatedComponentPropsBase = {
-  duration?: number;
-  delay?: number;
+	duration?: number;
+	delay?: number;
 };
 export type BaseStyleProps = {
-  className?: string;
-  style?: React.CSSProperties;
+	className?: string;
+	style?: React.CSSProperties;
 };
 export type AnimatedComponentProps<T extends {} = {}> =
-  AnimatedComponentPropsBase & BaseStyleProps & T;
+	AnimatedComponentPropsBase & BaseStyleProps & T;
 
 export type AnimatedComponentPropsWithChildren<T extends {} = {}> =
-  PropsWithChildren<AnimatedComponentProps<T>>;
+	PropsWithChildren<AnimatedComponentProps<T>>;
 
 export type AnimatedComponentPropsWithRef<T extends {} = {}> =
-  AnimatedComponentProps<T> & { ref?: React.Ref<T> };
+	AnimatedComponentProps<T> & { ref?: React.Ref<T> };
 
 export type NextJsErrorProps = {
-  error: Error & { digest?: string };
-  reset: () => void;
+	error: Error & { digest?: string };
+	reset: () => void;
 };
