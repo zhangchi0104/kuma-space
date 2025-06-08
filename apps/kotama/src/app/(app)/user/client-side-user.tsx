@@ -1,7 +1,7 @@
 "use client";
 
 import { createClientSideSupabaseClient } from "@/src/lib/supabase/client";
-import { UserResponse } from "@supabase/supabase-js";
+import type { UserResponse } from "@supabase/supabase-js";
 import { useEffect, useMemo, useState } from "react";
 
 const ClientSideUser = () => {

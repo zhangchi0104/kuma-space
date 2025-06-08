@@ -1,8 +1,8 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 
-import { Locale } from "@/src/i18n/config";
+import type { Locale } from "@/src/i18n/config";
 import { cn } from "@/src/lib/shadcn";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { Button } from "@/src/components/ui/button";
@@ -22,6 +22,7 @@ const LanguageListItem: React.FC<LanguageListItemProps> = ({
 }) => {
 	return (
 		<button
+			type="button"
 			data-locale={value}
 			className="text-start w-full hover:bg-muted transition-colors px-2 py-1 rounded-md flex bg-transparent flex-row items-center justify-between"
 		>

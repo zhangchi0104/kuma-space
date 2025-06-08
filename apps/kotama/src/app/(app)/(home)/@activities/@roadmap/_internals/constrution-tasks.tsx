@@ -3,7 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { camelCaseToTitle } from "@/src/lib/fns";
 import { cn } from "@/src/lib/shadcn";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 type ConstructionTasksProps = BaseStyleProps & {
 	data: Record<string, { title: string; checked: boolean }[]>;
 };

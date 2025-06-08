@@ -1,6 +1,6 @@
 /** @format */
 
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Header from "./_header";

@@ -1,9 +1,9 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import React from "react";
 
-type ListProps<T extends any = any> = {
+type ListProps<T> = {
 	data: T[];
 	as?: React.ElementType;
 	render: (item: T, index: number) => React.ReactNode;

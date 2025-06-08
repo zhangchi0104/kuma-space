@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import { FC } from "react";
+import { useMemo, type FC } from "react";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBilibili } from "@fortawesome/free-brands-svg-icons/faBilibili";
@@ -65,17 +65,21 @@ const SocialIcon: FC<SocialIconProps> = ({ name, className, id }) => {
 		"flex items-center justify-center",
 		"p-2 w-8 h-8",
 	);
-	let onButtonClick;
-	if (onClick) {
-		onButtonClick = () => onClick(id);
-	} else if (url) {
-		onButtonClick = () => window.open(url(id), "_blank");
-	}
+	const onButtonClick = useMemo(() => {
+		if (onClick) {
+			return () => onClick(id);
+		}
+		if (url) {
+			return () => window.open(url(id), "_blank");
+		}
+		return () => {};
+	}, [id, onClick, url]);
 
 	const iconStyle = clsx(socialIconColor, socialIconSize);
 	return (
 		<div className={iconContainerStyle}>
 			<button
+				type="button"
 				className="flex items-center justify-center"
 				onClick={onButtonClick}
 			>

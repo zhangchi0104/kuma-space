@@ -9,7 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/src/components/ui/dialog";
-import { ProfileIconProps } from "../props";
+import type { ProfileIconProps } from "../props";
 import ProfileIcon from "../ProfileIcon";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";

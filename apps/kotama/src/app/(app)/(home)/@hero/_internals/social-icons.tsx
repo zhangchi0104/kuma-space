@@ -3,7 +3,7 @@
 import SocialIcon from "@/src/components/icons/social-icon";
 import ownerData from "@/src/app.owner.json";
 import PopoutTransition from "@/src/components/popup-transitition";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import clsx from "clsx";
 type SocialIconsProps = BaseStyleProps & {
 	delay: number;
@@ -28,7 +28,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
 		<div className={classNames}>
 			{Object.entries(social).map(([key, value], index) => (
 				<PopoutTransition
-					key={`social-icon-${index}`}
+					key={`social-icon-${value}`}
 					delay={delay + duration * index}
 					duration={duration}
 				>

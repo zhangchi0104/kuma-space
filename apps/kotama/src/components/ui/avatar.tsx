@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/src/lib/shadcn";
@@ -9,9 +9,7 @@ const Avatar = ({
 	ref,
 	className,
 	...props
-}: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & {
-	ref: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Root>>;
-}) => (
+}: React.ComponentProps<typeof AvatarPrimitive.Root>) => (
 	<AvatarPrimitive.Root
 		ref={ref}
 		className={cn(
@@ -27,9 +25,7 @@ const AvatarImage = ({
 	ref,
 	className,
 	...props
-}: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & {
-	ref: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Image>>;
-}) => (
+	}: React.ComponentProps<typeof AvatarPrimitive.Image>) => (
 	<AvatarPrimitive.Image
 		ref={ref}
 		className={cn("aspect-square h-full w-full", className)}
@@ -42,9 +38,7 @@ const AvatarFallback = ({
 	ref,
 	className,
 	...props
-}: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & {
-	ref: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Fallback>>;
-}) => (
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) => (
 	<AvatarPrimitive.Fallback
 		ref={ref}
 		className={cn(

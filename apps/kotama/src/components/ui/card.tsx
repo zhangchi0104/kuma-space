@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 
 import { cn } from "@/src/lib/shadcn";
 
@@ -6,9 +6,7 @@ const Card = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => (
+}: React.ComponentProps<"div">) => (
 	<div
 		ref={ref}
 		className={cn(
@@ -24,9 +22,7 @@ const CardHeader = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => (
+	}: React.ComponentProps<"div">) => (
 	<div
 		ref={ref}
 		className={cn("flex flex-col space-y-1.5 p-6", className)}
@@ -39,9 +35,7 @@ const CardTitle = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => (
+}: React.ComponentProps<"div"> ) => (
 	<div
 		ref={ref}
 		className={cn("font-semibold leading-none tracking-tight", className)}
@@ -54,9 +48,7 @@ const CardDescription = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => (
+}: React.ComponentProps<"div">) => (
 	<div
 		ref={ref}
 		className={cn("text-sm text-muted-foreground", className)}
@@ -69,18 +61,16 @@ const CardContent = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />;
+}: React.ComponentProps<"div">) => (
+	<div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+);
 CardContent.displayName = "CardContent";
 
 const CardFooter = ({
 	ref,
 	className,
 	...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-	ref: React.RefObject<HTMLDivElement>;
-}) => (
+}: React.ComponentProps<"div">) => (
 	<div
 		ref={ref}
 		className={cn("flex items-center p-6 pt-0", className)}

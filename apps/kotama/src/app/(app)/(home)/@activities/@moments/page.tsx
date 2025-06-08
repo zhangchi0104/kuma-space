@@ -1,7 +1,7 @@
 /** @format */
 
 import PostsTimeline from "../_internals/posts-timeline";
-import { PostWithRelativeDate } from "../_internals/props";
+import type { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";
 import { diffInDays } from "@/src/lib/fns";
 import { momentsTable } from "@repo/db/schema";

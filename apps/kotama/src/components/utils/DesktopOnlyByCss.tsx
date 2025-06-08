@@ -1,7 +1,7 @@
 /** @format */
 
-import { PropsWithChildren, FC } from "react";
-import breakpoints from "@/src/lib/constants/breakpoints";
+import type { PropsWithChildren, FC } from "react";
+import type breakpoints from "@/src/lib/constants/breakpoints";
 
 type MobileOnlyProps = PropsWithChildren<{
 	breakpoint?: keyof typeof breakpoints;

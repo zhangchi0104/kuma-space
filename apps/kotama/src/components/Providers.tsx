@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React from "react";
+import type React from "react";
 import FlattenProviders from "./compose-provider";
 import { store } from "../atoms/store";
 import BreakpointDetector from "./utils/BreakpointDetector";

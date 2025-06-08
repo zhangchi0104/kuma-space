@@ -1,5 +1,5 @@
 /** @format */
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { faJava } from "@fortawesome/free-brands-svg-icons/faJava";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cn } from "@/src/lib/shadcn";

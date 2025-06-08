@@ -7,7 +7,7 @@ import { Switch } from "@/src/components/ui/switch";
 import { SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { cn } from "@/src/lib/shadcn";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { Button } from "@/src/components/ui/button";
 import { DialogFooter } from "@/src/components/ui/dialog";
 import { useTranslations } from "next-intl";

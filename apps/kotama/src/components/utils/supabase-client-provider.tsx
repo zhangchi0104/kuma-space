@@ -1,7 +1,7 @@
 import { createClientSideSupabaseClient } from "@/src/lib/supabase/client";
-import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "@repo/db/supabase-types";
-import { createContext, PropsWithChildren, useMemo } from "react";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@repo/db/supabase-types";
+import { createContext, type PropsWithChildren, useMemo } from "react";
 
 export const SupabaseClientContext = createContext<SupabaseClient<
 	Database,

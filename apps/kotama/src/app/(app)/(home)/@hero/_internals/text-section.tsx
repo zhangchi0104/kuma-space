@@ -1,7 +1,7 @@
 /** @format */
 
 import AnimatedText from "@/src/components/animated-text";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 // import AnimatedText from '~/components/AnimatedText';

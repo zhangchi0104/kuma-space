@@ -1,4 +1,4 @@
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 
 import useClientSideSupabase from "@/src/lib/hooks/data";
@@ -134,6 +134,11 @@ const TagsCandidates: React.FC<TagsCandidatesProps> = ({
 							<p
 								className="flex items-center gap-2 flex-row"
 								onClick={handleCreateTag}
+								onKeyDown={(e) => {
+									if (e.key === "Enter") {
+										handleCreateTag();
+									}
+								}}
 							>
 								<span>
 									<PlusIcon />

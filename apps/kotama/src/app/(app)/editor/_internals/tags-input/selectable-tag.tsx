@@ -1,8 +1,8 @@
 "use client";
 
 import { Checkbox } from "@/src/components/ui/checkbox";
-import { Tag } from "@repo/db/types";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { Tag } from "@repo/db/types";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
 import { useTags } from "./tags-context";
 

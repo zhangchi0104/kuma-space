@@ -6,7 +6,7 @@ import {
 	AvatarImage,
 } from "@/src/components/ui/avatar";
 import { cn } from "@/src/lib/shadcn";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 type ProfileIconProps = {
 	name: string;
 	avatarUrl: string;

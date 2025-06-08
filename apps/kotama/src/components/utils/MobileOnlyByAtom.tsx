@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 import { useIsMobile } from "@/src/lib/hooks/viewports";
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 import { useIsClient } from "usehooks-ts";
 
 const MobileOnlyByAtom: FC<PropsWithChildren> = ({ children }) => {

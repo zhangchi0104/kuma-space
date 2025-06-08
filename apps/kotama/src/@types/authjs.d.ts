@@ -1,7 +1,7 @@
 /** @format */
 
 import { DefaultSession } from "next-auth";
-import { UserRoles } from "@repo/db";
+import type { UserRoles } from "@repo/db";
 import { JWT } from "next-auth/jwt";
 declare module "next-auth" {
 	/**

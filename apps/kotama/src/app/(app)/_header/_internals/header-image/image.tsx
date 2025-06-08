@@ -1,7 +1,7 @@
 /** @format */
 import Image from "next/image";
 import config from "~/config";
-import { FC } from "react";
+import type { FC } from "react";
 import clsx from "clsx";
 
 const HeaderImage: FC<{ className?: string }> = ({ className }) => (

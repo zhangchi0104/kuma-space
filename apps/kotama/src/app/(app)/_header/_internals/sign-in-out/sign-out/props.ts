@@ -1,6 +1,6 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 
 export type ProfileIconProps = {
 	name: string;

@@ -2,7 +2,7 @@
 
 import { getFormatter } from "next-intl/server";
 import PostsTimeline from "../_internals/posts-timeline";
-import { PostWithRelativeDate } from "../_internals/props";
+import type { PostWithRelativeDate } from "../_internals/props";
 import { diffInDays } from "@/src/lib/fns";
 import { getDatabaseClient } from "@/src/lib/database";
 import { postsContentTable, postsTable } from "@repo/db/schema";

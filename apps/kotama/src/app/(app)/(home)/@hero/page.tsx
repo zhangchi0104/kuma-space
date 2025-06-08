@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import HeroContent from "./_internals";
 import TrailingText from "./_internals/trailing-text";
 

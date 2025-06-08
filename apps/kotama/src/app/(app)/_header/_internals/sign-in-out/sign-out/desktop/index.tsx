@@ -10,7 +10,7 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import { ExitIcon } from "@radix-ui/react-icons";
 import ProfileIcon from "../ProfileIcon";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 type ProfileProps = {
 	name: string;
 	avatarUrl: string;
@@ -29,7 +29,7 @@ const Profile: React.FC<ProfileProps> = ({ name, avatarUrl, className }) => {
 							await signOut();
 						}}
 					>
-						<button className="flex items-center gap-2">
+						<button type="submit" className="flex items-center gap-2">
 							<span>
 								<ExitIcon />
 							</span>

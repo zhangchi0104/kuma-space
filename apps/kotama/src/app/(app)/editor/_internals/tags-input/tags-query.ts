@@ -1,10 +1,10 @@
-import { TypedSupabase } from "@/src/components/utils/types";
+import type { TypedSupabase } from "@/src/components/utils/types";
 
 export const searchTagsByKeyword = (client: TypedSupabase, query?: string) => {
 	if (!query) {
 		const res = client
 			.from("tags")
-			.select(`*`)
+			.select("*")
 			.limit(5)
 			.order("value", { ascending: false });
 		return res;
@@ -12,9 +12,9 @@ export const searchTagsByKeyword = (client: TypedSupabase, query?: string) => {
 
 	const res = client
 		.from("tags")
-		.select(`*`)
+		.select("*")
 		.limit(5)
-		.ilike("value", `%exp%`)
+		.ilike("value", "%exp%")
 		.order("value", {
 			ascending: false,
 		});

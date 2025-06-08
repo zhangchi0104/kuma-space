@@ -1,7 +1,7 @@
 /** @format */
 
-import { BaseStyleProps } from "@/src/lib/typings";
-import { FC } from "react";
+import type { BaseStyleProps } from "@/src/lib/typings";
+import type { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons/faEnvelope";
 import clsx from "clsx";
@@ -10,7 +10,10 @@ import { socialIconColor, socialIconSize } from "./common";
 const MailIcon: FC<BaseStyleProps> = () => {
 	const iconStyle = clsx(socialIconSize, socialIconColor, "p-2");
 	return (
-		<button className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+		<button
+			type="button"
+			className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center"
+		>
 			<FontAwesomeIcon icon={faEnvelope} className={iconStyle} />
 		</button>
 	);

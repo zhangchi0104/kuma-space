@@ -1,7 +1,7 @@
-import { BaseStyleProps } from "../lib/typings";
+import type { BaseStyleProps } from "../lib/typings";
 import { Badge } from "./ui/badge";
 import { cn } from "../lib/shadcn";
-import { LocalTag } from "../app/(app)/editor/_internals/tags-input/tags-context";
+import type { LocalTag } from "../app/(app)/editor/_internals/tags-input/tags-context";
 type TagsListProps = {
 	tags: LocalTag[];
 } & BaseStyleProps;

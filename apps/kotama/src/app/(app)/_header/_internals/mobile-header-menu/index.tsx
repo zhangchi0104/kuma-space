@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 interface MobileHeaderMenuProps {
 	className?: string;
 }

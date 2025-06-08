@@ -2,7 +2,7 @@
 
 import { cn } from "@/src/lib/shadcn";
 
-import { PostWithRelativeDate } from "./props";
+import type { PostWithRelativeDate } from "./props";
 
 type TimelinePostProps = PostWithRelativeDate & {
 	dataClasses?: string;

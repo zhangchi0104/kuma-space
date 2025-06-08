@@ -2,7 +2,8 @@
 
 "use client";
 import throttle from "lodash/throttle";
-import React, { PropsWithChildren } from "react";
+import type React from "react";
+import type { PropsWithChildren } from "react";
 import { useSetAtom } from "jotai";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import { breakpointsAtom } from "@/src/atoms/viewport";

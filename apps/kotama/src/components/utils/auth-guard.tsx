@@ -2,7 +2,7 @@
 
 import Unauthorized from "../http-errors/401-unauthorized";
 import Forbidden from "../http-errors/403-forbidden";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
 import { getUser } from "@/src/lib/auth";
 type AuthGuardProps = {

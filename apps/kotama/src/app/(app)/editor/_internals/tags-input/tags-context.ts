@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo } from "react";
-import { Tag } from "@repo/db/types";
+import type { Tag } from "@repo/db/types";
 export type LocalTag = Tag & { settled: boolean };
 interface TagsContextApi {
 	tags: LocalTag[];

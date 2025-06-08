@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 
 import { cn } from "@/src/lib/shadcn";
@@ -17,9 +17,7 @@ const PopoverContent = ({
 	align = "center",
 	sideOffset = 4,
 	...props
-}: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
-	ref: React.RefObject<React.ElementRef<typeof PopoverPrimitive.Content>>;
-}) => (
+}: React.ComponentPropsWithRef<typeof PopoverPrimitive.Content>) => (
 	<PopoverPrimitive.Portal>
 		<PopoverPrimitive.Content
 			ref={ref}

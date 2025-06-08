@@ -3,7 +3,7 @@
 import ChevronDownIcon from "@heroicons/react/24/outline/ChevronDownIcon";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 
 const TrailingText: React.FC<BaseStyleProps> = ({ className }) => {
 	const t = useTranslations("Home.Hero");

@@ -1,13 +1,13 @@
 /** @format */
 
 import { cn } from "@/src/lib/shadcn";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 
 import { useCallback } from "react";
 import TimelinePost from "./timeline-post";
 import ListView from "@/src/components/vertical-list-view";
 import PostsTimelineEmptyFallback from "./posts-timeline-empty-fallback";
-import { PostWithRelativeDate } from "./props";
+import type { PostWithRelativeDate } from "./props";
 
 type PostsTimelineProps = {
 	posts: PostWithRelativeDate[];

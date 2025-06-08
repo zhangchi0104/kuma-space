@@ -1,7 +1,7 @@
 "use server";
 
 import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
-import { Provider } from "@supabase/supabase-js";
+import type { Provider } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 type SignInPayload<T extends Record<string, string>> = T & {
@@ -21,7 +21,7 @@ export async function signIn(
 	payload?: SignInPayload<Record<string, string>>,
 ): Promise<void> {
 	switch (provider) {
-		case "github":
+		case "github": {
 			const githubResponse = await signInWithGithub();
 
 			if (githubResponse.data.url) {
@@ -31,8 +31,12 @@ export async function signIn(
 				redirect(githubResponse.data.url);
 			}
 			break;
-		case "anonymous":
-			const anonymousResponse = await signInAnonymously(payload!.fingerprint);
+		}
+		case "anonymous": {
+			if (!payload) {
+				throw new Error("Payload is required");
+			}
+			const anonymousResponse = await signInAnonymously(payload.fingerprint);
 			if (!anonymousResponse.data.user) {
 				throw new Error(`Failed to sign in with ${provider}`);
 			}
@@ -42,16 +46,21 @@ export async function signIn(
 			// revalidatePath("/", "layout");
 			// redirect("/");
 			break;
+		}
 
-		case "email":
+		case "email": {
+			if (!payload) {
+				throw new Error("Payload is required");
+			}
 			const emailResponse = await signInWithEmail(
-				payload!.email,
-				payload!.password,
+				payload.email,
+				payload.password,
 			);
 			if (emailResponse.error) {
 				throw new Error(emailResponse.error.message);
 			}
 			break;
+		}
 		default:
 			throw new Error(`Unsupported provider: ${provider}`);
 	}

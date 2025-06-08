@@ -6,7 +6,7 @@ import MobileHeaderMenu from "./_internals/mobile-header-menu";
 import DesktopOnlyByCss from "@/src/components/utils/DesktopOnlyByCss";
 
 import LanguageSwitcher from "./_internals/language-switcher";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import MobileOnlyByCss from "@/src/components/utils/MobileOnlyByCss";
 import SignInOut from "./_internals/sign-in-out";
 import { Suspense } from "react";

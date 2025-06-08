@@ -6,7 +6,7 @@ import { Button } from "@/src/components/ui/button";
 import { MoonIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/src/lib/shadcn";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 
 const DarkModeTrigger: React.FC<BaseStyleProps> = ({ className }) => {
 	const classNames = cn("w-5", "h-5", className);

@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 
 import { cn } from "@/src/lib/shadcn";
 
@@ -7,9 +7,7 @@ const Input = ({
 	className,
 	type,
 	...props
-}: React.ComponentProps<"input"> & {
-	ref: React.RefObject<HTMLInputElement>;
-}) => {
+}: React.ComponentPropsWithRef<"input">) => {
 	return (
 		<input
 			type={type}

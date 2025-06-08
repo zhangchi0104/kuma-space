@@ -2,7 +2,7 @@
 
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 
 import { cn } from "@/src/lib/shadcn";
@@ -12,9 +12,7 @@ const Progress = ({
 	className,
 	value,
 	...props
-}: React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
-	ref: React.RefObject<React.ElementRef<typeof ProgressPrimitive.Root>>;
-}) => (
+}: React.ComponentPropsWithRef<typeof ProgressPrimitive.Root>) => (
 	<ProgressPrimitive.Root
 		ref={ref}
 		className={cn(

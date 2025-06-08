@@ -1,7 +1,6 @@
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import Tags from "./tags";
 import TagsPopover from "./tags-popover";
-import { Tag } from "@repo/db/types";
 
 interface TagsSelectProps {
 	className?: string;

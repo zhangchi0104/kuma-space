@@ -8,8 +8,8 @@ import {
 	animate,
 	LazyMotion,
 } from "framer-motion";
-import { FC, useEffect, useState } from "react";
-import { AnimatedComponentProps } from "../lib/typings";
+import { type FC, useEffect, useState } from "react";
+import type { AnimatedComponentProps } from "../lib/typings";
 
 const Cursor = () => {
 	return <span>{"|"}</span>;
@@ -52,13 +52,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({
 			onComplete: () => setShowCursor(false),
 		});
 		return () => controlls.stop();
-	}, [
-		animationProgress,
-		text.length,
-		duration,
-		hideCursorAfterAnimation,
-		showCursor,
-	]);
+	}, [animationProgress, text.length, duration, showCursor]);
 	return (
 		<div className={className}>
 			<LazyMotion features={loadFeatures}>

@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { BaseStyleProps } from "../lib/typings";
+import type { BaseStyleProps } from "../lib/typings";
 import { cn } from "../lib/shadcn";
 type ErrorSectionProps = React.PropsWithChildren<
 	{

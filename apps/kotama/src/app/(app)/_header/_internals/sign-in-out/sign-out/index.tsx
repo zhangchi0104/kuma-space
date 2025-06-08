@@ -1,7 +1,7 @@
 /** @format */
 import DesktopOnlyByCss from "@/src/components/utils/DesktopOnlyByCss";
 import DesktopProfile from "./desktop";
-import { ProfileIconProps } from "./props";
+import type { ProfileIconProps } from "./props";
 import MobileOnlyByCss from "@/src/components/utils/MobileOnlyByCss";
 import MobileSignOutDialog from "./mobile";
 const SignOut = ({ name, avatarUrl, className }: ProfileIconProps) => {

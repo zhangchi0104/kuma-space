@@ -9,7 +9,7 @@ import "./style.css";
 import { useEffect, useRef, useState } from "react";
 
 import type { Crepe } from "@milkdown/crepe";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import TagsSelect from "./tags-input";
 // import { Crepe } from '@milkdown/crepe';
 // function lazyLoadCodeBlockTheme(theme: string | undefined) {

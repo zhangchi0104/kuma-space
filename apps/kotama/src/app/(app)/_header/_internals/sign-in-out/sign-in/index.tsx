@@ -2,7 +2,7 @@
 
 import { EnterIcon } from "@radix-ui/react-icons";
 import { Button } from "@/src/components/ui/button";
-import { BaseStyleProps } from "@/src/lib/typings";
+import type { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
 import {
 	Dialog,
