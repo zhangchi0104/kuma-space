@@ -25,7 +25,9 @@ export async function signIn(
       const githubResponse = await signInWithGithub();
 
       if (githubResponse.data.url) {
-        console.log("redirectTo", githubResponse.data.url);
+        if (process.env.NODE_ENV === "development") {
+          console.log("redirectTo", githubResponse.data.url);
+        }
         redirect(githubResponse.data.url);
       }
       break;
