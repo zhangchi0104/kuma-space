@@ -4,31 +4,24 @@ import { Checkbox } from "@/src/components/ui/checkbox";
 import { Tag } from "@repo/db/types";
 import { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
+import { useTags } from "./tags-context";
 
 type SelectableTagProps = {
   tag: Tag;
-  onSelect?: (tag: Tag) => void;
-  onDeselect?: (tag: Tag) => void;
-  selected?: boolean;
 } & BaseStyleProps;
-const SelectableTag = ({
-  tag,
+const SelectableTag = ({ tag, ...styleProps }: SelectableTagProps) => {
+  const { setTags, tagsSet } = useTags();
 
-  onSelect,
-  onDeselect,
-  selected,
-  ...styleProps
-}: SelectableTagProps) => {
   return (
     <div className={cn("flex items-center gap-2 py-1", styleProps)}>
       <Checkbox
         id={`${tag.value}-checkbox`}
-        checked={selected}
+        checked={tagsSet.has(tag.value)}
         onCheckedChange={() => {
-          if (selected) {
-            onDeselect?.(tag);
+          if (tagsSet.has(tag.value)) {
+            setTags((tags) => tags.filter((t) => t.value !== tag.value));
           } else {
-            onSelect?.(tag);
+            setTags((tags) => [...tags, { ...tag, settled: true }]);
           }
         }}
       />
@@ -36,7 +29,7 @@ const SelectableTag = ({
         htmlFor={`${tag.value}-checkbox`}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
-        {`${tag.category}:${tag.name}`}
+        {tag.value}
       </label>
     </div>
   );

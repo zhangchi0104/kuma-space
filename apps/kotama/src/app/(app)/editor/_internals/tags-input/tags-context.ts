@@ -1,9 +1,9 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { Tag } from "@repo/db/types";
-
+export type LocalTag = Tag & { settled: boolean };
 interface TagsContextApi {
-  tags: Tag[];
-  setTags: (tags: Tag[] | ((prev: Tag[]) => Tag[])) => void;
+  tags: LocalTag[];
+  setTags: (tags: LocalTag[] | ((prev: LocalTag[]) => LocalTag[])) => void;
 }
 export const TagsContext = createContext<TagsContextApi>({
   tags: [],
@@ -14,10 +14,8 @@ export const TagsContext = createContext<TagsContextApi>({
   },
 });
 
-export const useTags: () => [
-  TagsContextApi["tags"],
-  TagsContextApi["setTags"],
-] = () => {
+export const useTags = () => {
   const { tags, setTags } = useContext(TagsContext);
-  return [tags, setTags];
+  const tagsSet = useMemo(() => new Set(tags.map((tag) => tag.value)), [tags]);
+  return { tags, setTags, tagsSet };
 };

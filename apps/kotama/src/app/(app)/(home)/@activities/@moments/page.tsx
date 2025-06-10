@@ -1,34 +1,31 @@
 /** @format */
 
-import { client } from "@/src/apis/client";
 import PostsTimeline from "../_internals/posts-timeline";
-import { getLocale } from "next-intl/server";
 import { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";
 import { diffInDays } from "@/src/lib/fns";
-
+import { momentsTable } from "@repo/db/schema";
+import { getDatabaseClient } from "@/src/lib/database";
+import { desc } from "drizzle-orm";
 const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
-  const locale = await getLocale();
   const formatter = await getFormatter();
   const now = new Date();
 
-  const { data, error } = await client.posts.index.get({
-    query: {
-      languageCode: locale as "zh" | "en",
-      limit: 5,
-    },
+  const db = await getDatabaseClient();
+  const moments = await db(async (tx) => {
+    const moments = await tx
+      .select()
+      .from(momentsTable)
+      .orderBy(desc(momentsTable.createdAt))
+      .limit(5);
+    return moments;
   });
-  if (error) {
-    throw error;
-  }
-  if (!data) {
-    return [];
-  }
 
-  return data.posts
+  return moments
     .map((post) => ({ ...post, createdAt: new Date(post.updatedAt) }))
     .map((post) => ({
-      ...post,
+      id: post.id,
+      title: post.title,
       dateString:
         diffInDays(now, post.createdAt) > 7
           ? formatter.dateTime(post.createdAt, {
