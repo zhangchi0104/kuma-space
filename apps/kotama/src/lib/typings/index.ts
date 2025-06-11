@@ -10,15 +10,15 @@ export type BaseStyleProps = {
 	style?: React.CSSProperties;
 };
 export type AnimatedComponentProps<
-	T extends Record<string, unknown> = Record<string, never>,
+	T extends Record<string, unknown> = Record<string, unknown>,
 > = AnimatedComponentPropsBase & BaseStyleProps & T;
 
 export type AnimatedComponentPropsWithChildren<
-	T extends Record<string, unknown> = Record<string, never>,
+	T extends Record<string, unknown> = Record<string, unknown>,
 > = PropsWithChildren<AnimatedComponentProps<T>>;
 
 export type AnimatedComponentPropsWithRef<
-	T extends Record<string, unknown> = Record<string, never>,
+	T extends Record<string, unknown> = Record<string, unknown>,
 > = AnimatedComponentProps<T> & { ref?: React.Ref<T> };
 
 export type NextJsErrorProps = {

@@ -2,7 +2,7 @@
 
 // 'use client';
 import React, { Children } from "react";
-type ComposeProvidersProps = React.PropsWithChildren<never>;
+type ComposeProvidersProps = React.PropsWithChildren<unknown>;
 const FlattenProviders: React.FC<ComposeProvidersProps> = ({ children }) => {
 	const childrenList = Children.toArray(children);
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
