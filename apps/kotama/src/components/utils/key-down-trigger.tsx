@@ -1,4 +1,4 @@
 type KeyDownTriggerProps = {
-  onKeyDown: (event: KeyboardEvent) => void;
+	onKeyDown: (event: KeyboardEvent) => void;
 };
 const KeyDownTrigger = () => {};

@@ -1,0 +1,8 @@
+{
+  "name": "@repo/biome",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "biome.base": "./biome.base.json"
+  }
+}

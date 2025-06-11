@@ -1,116 +1,114 @@
 /* @import "@milkdown/crepe/theme/frame.css"; */
 
 .milkdown .image-edit {
-  @apply rounded-md;
+	@apply rounded-md;
 }
 
 .milkdown
-  milkdown-image-block.selected
-  > .image-edit:not(:has(input:focus))::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: color-mix(in srgb, var(--crepe-color-selected), transparent 60%);
-  pointer-events: none;
-  @apply rounded-md;
+	milkdown-image-block.selected
+	> .image-edit:not(:has(input:focus))::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: color-mix(in srgb, var(--crepe-color-selected), transparent 60%);
+	pointer-events: none;
+	@apply rounded-md;
 }
 .milkdown .ProseMirror {
-  padding: unset;
+	padding: unset;
 }
 
 .milkdown {
-  --crepe-color-background: hsl(var(--background));
-  --crepe-color-on-background: hsl(var(--foreground));
-  --crepe-color-surface: hsl(var(--card));
-  --crepe-color-on-surface: hsl(var(--card-foreground));
-  --crepe-color-on-surface-variant: #a9a9a9;
-  --crepe-color-outline: #757575;
-  --crepe-color-primary: hsl(var(--foreground));
-  --crepe-color-secondary: hsl(var(--secondary-background));
-  --crepe-color-on-secondary: hsl(var(--secondary));
-  --crepe-color-inverse: #e5e5e5;
-  --crepe-color-on-inverse: #2a2a2a;
-  --crepe-color-inline-code: #ff6666;
-  --crepe-color-error: #ff6666;
-  --crepe-color-hover: hsl(var(--accent));
-  --crepe-color-selected: hsl(var(--accent));
-  --crepe-color-inline-area: #2b2b2b;
+	--crepe-color-background: hsl(var(--background));
+	--crepe-color-on-background: hsl(var(--foreground));
+	--crepe-color-surface: hsl(var(--card));
+	--crepe-color-on-surface: hsl(var(--card-foreground));
+	--crepe-color-on-surface-variant: #a9a9a9;
+	--crepe-color-outline: #757575;
+	--crepe-color-primary: hsl(var(--foreground));
+	--crepe-color-secondary: hsl(var(--secondary-background));
+	--crepe-color-on-secondary: hsl(var(--secondary));
+	--crepe-color-inverse: #e5e5e5;
+	--crepe-color-on-inverse: #2a2a2a;
+	--crepe-color-inline-code: #ff6666;
+	--crepe-color-error: #ff6666;
+	--crepe-color-hover: hsl(var(--accent));
+	--crepe-color-selected: hsl(var(--accent));
+	--crepe-color-inline-area: #2b2b2b;
 
-  --crepe-font-title: "Inter", Cambria, "Times New Roman", Times, serif;
-  --crepe-font-default: "Inter", "Noto Sans", Arial, Helvetica, sans-serif;
-  --crepe-font-code:
-    "Space Mono", Fira Code, Menlo, Monaco, "Courier New", Courier, monospace;
+	--crepe-font-title: "Inter", Cambria, "Times New Roman", Times, serif;
+	--crepe-font-default: "Inter", "Noto Sans", Arial, Helvetica, sans-serif;
+	--crepe-font-code: "Space Mono", Fira Code, Menlo, Monaco, "Courier New",
+		Courier, monospace;
 
-  --crepe-shadow-1:
-    0px 1px 2px 0px rgba(255, 255, 255, 0.3),
-    0px 1px 3px 1px rgba(255, 255, 255, 0.15);
-  --crepe-shadow-2:
-    0px 1px 2px 0px rgba(255, 255, 255, 0.3),
-    0px 2px 6px 2px rgba(255, 255, 255, 0.15);
+	--crepe-shadow-1: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 1px 3px 1px
+		rgba(255, 255, 255, 0.15);
+	--crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px
+		rgba(255, 255, 255, 0.15);
 }
 .milkdown milkdown-toolbar {
-  background: var(--card);
-  @apply rounded-md dark:shadow-none shadow-md;
-  @apply mx-2;
-  @apply border border-border;
-  @apply bg-card z-50;
+	background: var(--card);
+	@apply rounded-md dark:shadow-none shadow-md;
+	@apply mx-2;
+	@apply border border-border;
+	@apply bg-card z-50;
 }
 .milkdown * {
-  @apply transition-colors duration-200;
+	@apply transition-colors duration-200;
 }
 
 .milkdown milkdown-slash-menu {
-  position: absolute;
-  display: block;
-  font-family: var(--crepe-font-default);
-  color: var(--card-foreground);
-  background: var(--card);
-  @apply rounded-md;
-  @apply shadow-md;
-  @apply font-medium;
+	position: absolute;
+	display: block;
+	font-family: var(--crepe-font-default);
+	color: var(--card-foreground);
+	background: var(--card);
+	@apply rounded-md;
+	@apply shadow-md;
+	@apply font-medium;
 }
 .milkdown milkdown-slash-menu .tab-group ul li {
-  @apply text-sm font-medium;
+	@apply text-sm font-medium;
 }
 .milkdown .ProseMirror h1 {
-  @apply text-4xl;
+	@apply text-4xl;
 }
 .milkdown .ProseMirror h2 {
-  @apply text-3xl;
+	@apply text-3xl;
 }
 .milkdown .ProseMirror h3 {
-  @apply text-2xl;
+	@apply text-2xl;
 }
 
 /* .milkdown milkdown-slash-menu .menu-groups .menu-group h6 {
 } */
 .milkdown milkdown-slash-menu .menu-groups .menu-group li {
-  min-width: 240px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-  @apply px-4 py-2;
+	min-width: 240px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+	@apply px-4 py-2;
 }
 
 .milkdown milkdown-slash-menu .menu-groups .menu-group li > span {
-  @apply text-sm font-normal text-foreground;
+	@apply text-sm font-normal text-foreground;
 }
 .milkdown milkdown-code-block .list-wrapper {
-  @apply bg-card ring-1 ring-border;
+	@apply bg-card ring-1 ring-border;
 }
 .milkdown milkdown-code-block .search-box {
-  @apply bg-card outline outline-2 outline-accent;
+	@apply bg-card outline outline-2 outline-accent;
 }
 .milkdown milkdown-code-block .language-list {
-  @apply bg-card;
+	@apply bg-card;
 }
 .milkdown milkdown-code-block .language-list .language-list-item {
-  @apply text-sm font-normal text-foreground py-2 rounded-md mx-2 hover:bg-accent;
+	@apply text-sm font-normal text-foreground py-2 rounded-md mx-2 hover:bg-accent;
 }
 .milkdown milkdown-code-block .search-box:has(input:focus) {
-  @apply transition-all outline-4 outline-border;
+	@apply transition-all outline-4 outline-border;
 }

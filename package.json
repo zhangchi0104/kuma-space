@@ -1,6 +1,7 @@
 {
   "name": "kuma-space",
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/bun": "^1.1.14",
     "bun-types": "^1.2.14",
     "prettier": "^3.4.1",
