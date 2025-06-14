@@ -1,14 +1,14 @@
 /** @format */
 
 import ChevronDownIcon from "@heroicons/react/24/outline/ChevronDownIcon";
-import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import type { BaseStyleProps } from "@/src/lib/typings";
+import { cn } from "@/src/lib/shadcn";
 
 const TrailingText: React.FC<BaseStyleProps> = ({ className }) => {
 	const t = useTranslations("Home.Hero");
-	const classNames = clsx(
-		"flex flex-col relative items-center text-muted-foreground animate-bounce-calmer pb-6",
+	const classNames = cn(
+		"flex flex-col relative items-center text-muted-foreground animate-bounce pb-6",
 		className,
 	);
 	return (

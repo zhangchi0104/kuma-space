@@ -11,9 +11,10 @@ import MobileOnlyByCss from "@/src/components/utils/MobileOnlyByCss";
 import SignInOut from "./_internals/sign-in-out";
 import { Suspense } from "react";
 import { Skeleton } from "@/src/components/ui/skeleton";
+import { cn } from "@/src/lib/shadcn";
 
 const Header: React.FC<BaseStyleProps> = ({ className }) => {
-	const headerContainerStyle = clsx(
+	const headerContainerStyle = cn(
 		"max-w-(--breakpoint-2xl)",
 		"h-12",
 		"grow",
@@ -24,7 +25,7 @@ const Header: React.FC<BaseStyleProps> = ({ className }) => {
 		className,
 	);
 	return (
-		<div className="w-screen bg-background foreground fixed mx-auto flex justify-center z-50">
+		<header className="sticky top-0 z-50 flex w-screen justify-center border-b bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
 			<div id="header" className={headerContainerStyle}>
 				<MobileOnlyByCss>
 					<MobileHeaderMenu />
@@ -40,7 +41,7 @@ const Header: React.FC<BaseStyleProps> = ({ className }) => {
 					</Suspense>
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
 export default Header;

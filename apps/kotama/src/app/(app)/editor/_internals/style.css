@@ -1,4 +1,4 @@
-/* @import "@milkdown/crepe/theme/frame.css"; */
+@import "../../../globals.css";
 
 .milkdown .image-edit {
 	@apply rounded-md;
@@ -17,26 +17,30 @@
 	pointer-events: none;
 	@apply rounded-md;
 }
-.milkdown .ProseMirror {
+#editor-container .milkdown .ProseMirror {
 	padding: unset;
 }
 
 .milkdown {
-	--crepe-color-background: hsl(var(--background));
-	--crepe-color-on-background: hsl(var(--foreground));
-	--crepe-color-surface: hsl(var(--card));
-	--crepe-color-on-surface: hsl(var(--card-foreground));
+	--crepe-color-background: var(--background);
+	--crepe-color-on-background: var(--foreground);
+	--crepe-color-surface: var(--card);
+	--crepe-color-on-surface: var(--card-foreground);
 	--crepe-color-on-surface-variant: #a9a9a9;
 	--crepe-color-outline: #757575;
-	--crepe-color-primary: hsl(var(--foreground));
-	--crepe-color-secondary: hsl(var(--secondary-background));
-	--crepe-color-on-secondary: hsl(var(--secondary));
+	--crepe-color-primary: var(--foreground);
+	--crepe-color-secondary: var(--secondary-background);
+	--crepe-color-on-secondary: var(--secondary);
 	--crepe-color-inverse: #e5e5e5;
 	--crepe-color-on-inverse: #2a2a2a;
 	--crepe-color-inline-code: #ff6666;
 	--crepe-color-error: #ff6666;
-	--crepe-color-hover: hsl(var(--accent));
-	--crepe-color-selected: hsl(var(--accent));
+	--crepe-color-hover: var(--color-accent);
+	--crepe-color-selected: color-mix(
+		in oklab,
+		var(--color-blue-300) 50%,
+		transparent
+	);
 	--crepe-color-inline-area: #2b2b2b;
 
 	--crepe-font-title: "Inter", Cambria, "Times New Roman", Times, serif;
@@ -49,28 +53,27 @@
 	--crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px
 		rgba(255, 255, 255, 0.15);
 }
-.milkdown milkdown-toolbar {
-	background: var(--card);
-	@apply rounded-md dark:shadow-none shadow-md;
-	@apply mx-2;
-	@apply border border-border;
-	@apply bg-card z-50;
+.milkdown .milkdown-toolbar {
+	@apply mx-2 rounded-md bg-card border border-border z-50 dark:shadow-none shadow-md;
 }
 .milkdown * {
 	@apply transition-colors duration-200;
+	@apply text-card-foreground/80;
+}
+.milkdown *::selection {
+	@apply bg-blue-300/50;
 }
 
-.milkdown milkdown-slash-menu {
+.milkdown .milkdown-slash-menu {
 	position: absolute;
 	display: block;
 	font-family: var(--crepe-font-default);
-	color: var(--card-foreground);
 	background: var(--card);
-	@apply rounded-md;
+	@apply rounded-md text-card-foreground/80;
 	@apply shadow-md;
 	@apply font-medium;
 }
-.milkdown milkdown-slash-menu .tab-group ul li {
+.milkdown .milkdown-slash-menu .tab-group ul li {
 	@apply text-sm font-medium;
 }
 .milkdown .ProseMirror h1 {
@@ -85,7 +88,7 @@
 
 /* .milkdown milkdown-slash-menu .menu-groups .menu-group h6 {
 } */
-.milkdown milkdown-slash-menu .menu-groups .menu-group li {
+.milkdown .milkdown-slash-menu .menu-groups .menu-group li {
 	min-width: 240px;
 	display: flex;
 	justify-content: flex-start;
@@ -94,21 +97,21 @@
 	@apply px-4 py-2;
 }
 
-.milkdown milkdown-slash-menu .menu-groups .menu-group li > span {
+.milkdown .milkdown-slash-menu .menu-groups .menu-group li > span {
 	@apply text-sm font-normal text-foreground;
 }
-.milkdown milkdown-code-block .list-wrapper {
+.milkdown .milkdown-code-block .list-wrapper {
 	@apply bg-card ring-1 ring-border;
 }
-.milkdown milkdown-code-block .search-box {
+.milkdown .milkdown-code-block .search-box {
 	@apply bg-card outline outline-2 outline-accent;
 }
-.milkdown milkdown-code-block .language-list {
+.milkdown .milkdown-code-block .language-list {
 	@apply bg-card;
 }
-.milkdown milkdown-code-block .language-list .language-list-item {
+.milkdown .milkdown-code-block .language-list .language-list-item {
 	@apply text-sm font-normal text-foreground py-2 rounded-md mx-2 hover:bg-accent;
 }
-.milkdown milkdown-code-block .search-box:has(input:focus) {
+.milkdown .milkdown-code-block .search-box:has(input:focus) {
 	@apply transition-all outline-4 outline-border;
 }
