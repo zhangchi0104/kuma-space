@@ -36,10 +36,8 @@ export default async function RootLayout({
 						enableSystem
 						storageKey="kotama-theme"
 					>
-						<ClientProviders>
-							{children}
-							<Toaster />
-						</ClientProviders>
+						<ClientProviders>{children}</ClientProviders>
+						<Toaster />
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<SpeedInsights />

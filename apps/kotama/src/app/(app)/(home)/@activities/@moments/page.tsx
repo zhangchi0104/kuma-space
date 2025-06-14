@@ -5,24 +5,27 @@ import type { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";
 import { diffInDays } from "@/src/lib/fns";
 import { momentsTable } from "@repo/db/schema";
-import { getDatabaseClient } from "@/src/lib/database";
+
 import { desc } from "drizzle-orm";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
 	const formatter = await getFormatter();
+	const supabase = await createServerSideSupabaseClient();
+	const { data: moments, error } = await supabase
+		.from("moments")
+		.select("*")
+		.order("created_at", { ascending: false })
+		.limit(5);
 	const now = new Date();
-
-	const db = await getDatabaseClient();
-	const moments = await db(async (tx) => {
-		const moments = await tx
-			.select()
-			.from(momentsTable)
-			.orderBy(desc(momentsTable.createdAt))
-			.limit(5);
-		return moments;
-	});
+	if (error) {
+		throw error;
+	}
+	if (!moments) {
+		throw new Error("Failed to fetch moments");
+	}
 
 	return moments
-		.map((post) => ({ ...post, createdAt: new Date(post.updatedAt) }))
+		.map((post) => ({ ...post, createdAt: new Date(post.updated_at) }))
 		.map((post) => ({
 			id: post.id,
 			title: post.title,

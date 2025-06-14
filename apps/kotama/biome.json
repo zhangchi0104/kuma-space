@@ -1,0 +1,10 @@
+{
+	"extends": ["@repo/biome/biome.base"],
+	"linter": {
+		"rules": {
+			"correctness": {
+				"useExhaustiveDependencies": "warn"
+			}
+		}
+	}
+}

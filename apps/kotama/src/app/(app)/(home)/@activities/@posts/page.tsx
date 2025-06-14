@@ -2,42 +2,49 @@
 
 import { getFormatter } from "next-intl/server";
 import PostsTimeline from "../_internals/posts-timeline";
-import type { PostWithRelativeDate } from "../_internals/props";
 import { diffInDays } from "@/src/lib/fns";
-import { getDatabaseClient } from "@/src/lib/database";
-import { postsContentTable, postsTable } from "@repo/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
+import { getUserLocale } from "@/src/lib/userLocale";
 
-const fetchPosts = async (): Promise<PostWithRelativeDate[]> => {
+const fetchPosts = async () => {
 	const formatter = await getFormatter();
-
+	const locale = await getUserLocale();
 	const now = new Date();
 
-	const db = await getDatabaseClient();
-	const posts = await db(async (tx) => {
-		const posts = await tx
-			.select({
-				id: postsTable.id,
-				createdAt: postsTable.createdAt,
-				updatedAt: postsTable.updatedAt,
-				title: postsContentTable.title,
-			})
-			.from(postsTable)
-			.innerJoin(postsContentTable, eq(postsTable.id, postsContentTable.postId))
-			.orderBy(desc(postsTable.createdAt))
-			.limit(5);
-		return posts;
-	});
+	const supabase = await createServerSideSupabaseClient();
+	const { data: posts, error } = await supabase
+		.from("posts")
+		.select(`
+			id,
+			updated_at,
+			posts_content:posts_content(
+				title
+			)
+		`)
+		.eq("posts_content.language_code", "en")
+		.order("updated_at", { ascending: false })
+		.limit(5);
+	if (error) {
+		throw error;
+	}
+	if (!posts) {
+		throw new Error("Failed to fetch posts");
+	}
+
 	return posts
-		.map((post) => ({ ...post, createdAt: new Date(post.updatedAt) }))
+		.map((post) => ({
+			...post,
+			updatedAt: new Date(post.updated_at),
+			title: post.posts_content[0].title,
+		}))
 		.map((post) => ({
 			...post,
 			dateString:
-				diffInDays(now, post.createdAt) > 7
-					? formatter.dateTime(post.createdAt, {
+				diffInDays(now, post.updatedAt) > 7
+					? formatter.dateTime(post.updatedAt, {
 							dateStyle: "medium",
 						})
-					: formatter.relativeTime(post.createdAt, now),
+					: formatter.relativeTime(post.updatedAt, now),
 		}));
 };
 

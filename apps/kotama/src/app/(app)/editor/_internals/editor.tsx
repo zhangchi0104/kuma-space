@@ -45,6 +45,7 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 		window.localStorage.setItem("post-draft/title", title);
 	}, 100);
 	console.log("tags in component", tags);
+	// biome-ignore lint/correctness/useExhaustiveDependencies: only run on mount
 	useEffect(() => {
 		const loadEditor = async () => {
 			const Crepe = await import("@milkdown/crepe").then(
@@ -88,7 +89,6 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 			<div className="sticky top-0 z-10 flex justify-end border-b bg-background py-2">
 				<Button
 					onClick={async () => {
-						console.log("tags", tags);
 						const payload = {
 							title: title,
 							content: editorRef.current?.getMarkdown() ?? "",
@@ -100,6 +100,7 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 						} else {
 							toast.error("Failed to create post");
 						}
+						toast("Post created");
 					}}
 				>
 					Save
