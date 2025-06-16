@@ -7,7 +7,7 @@ import "@/src/app/(app)/editor/_internals/style.css";
 // We have some themes for you to choose
 
 import { useEffect, useRef, useState } from "react";
-import { createPost } from "./actions";
+import { createPost, uploadImage } from "./actions";
 import type { Crepe } from "@milkdown/crepe";
 import type { BaseStyleProps } from "@/src/lib/typings";
 import TagsSelect from "./tags-input";
@@ -64,6 +64,20 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 			const crepe = new Crepe({
 				root: editorRootRef.current,
 				defaultValue: draft || "Let's write something!",
+				featureConfigs: {
+					[Crepe.Feature.ImageBlock]: {
+						onUpload: async (file) => {
+							const { data, error } = await uploadImage(file);
+							if (error) {
+								toast.error("Failed to upload image");
+								return "";
+							}
+
+							const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data.fullPath}`;
+							return publicUrl;
+						},
+					},
+				},
 			});
 
 			editorRef.current = crepe;
@@ -82,7 +96,7 @@ const MilkdownEditor: React.FC<EditorProps> = ({
 			editorRef.current?.destroy();
 			editorRef.current = null;
 		};
-	}, []);
+	}, [debouncedSaveContent, debouncedSaveTitle]);
 
 	return (
 		<div className="space-y-2 max-w-screen-md mx-auto">

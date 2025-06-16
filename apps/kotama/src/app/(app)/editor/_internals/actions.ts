@@ -6,6 +6,7 @@ import { z } from "zod";
 import { google } from "@ai-sdk/google";
 import { generateObject } from "ai";
 import { languageCodes } from "@repo/db/schema";
+import { nanoid } from "nanoid";
 interface PostRequestPayload {
 	content: string;
 	title: string;
@@ -96,4 +97,15 @@ export const createPost = async (payload: PostRequestPayload) => {
 	}
 };
 
-const updatePost = async (postId: string, markdown: string) => {};
+export const uploadImage = async (file: File) => {
+	const supabase = await createServerSideSupabaseClient();
+	const { data: user, error: userError } = await supabase.auth.getUser();
+	if (userError) {
+		throw userError;
+	}
+	const resp = await supabase.storage
+		.from(process.env.BLOG_ASSETS_BUCKET ?? "blog-assets")
+		.upload(`${user.user.id}/${nanoid()}-${file.name}`, file);
+
+	return resp;
+};
