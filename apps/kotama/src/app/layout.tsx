@@ -28,7 +28,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
-			<body className={cn(inter.className, "pb-4")}>
+			<body className={cn(inter.className, "min-h-screen w-screen")}>
 				<NextIntlClientProvider messages={messages}>
 					<ThemeProvider
 						attribute="class"
@@ -36,10 +36,8 @@ export default async function RootLayout({
 						enableSystem
 						storageKey="kotama-theme"
 					>
-						<ClientProviders>
-							{children}
-							<Toaster />
-						</ClientProviders>
+						<ClientProviders>{children}</ClientProviders>
+						<Toaster />
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<SpeedInsights />

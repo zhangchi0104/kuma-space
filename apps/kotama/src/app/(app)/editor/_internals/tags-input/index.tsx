@@ -10,9 +10,7 @@ const TagsSelect: React.FC<BaseStyleProps> = ({
 }: TagsSelectProps) => {
 	return (
 		<div className={className}>
-			<Tags initialTags={[]}>
-				<TagsPopover />
-			</Tags>
+			<TagsPopover />
 		</div>
 	);
 };

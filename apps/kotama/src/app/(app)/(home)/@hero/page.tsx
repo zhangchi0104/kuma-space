@@ -19,7 +19,7 @@ const HeroSectionContainer: React.FC<
 	React.PropsWithChildren<BaseStyleProps>
 > = ({ children, className }) => {
 	const classNames = clsx(
-		"flex flex-col mx-auto min-safe-h-screen-minus-header",
+		"flex flex-col mx-auto h-[calc(100vh-3rem)]",
 		className,
 	);
 	return <div className={classNames}>{children}</div>;

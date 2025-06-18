@@ -5,6 +5,7 @@ import Forbidden from "../http-errors/403-forbidden";
 import type { BaseStyleProps } from "@/src/lib/typings";
 import { cn } from "@/src/lib/shadcn";
 import { getUser } from "@/src/lib/auth";
+import { CustomAuthError } from "@supabase/supabase-js";
 type AuthGuardProps = {
 	requiresAdmin?: boolean;
 	errorClassName?: string;
@@ -15,20 +16,13 @@ const AuthGuard: React.FC<React.PropsWithChildren<AuthGuardProps>> = async ({
 	className,
 }) => {
 	const session = await getUser();
-	const centerClass =
-		"absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2";
-	if (!session) {
-		return (
-			<div className={centerClass}>
-				<Unauthorized />
-			</div>
-		);
-	}
+
 	if (requiresAdmin && session.user_role !== "admin") {
-		return (
-			<div className={centerClass}>
-				<Forbidden />
-			</div>
+		throw new CustomAuthError(
+			"You are not authorized to access this resource",
+			"PermissionDeniedError",
+			403,
+			undefined,
 		);
 	}
 
