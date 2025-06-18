@@ -4,9 +4,6 @@ import PostsTimeline from "../_internals/posts-timeline";
 import type { PostWithRelativeDate } from "../_internals/props";
 import { getFormatter } from "next-intl/server";
 import { diffInDays } from "@/src/lib/fns";
-import { momentsTable } from "@repo/db/schema";
-
-import { desc } from "drizzle-orm";
 import { createServerSideSupabaseClient } from "@/src/lib/supabase/server";
 const fetchMoments = async (): Promise<PostWithRelativeDate[]> => {
 	const formatter = await getFormatter();

@@ -28,7 +28,7 @@ const MenuBar: FC<MenuBarProps> = ({ className }) => {
 				<Link className={menuBarItemStyle} href="/">
 					{t("home")}
 				</Link>
-				<Link className={menuBarItemStyle} href="/blogs">
+				<Link className={menuBarItemStyle} href="/posts">
 					{t("blog")}
 				</Link>
 				<Link className={menuBarItemStyle} href="/about">

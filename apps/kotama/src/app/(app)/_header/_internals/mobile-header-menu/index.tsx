@@ -41,7 +41,7 @@ const Content = () => {
 			<Link className={classNames} href="/">
 				{t("home")}
 			</Link>
-			<Link className={classNames} href="/blog">
+			<Link className={classNames} href="/posts">
 				{t("blog")}
 			</Link>
 			<Link className={classNames} href="/about">

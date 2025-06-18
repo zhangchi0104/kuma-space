@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"updated_at": "2024-07-21T10:00:00Z",
+		"posts_content": [
+			{
+				"title": "My First Blog Post",
+				"content": "This is the beginning of my blogging journey. I'm excited to share my thoughts with the world!"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"updated_at": "2024-07-20T14:30:00Z",
+		"posts_content": [
+			{
+				"title": "A Guide to Next.js",
+				"content": "Next.js is a powerful React framework for building server-side rendered and static websites. In this guide, we'll explore its core features."
+			}
+		]
+	},
+	{
+		"id": 3,
+		"updated_at": "2024-07-19T09:00:00Z",
+		"posts_content": [
+			{
+				"title": "Styling with Tailwind CSS",
+				"content": "Tailwind CSS is a utility-first CSS framework that makes it easy to build modern designs without leaving your HTML."
+			}
+		]
+	}
+]

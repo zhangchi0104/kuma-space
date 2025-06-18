@@ -1,25 +1,25 @@
 {
-  "LanguageSwitcher": {
-    "en": "English",
-    "zh": "Chinese",
-    "title": "Languages",
-    "description": "Change the language of the website"
-  },
-  "DarkModeToggle": {
-    "title": "Toggle Dark Mode",
-    "description": "Change the theme of the website",
-    "system": "Follow System",
-    "dark": "Dark",
-    "light": "Light"
-  },
-  "MenuBar": {
-    "home": "Home",
-    "blog": "Blog",
-    "aboutMe": "About Me",
-    "friends": "Friends"
-  },
-  "signOutDialog": {
-    "greeting": "Hello, {name}!",
-    "signOutButton": "Sign Out"
-  }
+	"LanguageSwitcher": {
+		"en": "English",
+		"zh": "Chinese",
+		"title": "Languages",
+		"description": "Change the language of the website"
+	},
+	"DarkModeToggle": {
+		"title": "Toggle Dark Mode",
+		"description": "Change the theme of the website",
+		"system": "Follow System",
+		"dark": "Dark",
+		"light": "Light"
+	},
+	"MenuBar": {
+		"home": "Home",
+		"blog": "Posts",
+		"aboutMe": "About Me",
+		"friends": "Friends"
+	},
+	"signOutDialog": {
+		"greeting": "Hello, {name}!",
+		"signOutButton": "Sign Out"
+	}
 }
